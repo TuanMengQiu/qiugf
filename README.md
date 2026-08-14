@@ -25,14 +25,14 @@
 本项目代码仅供技术学习交流使用，无任何担保。因违规商用、篡改作者信息、私自篡改代码、非法使用造成的一切损失与法律责任，均由使用者自行承担，与原作者无关。
 
 Non-Commercial Open Source License (NC-OSL 1.0)
-Copyright (c) 2026-8-14-22-50 团梦秋
+Copyright (c) 2026-8-14-22-50 团梦秋TuanMengQiu
 Permission is hereby granted, free of charge, to any individual or non-commercial organization obtaining a copy of this software and associated documentation files (the "Software"), to use, copy, study, modify, and distribute the Software for non-commercial purposes only, subject to the following conditions:
 1. Non-Commercial Restriction (Core Clause)
 
     All use of the Software is strictly limited to personal learning, academic research, non-profit open source communication, and non-commercial scenarios. Any commercial use, profit-making use, commercial secondary development, commercial authorization, paid distribution, advertisement promotion for profit, and other behaviors that directly or indirectly obtain economic benefits are strictly prohibited.
 2. Author Attribution Reservation & Anti-Modification Rule
 
-    The original author information, copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. It is strictly forbidden to modify, replace, delete or cover up the original author name (团梦秋) and copyright information of the project in any form. No false attribution is allowed during modification, reproduction and distribution.
+    The original author information, copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. It is strictly forbidden to modify, replace, delete or cover up the original author name (团梦秋TuanMengQiu) and copyright information of the project in any form. No false attribution is allowed during modification, reproduction and distribution.
 3. Closed-Source Commercial Distribution Prohibition
 
     It is forbidden to package, modify, integrate or repackage this Software into any commercial software, paid service, proprietary closed-source product for sale, authorization or leasing.
