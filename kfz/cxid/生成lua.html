@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Lua执行物品生成</title>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="..\..\static\picture\a4Vyng.jpg" type="image/x-icon">
+    <link rel="bookmark" href="..\..\static\picture\a4Vyng.jpg">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url('https://tuanmengqiu.cn/cx/img/bj.png') no-repeat center center fixed;
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+        }
+
+        @media (min-width: 1000px) {
+            body {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        h1 {
+            margin-top: 20px;
+            font-size: 24px;
+        }
+
+        .container {
+            width: 80%;
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+       .search-wrapper {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        input[type="text"] {
+            width: 80%;
+            padding: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: 4px;
+            font-size: 16px;
+            margin-right: 10px;
+        }
+
+        button {
+            width: 80px;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            background-color: #4dc497;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #7deac0;
+        }
+
+       .pagination {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+       .pagination button {
+            padding: 5px 15px;
+            background-color: #4dc497;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin: 0 5px;
+        }
+
+       .pagination button:hover {
+            background-color: #7deac0;
+        }
+
+       .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+       .table th {
+            color: #ffffff;
+            padding: 10px;
+            background-color: #4dc497;
+            text-align: left;
+            font-size: 16px;
+        }
+
+       .table td {
+            text-align: center;
+            font-size: 14px;
+        }
+
+       .item-container {
+            display: inline-block;
+            width: 100px;
+            height: 130px;
+            margin: 10px;
+            text-align: center;
+            border-radius: 8px;
+            background-color: rgba(255, 255, 255, 0.7);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+       .item-container img {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 10px;
+            border-radius: 50%;
+        }
+
+       .item-container div {
+            font-size: 14px;
+            font-weight: bold;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+       .highlight {
+            background-color: #ffeb3b;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+       .search-info {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+       .quantity-input {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: 80px;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="number" id="quantityInput" class="quantity-input" placeholder="数量" value="64">
+    <h1>Lua执行物品生成 1.45.1.0全部物品</h1>
+    <div id="searchInfo"></div>
+    <div class="search-wrapper">
+        <input type="text" id="searchInput" placeholder="输入关键词或ID">
+        <button id="searchButton">搜索</button>
+    </div>
+
+    <div id="typeContainer"></div>
+    <div id="paginationContainer"></div>
+    <div id="tableContainer"></div>
+
+    <script>
+        const quantityInput = document.getElementById('quantityInput');
+
+        fetch('id.txt')
+          .then(response => response.text())
+          .then(data => {
+                const items = data.trim().split('\n').map(line => {
+                    const [id, name, type, msg] = line.replace(/[{}]/g, '').split(',');
+                    return { id, name, type, msg };
+                });
+
+                const pageSize = 1000;
+                let currentPage = 1;
+                let filteredItems = items;
+                const tableContainer = document.getElementById('tableContainer');
+                const searchInput = document.getElementById('searchInput');
+                const searchButton = document.getElementById('searchButton');
+                const searchInfo = document.getElementById('searchInfo');
+                const typeContainer = document.getElementById('typeContainer');
+                const paginationContainer = document.getElementById('paginationContainer');
+                renderTable();
+
+                function renderTable() {
+                    tableContainer.innerHTML = '';
+
+                    const types = Array.from(new Set(items.map(item => item.type)));
+                    const typeButtons = types.map(type => {
+                        const button = document.createElement('button');
+                        button.textContent = type;
+                        button.addEventListener('click', () => {
+                            filteredItems = items.filter(item => item.type === type);
+                            currentPage = 1;
+                            renderTable();
+                            searchInfo.textContent = `类型：${type}`;
+                        });
+                        return button;
+                    });
+                    typeContainer.innerHTML = '';
+                    typeContainer.appendChild(document.createTextNode('按类型筛选：'));
+                    typeButtons.forEach(button => typeContainer.appendChild(button));
+
+                    const pagination = document.createElement('div');
+                    pagination.classList.add('pagination');
+                    const pageInfo = document.createElement('span');
+                    pageInfo.classList.add('page-info');
+                    pageInfo.textContent = `第 ${currentPage} 页 / 共 ${totalPages()} 页`;
+                    pagination.appendChild(pageInfo);
+                    if (currentPage > 1) {
+                        const prevButton = document.createElement('button');
+                        prevButton.textContent = '上一页';
+                        prevButton.addEventListener('click', () => {
+                            currentPage--;
+                            renderTable();
+                        });
+                        pagination.appendChild(prevButton);
+                    }
+                    if (currentPage < totalPages()) {
+                        const nextButton = document.createElement('button');
+                        nextButton.textContent = '下一页';
+                        nextButton.addEventListener('click', () => {
+                            currentPage++;
+                            renderTable();
+                        });
+                        pagination.appendChild(nextButton);
+                    }
+                    paginationContainer.innerHTML = '';
+                    paginationContainer.appendChild(typeContainer);
+                    paginationContainer.appendChild(pagination);
+
+                    const table = document.createElement('table');
+                    table.classList.add('table');
+
+                    const thead = document.createElement('thead');
+                    const tr = document.createElement('tr');
+                    const th = document.createElement('th');
+                    th.textContent = `第 ${currentPage} 页 / 共 ${totalPages()} 页`;
+                    tr.appendChild(th);
+                    thead.appendChild(tr);
+                    table.appendChild(thead);
+
+                    let tbody = document.createElement('tbody');
+                    const startIndex = (currentPage - 1) * pageSize;
+                    const endIndex = Math.min(startIndex + pageSize, filteredItems.length);
+                    for (let i = startIndex; i < endIndex; i++) {
+                        const item = filteredItems[i];
+                        const td = document.createElement('td');
+                        const itemContainer = document.createElement('div');
+                        itemContainer.classList.add('item-container');
+                        const img = document.createElement('img');
+                        img.src = `ico/${item.id}.png`;
+                        const name = document.createElement('div');
+                        name.textContent = item.name;
+                        const id = document.createElement('div');
+                        id.textContent = item.id;
+                        const msg = document.createElement('div');
+                        msg.textContent = item.msg;
+                        itemContainer.appendChild(id);
+                        itemContainer.appendChild(img);
+                        itemContainer.appendChild(name);
+                        td.appendChild(itemContainer);
+                        td.addEventListener('click', () => {
+                            const quantity = quantityInput.value || 64;
+                            navigator.clipboard.writeText(`/Player:gainItems(uin,${item.id.toString()},${quantity},1)`);
+                            alert(`ID: ${item.id}\n名称: ${item.name}\n类型: ${item.type}\n描述: ${item.msg}`, img);
+                        });
+                        tbody.appendChild(td);
+                        if ((i + 1) % 10 === 0 || i === endIndex - 1) {
+                            const tr = document.createElement('tr');
+                            tr.appendChild(tbody);
+                            table.appendChild(tr);
+                            tbody = document.createElement('tbody');
+                        }
+                    }
+                    table.appendChild(tbody);
+
+                    tableContainer.appendChild(table);
+                }
+
+                function totalPages() {
+                    return Math.ceil(filteredItems.length / pageSize);
+                }
+
+                searchButton.addEventListener('click', () => {
+                    const keyword = searchInput.value.trim().toLowerCase();
+                    if (keyword) {
+                        filteredItems = items.filter(item => item.id.includes(keyword) || item.name.toLowerCase().includes(keyword));
+                        if (filteredItems.length > 0) {
+                            currentPage = 1;
+                            renderTable();
+                            searchInfo.textContent = `搜索：${keyword}`;
+                        } else {
+                            alert('秋秋找不到呢，请换一个试试！');
+                        }
+                    } else {
+                        filteredItems = items;
+                        renderTable();
+                        searchInfo.textContent = '';
+                    }
+                });
+            })
+          .catch(error => {
+                console.error(error);
+                alert('读取服务器数据时发生错误。');
+            });
+    </script>
+</body>
+
+</html>    

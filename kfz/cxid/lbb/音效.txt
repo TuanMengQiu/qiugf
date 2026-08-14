@@ -1,0 +1,2186 @@
+ID 音效名称 路径 时长(ms)
+
+10000 blockd.cloth1 214
+
+10001 blockd.cloth2 325
+
+10002 blockd.cloth3 245
+
+10003 blockd.cloth4 325
+
+10004 blockd.glass1 592
+
+10005 blockd.glass2 592
+
+10006 blockd.glass3 592
+
+10007 blockd.grass1 513
+
+10008 blockd.grass2 513
+
+10009 blockd.grass3 500
+
+10010 blockd.grass4 494
+
+10011 blockd.gravel1 595
+
+10012 blockd.gravel2 510
+
+10013 blockd.gravel3 464
+
+10014 blockd.gravel4 373
+
+10015 blockd.jar1 1500
+
+10016 blockd.jar2 1500
+
+10017 blockd.jar3 1000
+
+10018 blockd.sand1 291
+
+10019 blockd.sand2 375
+
+10020 blockd.sand3 293
+
+10021 blockd.sand4 312
+
+10022 blockd.snow1 355
+
+10023 blockd.snow2 325
+
+10024 blockd.snow3 348
+
+10025 blockd.snow4 366
+
+10026 blockd.stone1 139
+
+10027 blockd.stone2 261
+
+10028 blockd.stone3 161
+
+10029 blockd.stone4 145
+
+10030 blockd.wood1 135
+
+10031 blockd.wood2 212
+
+10032 blockd.wood3 133
+
+10033 blockd.wood4 120
+
+10034 blocks.cloth1 250
+
+10035 blocks.cloth2 250
+
+10036 blocks.cloth3 250
+
+10037 blocks.cloth4 250
+
+10038 blocks.cloth5 250
+
+10039 blocks.grass1 500
+
+10040 blocks.grass2 500
+
+10041 blocks.grass3 500
+
+10042 blocks.grass4 500
+
+10043 blocks.grass5 500
+
+10044 blocks.grass6 500
+
+10045 blocks.gravel1 375
+
+10046 blocks.gravel2 375
+
+10047 blocks.gravel3 375
+
+10048 blocks.gravel4 375
+
+10049 blocks.gravel5 375
+
+10050 blocks.gravel6 375
+
+10051 blocks.ladder1 530
+
+10052 blocks.ladder2 525
+
+10053 blocks.ladder3 575
+
+10054 blocks.ladder4 503
+
+10055 blocks.ladder5 580
+
+10056 blocks.sand1 375
+
+10057 blocks.sand2 375
+
+10058 blocks.sand3 375
+
+10059 blocks.sand4 375
+
+10060 blocks.sand5 375
+
+10061 blocks.snow1 466
+
+10062 blocks.snow2 466
+
+10063 blocks.snow3 466
+
+10064 blocks.snow4 466
+
+10065 blocks.snow5 466
+
+10066 blocks.stone1 466
+
+10067 blocks.stone2 466
+
+10068 blocks.stone3 466
+
+10069 blocks.stone4 466
+
+10070 blocks.stone5 466
+
+10071 blocks.stone6 466
+
+10072 blocks.wood1 500
+
+10073 blocks.wood2 500
+
+10074 blocks.wood3 500
+
+10075 blocks.wood4 500
+
+10076 blocks.wood5 500
+
+10077 blocks.wood6 500
+
+10078 buff.buff_attack_1 2750
+
+10079 buff.buff_chicken 1135
+
+10080 buff.buff_cow 875
+
+10081 buff.buff_damaged_1 2375
+
+10082 buff.buff_damage_absorb 2500
+
+10083 buff.buff_dumpling 864
+
+10084 buff.buff_evil 864
+
+10085 buff.buff_fluorescence 3000
+
+10086 buff.buff_freeze 1750
+
+10087 buff.buff_hp_1 2375
+
+10088 buff.buff_light 280
+
+10089 buff.buff_dundun 625
+
+10090 buff.buff_pop 182
+
+10091 buff.buff_sheep 875
+
+10092 buff.buff_sick_1 750
+
+10093 buff.buff_soccer 750
+
+10094 buff.buff_speed_1 1750
+
+10095 buff.buff_wither_1 3000
+
+10096 ent.3013.idle 1463
+
+10097 ent.3014.idle1 1875
+
+10098 ent.3014.idle2 2375
+
+10099 ent.3015.idle1 4000
+
+10100 ent.3016.idle1 864
+
+10101 ent.3017.idle1 864
+
+10102 ent.3018.die 1375
+
+10103 ent.3018.foot 875
+
+10104 ent.3018.hit1 625
+
+10105 ent.3018.hit2 500
+
+10106 ent.3018.idle1 1500
+
+10107 ent.3018.idle2 1500
+
+10108 ent.3018.idle3 1500
+
+10109 ent.3101.die 1000
+
+10110 ent.3101.dig1 875
+
+10111 ent.3101.dig2 875
+
+10112 ent.3101.dig3 875
+
+10113 ent.3101.dig4 875
+
+10114 ent.3101.digbreak 1500
+
+10115 ent.3101.escape 1250
+
+10116 ent.3101.foot1 250
+
+10117 ent.3101.foot2 250
+
+10118 ent.3101.foot3 250
+
+10119 ent.3101.foot4 250
+
+10120 ent.3101.foot5 250
+
+10121 ent.3101.foot6 250
+
+10122 ent.3101.hit1 875
+
+10123 ent.3101.hit2 625
+
+10124 ent.3101.idle1 1625
+
+10125 ent.3101.idle2 1625
+
+10126 ent.3101.idle3 1568
+
+10127 ent.3102.die 625
+
+10128 ent.3102.foot1 250
+
+10129 ent.3102.foot2 250
+
+10130 ent.3102.foot3 250
+
+10131 ent.3102.foot4 250
+
+10132 ent.3102.foot5 250
+
+10133 ent.3102.foot6 250
+
+10134 ent.3102.hit1 375
+
+10135 ent.3102.hit2 375
+
+10136 ent.3102.idle1 1250
+
+10137 ent.3102.idle2 1750
+
+10138 ent.3103.angry 7000
+
+10139 ent.3103.die 4000
+
+10140 ent.3103.hit1 375
+
+10141 ent.3103.hit2 375
+
+10142 ent.3103.hit3 375
+
+10143 ent.3103.idle1 4000
+
+10144 ent.3103.idle2 4000
+
+10145 ent.3103.magic 3000
+
+10146 ent.3105.die 1125
+
+10147 ent.3105.escape 1250
+
+10148 ent.3105.foot1 634
+
+10149 ent.3105.foot2 531
+
+10150 ent.3105.foot3 478
+
+10151 ent.3105.foot4 481
+
+10152 ent.3105.hit1 750
+
+10153 ent.3105.hit2 625
+
+10154 ent.3105.hit3 625
+
+10155 ent.3105.idle1 1625
+
+10156 ent.3105.idle2 1125
+
+10157 ent.3107.die 589
+
+10158 ent.3107.foot1 530
+
+10159 ent.3107.foot2 530
+
+10160 ent.3107.foot3 563
+
+10161 ent.3107.foot4 563
+
+10162 ent.3107.hit1 615
+
+10163 ent.3107.hit2 504
+
+10164 ent.3107.hit3 750
+
+10165 ent.3107.idle1 740
+
+10166 ent.3107.idle2 875
+
+10167 ent.3107.idle3 875
+
+10168 ent.3107.idle4 687
+
+10169 ent.3109.die 875
+
+10170 ent.3109.foot1 250
+
+10171 ent.3109.hit1 500
+
+10172 ent.3109.hit2 500
+
+10173 ent.3109.idle1 1125
+
+10174 ent.3109.idle2 1125
+
+10175 ent.3109.prepare 1250
+
+10176 ent.3110.die 1000
+
+10177 ent.3110.escape 1875
+
+10178 ent.3110.foot 1000
+
+10179 ent.3110.hit1 250
+
+10180 ent.3110.hit2 250
+
+10181 ent.3110.hit3 250
+
+10182 ent.3110.idle1 1250
+
+10183 ent.3110.idle2 1250
+
+10184 ent.3110.idle3 1250
+
+10185 ent.3110.joint 3000
+
+10186 ent.3110.projectile_throw 2250
+
+10187 ent.3110.talk1 750
+
+10188 ent.3110.talk2 1500
+
+10189 ent.3110.talk3 1500
+
+10190 ent.3111.die 1000
+
+10191 ent.3111.hit1 500
+
+10192 ent.3111.hit2 500
+
+10193 ent.3111.hit3 500
+
+10194 ent.3111.idle1 750
+
+10195 ent.3111.idle2 750
+
+10196 ent.3111.idle3 750
+
+10197 ent.3111.projectile_throw 1625
+
+10198 ent.3112.charge 2000
+
+10199 ent.3112.die 875
+
+10200 ent.3112.hit1 250
+
+10201 ent.3112.hit2 250
+
+10202 ent.3112.hit3 250
+
+10203 ent.3112.idle1 750
+
+10204 ent.3112.idle2 750
+
+10205 ent.3112.idle3 750
+
+10206 ent.3112.projectile_hit 1485
+
+10207 ent.3112.projectile_throw 156
+
+10208 ent.3112.sprint 2000
+
+10209 ent.3113.split 1500
+
+10210 ent.3120.deal 1500
+
+10211 ent.3120.die 1375
+
+10212 ent.3120.hit1 625
+
+10213 ent.3120.hit2 625
+
+10214 ent.3120.idle1 1500
+
+10215 ent.3120.idle2 1500
+
+10216 ent.3120.idle3 1500
+
+10217 ent.3121.die 1375
+
+10218 ent.3121.foot1 125
+
+10219 ent.3121.hit1 500
+
+10220 ent.3121.hit2 500
+
+10221 ent.3121.idle1 1125
+
+10222 ent.3121.idle2 1125
+
+10223 ent.3121.idle3 1125
+
+10224 ent.3123.die 1375
+
+10225 ent.3123.foot1 125
+
+10226 ent.3123.hit1 500
+
+10227 ent.3123.hit2 500
+
+10228 ent.3123.idle1 1125
+
+10229 ent.3123.idle2 1125
+
+10230 ent.3123.idle3 1125
+
+10231 ent.3130.die 2500
+
+10232 ent.3130.foot1 250
+
+10233 ent.3130.foot2 250
+
+10234 ent.3130.foot3 250
+
+10235 ent.3130.foot4 250
+
+10236 ent.3130.foot5 250
+
+10237 ent.3130.foot6 250
+
+10238 ent.3130.hit1 625
+
+10239 ent.3130.hit2 625
+
+10240 ent.3130.hit3 625
+
+10241 ent.3130.idle1 929
+
+10242 ent.3130.idle2 929
+
+10243 ent.3130.idle3 929
+
+10244 ent.3131.die 750
+
+10245 ent.3131.foot1 335
+
+10246 ent.3131.foot2 335
+
+10247 ent.3131.foot3 335
+
+10248 ent.3131.foot4 335
+
+10249 ent.3131.hit1 500
+
+10250 ent.3131.hit2 625
+
+10251 ent.3131.hit3 414
+
+10252 ent.3131.hit4 500
+
+10253 ent.3131.idle1 686
+
+10254 ent.3131.idle2 625
+
+10255 ent.3131.idle3 625
+
+10256 ent.3400.egg 125
+
+10257 ent.3400.foot1 125
+
+10258 ent.3400.foot2 125
+
+10259 ent.3400.foot3 125
+
+10260 ent.3400.foot4 125
+
+10261 ent.3400.hit1 482
+
+10262 ent.3400.hit2 482
+
+10263 ent.3400.idle1 369
+
+10264 ent.3400.idle2 235
+
+10265 ent.3400.idle3 208
+
+10266 ent.3400.jump 482
+
+10267 ent.3400.variation 482
+
+10268 ent.3401.angry 595
+
+10269 ent.3401.die 238
+
+10270 ent.3401.foot1 333
+
+10271 ent.3401.foot2 333
+
+10272 ent.3401.foot3 333
+
+10273 ent.3401.hit1 851
+
+10274 ent.3401.hit2 829
+
+10275 ent.3401.hit3 854
+
+10276 ent.3401.idle1 3679
+
+10277 ent.3401.idle2 1081
+
+10278 ent.3401.idle3 1148
+
+10279 ent.3401.idle4 1258
+
+10280 ent.3402.die 500
+
+10281 ent.3402.foot1 333
+
+10282 ent.3402.foot2 333
+
+10283 ent.3402.foot3 333
+
+10284 ent.3402.foot4 333
+
+10285 ent.3402.idle1 625
+
+10286 ent.3402.idle2 625
+
+10287 ent.3402.idle3 500
+
+10288 ent.3402.sleep 4015
+
+10289 ent.3403.foot1 422
+
+10290 ent.3403.foot2 483
+
+10291 ent.3403.foot3 466
+
+10292 ent.3403.foot4 466
+
+10293 ent.3403.idle1 1949
+
+10294 ent.3403.idle2 976
+
+10295 ent.3403.idle3 1617
+
+10296 ent.3403.shear 375
+
+10297 ent.3405.die 1625
+
+10298 ent.3405.hit1 625
+
+10299 ent.3405.hit2 500
+
+10300 ent.3405.hit3 500
+
+10301 ent.3405.idle1 1500
+
+10302 ent.3405.idle2 875
+
+10303 ent.3405.idle3 1000
+
+10304 ent.3406.die 2250
+
+10305 ent.3406.hit1 2250
+
+10306 ent.3406.hit2 500
+
+10307 ent.3406.hit3 625
+
+10308 ent.3406.idle1 1000
+
+10309 ent.3406.idle2 1000
+
+10310 ent.3406.idle3 1000
+
+10311 ent.3407.die 750
+
+10312 ent.3407.foot1 184
+
+10313 ent.3407.foot2 186
+
+10314 ent.3407.foot3 177
+
+10315 ent.3407.foot4 200
+
+10316 ent.3407.foot5 230
+
+10317 ent.3407.hit1 500
+
+10318 ent.3407.hit2 428
+
+10319 ent.3407.hit3 428
+
+10320 ent.3407.howl 2042
+
+10321 ent.3407.idle1 1000
+
+10322 ent.3407.idle2 1500
+
+10323 ent.3407.idle3 875
+
+10324 ent.3407.idle4 1410
+
+10325 ent.3408.die 750
+
+10326 ent.3408.foot1 184
+
+10327 ent.3408.foot2 186
+
+10328 ent.3408.foot3 177
+
+10329 ent.3408.foot4 200
+
+10330 ent.3408.foot5 230
+
+10331 ent.3408.hit1 500
+
+10332 ent.3408.hit2 428
+
+10333 ent.3408.hit3 428
+
+10334 ent.3408.idle1 1410
+
+10335 ent.3408.idle2 417
+
+10336 ent.3408.idle3 333
+
+10337 ent.3409.die 678
+
+10338 ent.3409.foot1 42
+
+10339 ent.3409.foot2 36
+
+10340 ent.3409.hit1 375
+
+10341 ent.3409.hit2 375
+
+10342 ent.3409.hit3 375
+
+10343 ent.3409.hit4 375
+
+10344 ent.3409.idle1 392
+
+10345 ent.3409.idle2 500
+
+10346 ent.3409.idle3 375
+
+10347 ent.3409.idle4 500
+
+10348 ent.3409.idle5 454
+
+10349 ent.3409.idle6 428
+
+10350 ent.3409.idle7 428
+
+10351 ent.3409.idle8 428
+
+10352 ent.3410.die 1375
+
+10353 ent.3410.hit1 375
+
+10354 ent.3410.hit2 500
+
+10355 ent.3410.hit3 500
+
+10356 ent.3410.idle1 1250
+
+10357 ent.3410.idle2 1250
+
+10358 ent.3410.idle3 1250
+
+10359 ent.3415.die 1250
+
+10360 ent.3415.foot1 500
+
+10361 ent.3415.hit1 500
+
+10362 ent.3415.hit2 500
+
+10363 ent.3415.idle1 875
+
+10364 ent.3415.idle2 1000
+
+10365 ent.3415.jump 500
+
+10366 ent.3416.die 1000
+
+10367 ent.3416.eat 1250
+
+10368 ent.3416.hit1 500
+
+10369 ent.3416.hunger 875
+
+10370 ent.3416.idle1 1125
+
+10371 ent.3416.idle2 1625
+
+10372 ent.3416.idle3 1500
+
+10373 ent.3418.die 625
+
+10374 ent.3418.hit1 625
+
+10375 ent.3418.idle1 2000
+
+10376 ent.3418.idle2 2000
+
+10377 ent.3418.idle3 2000
+
+10378 ent.3418.idle4 2000
+
+10379 ent.3420.blast 5000
+
+10380 ent.3420.charge 750
+
+10381 ent.3420.clear 299
+
+10382 ent.3420.collide 1250
+
+10383 ent.3420.hit1 750
+
+10384 ent.3420.kick1 375
+
+10385 ent.3420.lob_power_high 625
+
+10386 ent.3420.lob_power_low 375
+
+10387 ent.3420.shoot_power_high 1000
+
+10388 ent.3420.shoot_power_low 375
+
+10389 ent.3420.tackle 750
+
+10390 ent.3421.foot1 125
+
+10391 ent.3421.foot2 125
+
+10392 ent.3421.foot3 125
+
+10393 ent.3421.foot4 125
+
+10394 ent.3421.hit1 500
+
+10395 ent.3421.idle1 1125
+
+10396 ent.3423.discover 208
+
+10397 ent.3423.foot1 125
+
+10398 ent.3423.foot2 125
+
+10399 ent.3423.foot3 125
+
+10400 ent.3423.foot4 125
+
+10401 ent.3423.hit1 625
+
+10402 ent.3423.idle1 500
+
+10403 ent.3423.idle2 625
+
+10404 ent.3424.crow 3250
+
+10405 ent.3424.foot1 125
+
+10406 ent.3424.foot2 125
+
+10407 ent.3424.foot3 125
+
+10408 ent.3424.foot4 125
+
+10409 ent.3424.hit 555
+
+10410 ent.3425.basketball_impact 124
+
+10411 ent.3430.die 1375
+
+10412 ent.3430.hit1 750
+
+10413 ent.3430.hit2 625
+
+10414 ent.3430.hit3 625
+
+10415 ent.3430.idle1 500
+
+10416 ent.3430.idle2 625
+
+10417 ent.3430.idle3 1625
+
+10418 ent.3430.idle4 1000
+
+10419 ent.3430.idle5 1750
+
+10420 ent.3430.idle6 2000
+
+10421 ent.3433.die 500
+
+10422 ent.3433.fly 750
+
+10423 ent.3433.hit1 375
+
+10424 ent.3433.hit2 250
+
+10425 ent.3433.hit3 375
+
+10426 ent.3433.idle1 1625
+
+10427 ent.3433.idle2 750
+
+10428 ent.3433.idle3 875
+
+10429 ent.3433.idle4 750
+
+10430 ent.3433.idle5 875
+
+10431 ent.3433.idle6 1750
+
+10432 ent.3436.die 4000
+
+10433 ent.3436.hit1 500
+
+10434 ent.3436.hit2 500
+
+10435 ent.3436.hit3 375
+
+10436 ent.3436.idle1 1750
+
+10437 ent.3436.idle2 2000
+
+10438 ent.3436.idle3 1125
+
+10439 ent.3436.idle4 1125
+
+10440 ent.3436.idle5 1125
+
+10441 ent.3436.idle6 2625
+
+10442 ent.3436.jump 3000
+
+10443 ent.3439.die 375
+
+10444 ent.3439.hit1 375
+
+10445 ent.3439.hit2 375
+
+10446 ent.3439.hit3 375
+
+10447 ent.3439.idle1 500
+
+10448 ent.3439.idle2 500
+
+10449 ent.3439.idle3 500
+
+10450 ent.3439.idle4 500
+
+10451 ent.3439.idle5 500
+
+10452 ent.3439.idle6 500
+
+10453 ent.3442.die 1236
+
+10454 ent.3442.hit1 603
+
+10455 ent.3442.hit2 539
+
+10456 ent.3442.idle1 1035
+
+10457 ent.3445.die 318
+
+10458 ent.3445.hit 230
+
+10459 ent.3445.idle 481
+
+10460 ent.3445.jump 888
+
+10461 ent.3501.angry 7000
+
+10462 ent.3501.die 1375
+
+10463 ent.3501.hit1 375
+
+10464 ent.3501.hit2 375
+
+10465 ent.3501.hit3 500
+
+10466 ent.3501.idle1 1250
+
+10467 ent.3501.idle2 1250
+
+10468 ent.3501.idle3 901
+
+10469 ent.3501.idle4 1375
+
+10470 ent.3501.move1 500
+
+10471 ent.3501.move2 500
+
+10472 ent.3501.shout1 527
+
+10473 ent.3502.die 10000
+
+10474 ent.3502.fireball 2000
+
+10475 ent.3502.fly1 625
+
+10476 ent.3502.fly2 625
+
+10477 ent.3502.fly3 625
+
+10478 ent.3502.fly4 625
+
+10479 ent.3502.fly5 625
+
+10480 ent.3502.growl1 3125
+
+10481 ent.3502.growl2 3125
+
+10482 ent.3502.growl3 3125
+
+10483 ent.3502.hit1 2000
+
+10484 ent.3502.hit2 2000
+
+10485 ent.3502.hit3 2000
+
+10486 ent.3502.idle1 2000
+
+10487 ent.3502.idle2 2000
+
+10488 ent.3502.idle3 2000
+
+10489 ent.3502.idle4 2000
+
+10490 ent.3505.die 1625
+
+10491 ent.3505.escape 1875
+
+10492 ent.3505.foot1 184
+
+10493 ent.3505.foot2 186
+
+10494 ent.3505.foot3 177
+
+10495 ent.3505.foot4 200
+
+10496 ent.3505.foot5 230
+
+10497 ent.3505.hit1 500
+
+10498 ent.3505.hit2 500
+
+10499 ent.3505.hit3 500
+
+10500 ent.3505.idle1 1250
+
+10501 ent.3505.idle2 1125
+
+10502 ent.3505.idle3 1625
+
+10503 ent.3505.idle4 625
+
+10504 ent.3505.idle5 500
+
+10505 ent.3506.die 1625
+
+10506 ent.3506.egg 125
+
+10507 ent.3506.foot1 184
+
+10508 ent.3506.foot2 186
+
+10509 ent.3506.foot3 177
+
+10510 ent.3506.foot4 200
+
+10511 ent.3506.foot5 230
+
+10512 ent.3506.hit1 500
+
+10513 ent.3506.hit2 500
+
+10514 ent.3506.hit3 500
+
+10515 ent.3506.idle1 1250
+
+10516 ent.3506.idle2 1125
+
+10517 ent.3506.idle3 1625
+
+10518 ent.3506.idle4 625
+
+10519 ent.3506.idle5 500
+
+10520 ent.3506.sit 1375
+
+10521 ent.3507.die 875
+
+10522 ent.3507.foot1 500
+
+10523 ent.3507.foot2 375
+
+10524 ent.3507.hit1 500
+
+10525 ent.3507.hit2 500
+
+10526 ent.3507.hit3 500
+
+10527 ent.3507.idle1 375
+
+10528 ent.3507.idle2 375
+
+10529 ent.3507.idle3 375
+
+10530 ent.3508.die 1250
+
+10531 ent.3508.foot1 500
+
+10532 ent.3508.hit1 500
+
+10533 ent.3508.hit2 500
+
+10534 ent.3508.idle1 875
+
+10535 ent.3508.idle2 1000
+
+10536 ent.3508.lavaball 156
+
+10537 ent.3508.lavaball_hit 1485
+
+10538 ent.3510.attack 2117
+
+10539 ent.3510.born 2455
+
+10540 ent.3510.die 6350
+
+10541 ent.3510.doubleattack 2439
+
+10542 ent.3514.bellow 2236
+
+10543 ent.3514.die 3089
+
+10544 ent.3514.foot 615
+
+10545 ent.3514.stonewave 2903
+
+10546 ent.3514.stonewaverdy 2000
+
+10547 ent.3803.countdown 11222
+
+10548 ent.3803.drop 145
+
+10549 ent.3803.fly 3617
+
+10550 ent.3803.landing 3617
+
+10551 ent.3803.launching 1859
+
+10552 ent.3803.open 1601
+
+10553 ent.3803.padding 261
+
+10554 ent.3803.ready 1549
+
+10555 ent.3803.warn 2541
+
+10556 ent.che.base 1982
+
+10557 ent.che.brake 794
+
+10558 ent.che.inside 1906
+
+10559 ent.portal.portal 1733
+
+10560 ent.yanhua.blast1 2125
+
+10561 ent.yanhua.blast2 2125
+
+10562 ent.yanhua.blast3 2125
+
+10563 ent.yanhua.blast4 2000
+
+10564 ent.yanhua.blast5 2125
+
+10565 ent.yanhua.launch1 1875
+
+10566 env.lava 16855
+
+10567 env.lavapop 322
+
+10568 env.portal 16651
+
+10569 env.rain1 3500
+
+10570 env.rain2 4000
+
+10571 env.rain3 4000
+
+10572 env.rain4 6000
+
+10573 env.splash 3875
+
+10574 env.swim1 750
+
+10575 env.swim2 750
+
+10576 env.swim3 750
+
+10577 env.swim4 750
+
+10578 env.transfer 500
+
+10579 env.underwater 13500
+
+10580 env.water 3898
+
+10581 item.1047.full 875
+
+10582 item.11005.use1 250
+
+10583 item.11015.charge1 3000
+
+10584 item.11015.charge4 1000
+
+10585 item.11072.clear_prop 1616
+
+10586 item.11075.activate 3500
+
+10587 item.12004.charge1 1125
+
+10588 item.12004.charge2 1125
+
+10589 item.12004.charge3 1125
+
+10590 item.12004.charge4 1000
+
+10591 item.12005.charge1 2000
+
+10592 item.12005.charge2 2000
+
+10593 item.12005.charge3 2000
+
+10594 item.12005.charge4 2000
+
+10595 item.12247.fire 407
+
+10596 item.12275.warn 875
+
+10597 item.12288.charge2 147
+
+10598 item.12288.charge4 563
+
+10599 item.12293.charge 2000
+
+10600 item.12293.freed 636
+
+10601 item.12293.pickup 388
+
+10602 item.12294.fire 266
+
+10603 item.12296.hit 231
+
+10604 item.12298.hit 371
+
+10605 item.12587.fire 1000
+
+10606 item.12587.hit 1000
+
+10607 item.12587.reload 1000
+
+10608 item.12591.hit 1000
+
+10609 item.12822.blast 2125
+
+10610 item.12822.count 875
+
+10611 item.12822.fly 1852
+
+10612 item.12822.launch 1875
+
+10613 item.15000.empty 417
+
+10614 item.15000.fire 580
+
+10615 item.15000.hit 441
+
+10616 item.15000.reload 1044
+
+10617 item.15002.empty 394
+
+10618 item.15002.fire 1091
+
+10619 item.15002.hit 1215
+
+10620 item.15002.reload 1044
+
+10621 item.15004.empty 278
+
+10622 item.15004.fire 1300
+
+10623 item.15004.hit 464
+
+10624 item.15004.load 1000
+
+10625 item.15004.reload 928
+
+10626 item.15005.empty 1125
+
+10627 item.15005.fire 250
+
+10628 item.15005.hit 905
+
+10629 item.15005.reload 1393
+
+10630 item.15006.empty 325
+
+10631 item.15006.fire 1114
+
+10632 item.15006.hit 557
+
+10633 item.15006.reload 1532
+
+10634 item.15007.hit 256
+
+10635 misc.axe_use 500
+
+10636 misc.balloon 299
+
+10637 misc.bazooka 1625
+
+10638 misc.bee 8560
+
+10639 misc.bodyshot 500
+
+10640 misc.bow 527
+
+10641 misc.bowhit1 658
+
+10642 misc.bowhit2 658
+
+10643 misc.bowhit3 454
+
+10644 misc.bowhit4 828
+
+10645 misc.break 1000
+
+10646 misc.burp 250
+
+10647 misc.candle 451
+
+10648 misc.chest_close 540
+
+10649 misc.chest_open 1054
+
+10650 misc.click 277
+
+10651 misc.dogwhistle 813
+
+10652 misc.door_close 444
+
+10653 misc.door_open 348
+
+10654 misc.eat1 215
+
+10655 misc.eat2 239
+
+10656 misc.egg_hit 375
+
+10657 misc.emitter 166
+
+10658 misc.emitter_null 220
+
+10659 misc.equipment_break 1000
+
+10660 misc.explode1 3375
+
+10661 misc.explode2 3375
+
+10662 misc.explode3 3375
+
+10663 misc.explode4 3375
+
+10664 misc.explosive 2250
+
+10665 misc.fallbig 500
+
+10666 misc.fallsmall 500
+
+10667 misc.fart 320
+
+10668 misc.fire 3727
+
+10669 misc.fireworks_1 1750
+
+10670 misc.fizz 1248
+
+10671 misc.fuse 2713
+
+10672 misc.headshot 500
+
+10673 misc.hit1 750
+
+10674 misc.hit2 625
+
+10675 misc.hit3 625
+
+10676 misc.horn 2667
+
+10677 misc.horseegg_pip 7000
+
+10678 misc.horseegg_plop 125
+
+10679 misc.ignite 451
+
+10680 misc.jetpack_1 750
+
+10681 misc.jetpack_2 1852
+
+10682 misc.jetpack_3 1000
+
+10683 misc.jetpack_4 875
+
+10684 misc.jetpack_5 1000
+
+10685 misc.mechaslider 1601
+
+10686 misc.mechaslider_break 1000
+
+10687 misc.mechaslider_error 1933
+
+10688 misc.netting 156
+
+10689 misc.pickaxe_use 750
+
+10690 misc.piston_in 250
+
+10691 misc.piston_out 250
+
+10692 misc.plug 96
+
+10693 misc.pop 182
+
+10694 misc.pulllution 4200
+
+10695 misc.pulse_arrow 424
+
+10696 misc.rebirth 2250
+
+10697 misc.robotarm 3213
+
+10698 misc.sensorblock 220
+
+10699 misc.sleep 5750
+
+10700 misc.slingshot 500
+
+10701 misc.slingshot_hit 750
+
+10702 misc.snowball_hit 203
+
+10703 misc.snowball_hit_christmas 1219
+
+10704 misc.spring_in 175
+
+10705 misc.spring_out 783
+
+10706 misc.starblock 1750
+
+10707 misc.switch1 3213
+
+10708 misc.throw 156
+
+10709 misc.thrower 156
+
+10710 misc.throw_spear 500
+
+10711 misc.tnt_count 330
+
+10712 misc.trap_out 250
+
+10713 music.bgm1 73375
+
+10714 music.bgm2 57727
+
+10715 music.bgm3 60582
+
+10716 music.bgm4 52881
+
+10717 music.bgm5 45125
+
+10718 music.bgm6 52363
+
+10719 music.bgm7 16000
+
+10720 music.bgm8 38000
+
+10721 music.bgm_day_1 133333
+
+10722 music.bgm_day_2 151333
+
+10723 music.bgm_day_3 134007
+
+10724 music.bgm_day_4 136000
+
+10725 music.bgm_night_1 214000
+
+10726 music.bgm_night_2 144000
+
+10727 music.bgm_night_3 110400
+
+10728 music.bgm_night_4 100000
+
+10729 music.bgm_planet_day_1 88000
+
+10730 music.bgm_planet_day_2 98000
+
+10731 music.bgm_planet_day_3 148000
+
+10732 music.bgm_planet_land 32000
+
+10733 music.bgm_planet_night_1 264000
+
+10734 music.bgm_planet_night_2 100000
+
+10735 music.bgm_planet_night_3 132000
+
+10736 music.bgm_earthcore_night_1 82750
+
+10737 music.boss_earthcore_1 56570
+
+10738 music.boss_golem_1 61934
+
+10739 music.theme1 50823
+
+10740 music.fx.fx1 4000
+
+10741 music.fx.fx2 2000
+
+10742 music.fx.fx3 8500
+
+10743 music.fx.fx4 8500
+
+10744 music.loop.bass1 8000
+
+10745 music.loop.bass2 4000
+
+10746 music.loop.bass3 4000
+
+10747 music.loop.bass4 4000
+
+10748 music.loop.bass_a1 500
+
+10749 music.loop.bass_a2 500
+
+10750 music.loop.bass_a3 500
+
+10751 music.loop.bass_a4 500
+
+10752 music.loop.drum1 8000
+
+10753 music.loop.drum2 16000
+
+10754 music.loop.drum3 4000
+
+10755 music.loop.drum4 4000
+
+10756 music.loop.drum_a1 500
+
+10757 music.loop.drum_a2 500
+
+10758 music.loop.drum_a3 500
+
+10759 music.loop.drum_a4 500
+
+10760 music.loop.pad1 16000
+
+10761 music.loop.pad2 8000
+
+10762 music.loop.pad3 8000
+
+10763 music.loop.pad4 4000
+
+10764 music.loop.pad_a1 500
+
+10765 music.loop.pad_a2 500
+
+10766 music.loop.pad_a3 500
+
+10767 music.loop.pad_a4 500
+
+10768 music.note.bass1 500
+
+10769 music.note.bass2 500
+
+10770 music.note.bass3 1500
+
+10771 music.note.bass4 2000
+
+10772 music.note.bass5 2000
+
+10773 music.note.bass6 3000
+
+10774 music.note.bass7 2500
+
+10775 music.note.bass8 2500
+
+10776 music.note.drum1 1000
+
+10777 music.note.drum2 1000
+
+10778 music.note.drum3 1000
+
+10779 music.note.drum4 1000
+
+10780 music.note.drum5 1000
+
+10781 music.note.drum6 6000
+
+10782 music.note.drum7 6000
+
+10783 music.note.drum8 1000
+
+10784 music.note.lead1 875
+
+10785 music.note.lead2 875
+
+10786 music.note.lead3 875
+
+10787 music.note.lead4 875
+
+10788 music.note.lead5 875
+
+10789 music.note.lead6 875
+
+10790 music.note.lead7 875
+
+10791 music.note.lead8 875
+
+10792 music.tone.tone 875
+
+10793 npc.chest 1054
+
+10794 npc.crafted 809
+
+10795 npc.crafting 1317
+
+10796 npc.deal_defeated 495
+
+10797 npc.deal_succeed 431
+
+10798 npc.eat 215
+
+10799 npc.hungry 875
+
+10800 npc.need 440
+
+10801 npc.pick 182
+
+10802 npc.rise 3000
+
+10803 npc.sleep 4000
+
+10804 npc.task_complete 808
+
+10805 npc.task_pickup 397
+
+10806 phy.brake 784
+
+10807 phy.collision 553
+
+10808 phy.createmachine 878
+
+10809 phy.engineignition 2000
+
+10810 phy.enginework 2577
+
+10811 phy.partsexplode 720
+
+10812 phy.wheeltravel 6996
+
+10813 pvp.count1 1114
+
+10814 pvp.count2 1230
+
+10815 pvp.count3 1137
+
+10816 pvp.defeat 4270
+
+10817 pvp.end 5375
+
+10818 pvp.kill 331
+
+10819 pvp.kill_1 1500
+
+10820 pvp.kill_2 1500
+
+10821 pvp.kill_3 1750
+
+10822 pvp.kill_4 1875
+
+10823 pvp.kill_5 2000
+
+10824 pvp.kill_6 1875
+
+10825 pvp.snowball1 203
+
+10826 pvp.start 1346
+
+10827 pvp.whistle 813
+
+10828 pvp.win 2142
+
+10829 skin.skin1 1750
+
+10830 skin.skin10 8780
+
+10831 skin.skin11 5250
+
+10832 skin.skin12 6500
+
+10833 skin.skin13 6500
+
+10834 skin.skin14 4750
+
+10835 skin.skin15 7500
+
+10836 skin.skin16 4750
+
+10837 skin.skin17 6000
+
+10838 skin.skin18 6375
+
+10839 skin.skin19 5625
+
+10840 skin.skin2 2125
+
+10841 skin.skin20 4500
+
+10842 skin.skin21 6000
+
+10843 skin.skin22 6750
+
+10844 skin.skin23 9600
+
+10845 skin.skin24 8000
+
+10846 skin.skin25 6857
+
+10847 skin.skin26 4000
+
+10848 skin.skin27 6000
+
+10849 skin.skin28 7204
+
+10850 skin.skin29 6625
+
+10851 skin.skin3 1375
+
+10852 skin.skin30 7916
+
+10853 skin.skin31 7988
+
+10854 skin.skin32 7671
+
+10855 skin.skin33 10000
+
+10856 skin.skin34 6000
+
+10857 skin.skin35 6567
+
+10858 skin.skin36 8880
+
+10859 skin.skin37 7000
+
+10860 skin.skin38 7250
+
+10861 skin.skin39 6000
+
+10862 skin.skin4 1625
+
+10863 skin.skin40 10500
+
+10864 skin.skin41 4750
+
+10865 skin.skin42 7521
+
+10866 skin.skin43 6403
+
+10867 skin.skin44 9904
+
+10868 skin.skin45 6923
+
+10869 skin.skin46 5357
+
+10870 skin.skin47 7500
+
+10871 skin.skin5 4250
+
+10872 skin.skin6 3500
+
+10873 skin.skin7 3625
+
+10874 skin.skin8 2500
+
+10875 skin.skin9 6500
+
+10876 storehorse.horse1 3500
+
+10877 storehorse.horse2 2625
+
+10878 storehorse.horse3 3000
+
+10879 storehorse.horse4 4000
+
+10880 storehorse.horse5 5135
+
+10881 storehorse.horse6 3250
+
+10882 ui.button.button_click 261
+
+10883 ui.button.camera 365
+
+10884 ui.button.jump 250
+
+10885 ui.guide.guide_boy.guide_boy_1 2375
+
+10886 ui.guide.guide_boy.guide_boy_10 1000
+
+10887 ui.guide.guide_boy.guide_boy_11 1750
+
+10888 ui.guide.guide_boy.guide_boy_12 2500
+
+10889 ui.guide.guide_boy.guide_boy_13 1500
+
+10890 ui.guide.guide_boy.guide_boy_14 1750
+
+10891 ui.guide.guide_boy.guide_boy_15 2250
+
+10892 ui.guide.guide_boy.guide_boy_16 3250
+
+10893 ui.guide.guide_boy.guide_boy_17 1875
+
+10894 ui.guide.guide_boy.guide_boy_18 2875
+
+10895 ui.guide.guide_boy.guide_boy_19 1375
+
+10896 ui.guide.guide_boy.guide_boy_2 3000
+
+10897 ui.guide.guide_boy.guide_boy_20 1375
+
+10898 ui.guide.guide_boy.guide_boy_21 1500
+
+10899 ui.guide.guide_boy.guide_boy_22 1875
+
+10900 ui.guide.guide_boy.guide_boy_23 4125
+
+10901 ui.guide.guide_boy.guide_boy_24 2375
+
+10902 ui.guide.guide_boy.guide_boy_25 2125
+
+10903 ui.guide.guide_boy.guide_boy_26 2250
+
+10904 ui.guide.guide_boy.guide_boy_27 3500
+
+10905 ui.guide.guide_boy.guide_boy_28 3750
+
+10906 ui.guide.guide_boy.guide_boy_29 1625
+
+10907 ui.guide.guide_boy.guide_boy_3 3000
+
+10908 ui.guide.guide_boy.guide_boy_4 3500
+
+10909 ui.guide.guide_boy.guide_boy_5 3000
+
+10910 ui.guide.guide_boy.guide_boy_6 2000
+
+10911 ui.guide.guide_boy.guide_boy_7 2250
+
+10912 ui.guide.guide_boy.guide_boy_8 2125
+
+10913 ui.guide.guide_boy.guide_boy_9 2000
+
+10914 ui.guide.guide_girl.guide_girl_1 2375
+
+10915 ui.guide.guide_girl.guide_girl_10 1000
+
+10916 ui.guide.guide_girl.guide_girl_11 1750
+
+10917 ui.guide.guide_girl.guide_girl_12 2500
+
+10918 ui.guide.guide_girl.guide_girl_13 1500
+
+10919 ui.guide.guide_girl.guide_girl_14 1750
+
+10920 ui.guide.guide_girl.guide_girl_15 2375
+
+10921 ui.guide.guide_girl.guide_girl_16 3250
+
+10922 ui.guide.guide_girl.guide_girl_17 1875
+
+10923 ui.guide.guide_girl.guide_girl_18 2875
+
+10924 ui.guide.guide_girl.guide_girl_19 1375
+
+10925 ui.guide.guide_girl.guide_girl_2 3000
+
+10926 ui.guide.guide_girl.guide_girl_20 1375
+
+10927 ui.guide.guide_girl.guide_girl_21 1500
+
+10928 ui.guide.guide_girl.guide_girl_22 1875
+
+10929 ui.guide.guide_girl.guide_girl_23 4125
+
+10930 ui.guide.guide_girl.guide_girl_24 2125
+
+10931 ui.guide.guide_girl.guide_girl_25 2750
+
+10932 ui.guide.guide_girl.guide_girl_26 2750
+
+10933 ui.guide.guide_girl.guide_girl_27 3625
+
+10934 ui.guide.guide_girl.guide_girl_28 3875
+
+10935 ui.guide.guide_girl.guide_girl_29 1750
+
+10936 ui.guide.guide_girl.guide_girl_3 3000
+
+10937 ui.guide.guide_girl.guide_girl_4 3500
+
+10938 ui.guide.guide_girl.guide_girl_5 3000
+
+10939 ui.guide.guide_girl.guide_girl_6 2000
+
+10940 ui.guide.guide_girl.guide_girl_7 2250
+
+10941 ui.guide.guide_girl.guide_girl_8 2125
+
+10942 ui.guide.guide_girl.guide_girl_9 2000
+
+10943 ui.guide.PC_SFX.click_F3 239
+
+10944 ui.guide.PC_SFX.page_turning 539
+
+10945 ui.info.achievement_complete 1880
+
+10946 ui.info.achievement_reach 1253
+
+10947 ui.info.book_seriesunlock 1486
+
+10948 ui.info.book_unlock 2159
+
+10949 ui.info.crafting_error 1277
+
+10950 ui.info.crafting_success 232
+
+10951 ui.info.death 3000
+
+10952 ui.info.experience_star 827
+
+10953 ui.info.guide_complete 5375
+
+10954 ui.info.guide_get 2000
+
+10955 ui.info.guide_info 182
+
+10956 ui.info.message_get 208
+
+10957 ui.info.shop_unlock 3088
+
+10958 ui.info.tame_failed 625
+
+10959 ui.info.tame_success 3000
+
+10960 ui.info.voice_on 294
+
+10961 ui.plant.plant_businessman_open 2487
+
+10962 ui.plant.plant_fruit_produce 2345
+
+10963 ui.plant.plant_fruit_ripe 859
+
+10964 ui.plant.plant_guide_1 1253
+
+10965 ui.plant.plant_item_open 1439
+
+10966 ui.plant.plant_item_rare 3500
+
+10967 ui.plant.plant_levelup_1 1695
+
+10968 ui.plant.plant_love_full 12000
+
+10969 ui.plant.plant_love_get 2487
+
+10970 ui.plant.plant_say 1253
+
+10971 ui.plant.plant_water_click 325
+
+10972 ui.plant.plant_water_get 1671
+
+10973 ent.3870.hit 310
+
+10974 ent.3870.hit 0
+
+10975 ent.3878.attack 540
+
+10976 ent.3870.die 695
+
+10977 ent.3872.die 1235
+
+10978 ent.3873.die 878
+
+10979 ent.3878.die 3973
+
+10980 ent.4503.attack1 20036
+
+10981 ent.4502.attack1 24927
+
+10982 buff.buff_cold 4162
+
+10983 buff.buff_diarrhea 10315
+
+10984 item.11613.crafting 1223
+
+10985 buff.buff_balala_xiaolan 3924
+
+10986 buff.buff_balala_meiqi 3924
+
+10987 buff.buff_balala_meixue 3924
+
+10988 buff.buff_balala_youle 3924
+
+10989 buff.buff_balala_caili 3916
+
+10990 buff.buff_balala_qiaoling 3916
+
+10991 buff.buff_balala_xiaomin 3916
+
+10992 item.11641.watertransform1 2140
+
+10993 misc.ChurchBell 4442
+
+10994 misc.ClockTick 3657
+
+10995 misc.PhoneRing1 4481
+
+10996 misc.PhoneRing2 3750
+
+10997 misc.BingBong 2507
+
+10998 misc.MatelicDoorOpen 1584
+
+10999 misc.WoodenDoorOpen 3918
+
+11000 misc.Meow1 1790
+
+11001 misc.Meow2 1544
+
+11002 misc.BirdFlapping 3625
+
+11003 misc.RoosterCrow 2635
+
+11004 misc.CrowSound 2557
+
+11005 misc.GirlGiggles 1273
+
+11006 misc.HorrorLaugh 3537
+
+11007 misc.HorrorGirlLaugh1 3420
+
+11008 misc.HorrorGirlLaugh2 3986
+
+11009 misc.HorrorGirlLaugh3 3773
+
+11010 misc.HorrorGirlLaugh4 4281
+
+11011 misc.WaterDrop1 3959
+
+11012 misc.WaterDrop2 6357
+
+11013 misc.ToiletFluttering 4004
+
+11014 misc.MiceSqueak 1201
+
+11015 misc.CameraGlitch 2526
+
+11016 misc.Alert 3979
+
+11017 misc.WolfHowling 4761
+
+11018 misc.CarHonk 871
+
+11019 misc.VechicleDrivingOff 3474
+
+11020 misc.SchoolBell 3680
+
+11021 misc.Whispers 4163
+
+11022 misc.StoneMoving 3506
+
+11023 misc.HighHeels 1365
+
+11024 ent.3170.idle 1998
+
+11025 ent.3170.foot1 1111
+
+11026 ent.3170.foot2 1004
+
+11027 ent.3170.foot3 1273
+
+11028 ent.3170.attack 1405
+
+11029 ent.3170.hit 858
+
+11030 ent.3170.die 977
+
+11031 ent.3174.idle 2246
+
+11032 ent.3174.foot1 2036
+
+11033 ent.3174.foot2 2441
+
+11034 ent.3174.foot3 1831
+
+11035 ent.3174.attack 1216
+
+11036 ent.3174.hit 983
+
+11037 ent.3174.die 1555
+
+11038 ent.3178.idle 757
+
+11039 ent.3178.foot1 579
+
+11040 ent.3178.foot2 355
+
+11041 ent.3178.attack 1061
+
+11042 ent.3178.hit 786
+
+11043 ent.3178.die 751
+
+11044 ent.3182.idle 645
+
+11045 ent.3182.foot1 525
+
+11046 ent.3182.foot2 519
+
+11047 ent.3182.attack 1017
+
+11048 ent.3182.hit 606
+
+11049 ent.3182.die 1226
+
+11050 ent.3185.idle 661
+
+11051 ent.3185.foot1 383
+
+11052 ent.3185.foot2 471
+
+11053 ent.3185.foot3 380
+
+11054 ent.3185.attack 591
+
+11055 ent.3185.hit 792
+
+11056 ent.3185.die 1319
+
+11057 ent.3189.idle 1329
+
+11058 ent.3189.foot1 534
+
+11059 ent.3189.foot2 533
+
+11060 ent.3189.foot3 637
+
+11061 ent.3189.attack 398
+
+11062 ent.3189.hit 680
+
+11063 ent.3189.die 1484
+
+11064 ent.3191.idle 2625
+
+11065 ent.3191.foot1 1865
+
+11066 ent.3191.foot2 1778
+
+11067 ent.3191.foot3 1837
+
+11068 ent.3191.attack 1244
+
+11069 ent.3191.hit 1035
+
+11070 ent.3191.die 1559
+
+11071 ent.3193.idle 3407
+
+11072 ent.3193.foot1 1409
+
+11073 ent.3193.foot2 1423
+
+11074 ent.3193.foot3 1420
+
+11075 ent.3193.attack 1063
+
+11076 ent.3193.hit 1143
+
+11077 ent.3193.die 1266
+
+11078 ent.3197.idle 1279
+
+11079 ent.3197.foot1 628
+
+11080 ent.3197.foot2 643
+
+11081 ent.3197.attack 1301
+
+11082 ent.3197.hit 954
+
+11083 ent.3197.die 1369
+
+11084 misc.freeze 844
+
+11085 misc.freezebreak 645
+
+11086 item.12010.charge1 2000
+
+11087 item.12010.charge2 2000
+
+11088 item.12010.charge3 2000
+
+11089 item.12010.charge4 2000
+
+11090 item.12010.hammer_unleash 2000
+
+11091 misc.pollution 3000
+

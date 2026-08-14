@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta charset="UTF-8">
+  <title>秋秋工坊</title>
+    <link rel="shortcut icon" href="..\static\picture\a4Vyng.jpg" type="image/x-icon">
+    <link rel="bookmark" href="..\static\picture\a4Vyng.jpg">
+  <link rel="stylesheet" href="css/vxe.css">
+  <link rel="stylesheet" href="css/vue.css">
+  <link rel="stylesheet" href="css/Xmind.css">
+  <link href="https://tuanmengqiu.cn/static/css/dl.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="..\top\css\top.css">
+  <!--<link rel="stylesheet" href="css/ziti.css">-->
+    <style>
+        /* 重置所有元素默认边距和内边距 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        /* 遮罩层样式 */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* 灰色透明背景 */
+            display: flex;
+            justify-content: center; /* 水平居中 */
+            align-items: center; /* 垂直居中 */
+            z-index: 1000; /* 确保在最上层 */
+            cursor: pointer;
+        }
+        
+        /* 图片样式 - 移除所有边框相关样式 */
+        .modal-image {
+            max-width: 90%;
+            max-height: 90%;
+            /* 关键：移除所有边框和轮廓 */
+            border: none;
+            outline: none;
+            /* 移除可能的阴影（如果不需要） */
+            box-shadow: none;
+        }
+    </style>
+</head>
+<body>
+  <div id="app">秋秋正在努力加载中</div>
+      <div class="overlay" id="overlay">
+        <img src="秋秋工坊-秋玥七.png" alt="透明图片" class="modal-image" id="modalImage">
+    </div>
+  <script>
+    window.$docsify = {
+    timeUpdater: {
+    text: "<div align='right',style='color:gray;font-size:500px'>上次更新: {docsify-updated}</div>",
+    formatUpdated: "{YYYY}/{MM}/{DD}",
+    },
+    'flexible-alerts': {
+      note: {
+        label: "提示"
+      },
+      tip: {
+        label: "提示"
+      },
+      warning: {
+        label: "注意"
+      },
+      attention: {
+        label: "禁止"
+      },
+    },
+      auto2top: true,
+      loadSidebar: true,
+      subMaxLevel: 3,
+            // 导航栏支持，默认加载的是项目根目录下的_navbar.md文件
+            loadNavbar: true,
+      <!--  全文搜索配置项-->
+      search: {
+        paths: 'auto',
+        // paths: ['/',
+        //   '/lua/README',
+        //   '/Java/README',
+        //   '/studio/README',
+        //   '/Python/README',
+        //   '/chajian/README',
+        //   '/miniapi/README',
+        //   '/upload/README'],
+        placeholder: '搜索',
+        noData: '秋秋找不到呢，请换一个试试！',
+        depth: 6,
+        namespace: 'web',
+          },
+    };
+  </script>
+      <script>
+        const overlay = document.getElementById('overlay');
+        const modalImage = document.getElementById('modalImage');
+        
+        // 点击遮罩层关闭
+        overlay.addEventListener('click', () => {
+            overlay.style.display = 'none';
+        });
+        
+        // 点击图片关闭
+        modalImage.addEventListener('click', (e) => {
+            e.stopPropagation();
+            overlay.style.display = 'none';
+        });
+    </script>
+  <script src="js/docsify.min.js"></script>
+  <script src="js/prism-python.js"></script><!--python代码高亮-->
+  <script src="js/prism-lua.js"></script><!--lua代码高亮-->
+  <script src="js/prism-java.js"></script><!--java代码高亮-->
+  <script src="js/search.min.js"></script><!--搜索-->
+  <script src="js/fz.js"></script><!--复制代码-->
+  <script src="js/bilibili.min.js"></script><!--哔哩哔哩视频-->
+  <script src="js/time-updater.min.js"></script><!--显示更新时间-->
+  <script src="js/Xmind.js"></script><!--显示Xmind-->
+      <!-- Latest -->
+    <script src="js/docsify-plugin-flexible-alerts.min.js"></script>
+    <!-- alert 样式 -->
+<link rel="stylesheet" href="css/sweetalert.min.css" type='text/css' media='all' />
+
+<!-- 复制提醒 -->
+<!--<script src="js/sweetalert.min.js"></script>-->
+<!--<script>-->
+<!--  document.body.oncopy = function () {-->
+<!--    swal("🎉复制成功🎉",-->
+<!--            "若要转载、使用、引用请务必保留作者信息、原文链接等，并申明来源。抵制盗版代码，尊重原作者版权!",-->
+<!--            "success"); };-->
+<!--</script>-->
+
+  <!--鼠标样式-->
+  <!--  <img class="mouse" src="../img/logo.png" alt="">-->
+  <!--  <script src="../static/js/mouse.js"></script>-->
+  <!--  <link href="../static/css/mouse.css" rel="stylesheet">-->
+  	  <!-- 回到顶部按钮 -->
+  <button id="topBtn">
+    <img src="..\top\img\top.png" alt="TOP">
+  </button>
+  <script src="..\top\js\top.js"></script>
+</body>
+</html>

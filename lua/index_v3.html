@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <title>开发者代码编辑器 - 迷你世界</title>
+  <link href="./css/app_v3.css" rel="stylesheet">
+  <!-- 引入 html2canvas 库 -->
+  <script src="./js/html2canvas.min.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <div class="menu-wrapper">
+      <ul class="menu-list clearfix">
+        <!--文件菜单-->
+        <li class="menu-item">
+          <div class="theme-wrapper menu-item-wrapper" id="fileWrapper">
+            <button class="theme-btn menu-item-btn" id="fileBtn">文件</button>
+            <div class="theme-inner menu-item-inner" id="fileInner">
+              <ul class="theme-list">
+                <li class="idlib-item"  data-type="1001">打开</li>
+                <li class="idlib-item"  data-type="1002">保存</li>
+                <li class="idlib-item"  data-type="1003">导出</li>
+                <li class="idlib-item"  data-type="1004">清空</li>
+              </ul>
+            </div>
+          </div>
+        </li>
+        <!-- id 库-->
+        <li class="menu-item">
+          <div class="idlib-wrapper menu-item-wrapper" id="idlibWrapper">
+            <button class="idlib-btn menu-item-btn" id="idlibBtn">ID库</button>
+            <div class="idlib-inner menu-item-inner" id="idlibInner" style="max-height: 600px; overflow-y: auto;">
+              <ul class="idlib-list">
+                <li class="idlib-item" data-type="2001">方块</li>
+                <li class="idlib-item" data-type="2002">道具</li>
+                <li class="idlib-item" data-type="2003">生物</li>
+                <li class="idlib-item" data-type="2004">特效</li>
+                <li class="idlib-item" data-type="2005">音效</li>
+                <li class="idlib-item" data-type="2006">状态</li>
+                <li class="idlib-item" data-type="2007">动作</li>
+                <li class="idlib-item" data-type="2008">模型</li>
+                <li class="idlib-item" data-type="2009">图片</li>
+                <li class="idlib-item" data-type="2010">界面</li>
+                <li class="idlib-item" data-type="2011">元件</li>
+                <li class="idlib-item" data-type="2012">页面状态</li>
+                <li class="idlib-item" data-type="2013">界面动画</li>
+                <li class="idlib-item" data-type="2014">广播</li>
+                <li class="idlib-item" data-type="2015">组件</li>
+                <li class="idlib-item" data-type="2016">变量</li>
+                <li class="idlib-item" data-type="2017">属性变量</li>
+                <li class="idlib-item" data-type="2018">自定义函数</li>
+                <li class="idlib-item" data-type="2019">对象</li>
+                <li class="idlib-item" data-type="2020">行为树变量</li>
+                <li class="idlib-item" data-type="2022">蓝图</li>
+                <li class="idlib-item" data-type="2023">实体</li>
+                <li class="idlib-item" data-type="2024">商品</li>
+                <li class="idlib-item" data-type="2025">商品分类</li>
+              </ul>
+            </div>
+          </div>
+        </li>
+       <!--代码插入-->
+       <li class="menu-item">
+        <div class="insert-wrapper menu-item-wrapper" id="insertWrapper">
+          <button class="insert-btn menu-item-btn" id="insertBtn">插入</button>
+          <div class="insert-inner menu-item-inner not-focus-hide" id="insertInner">
+            <ul class="font-list">
+              <li class="idlib-item" data-type="3001">lua结构</li>
+              <li class="idlib-item" data-type="3002">组件属性</li>
+            </ul>
+          </div>
+        </div>
+      </li>
+
+        <!--字体-->
+        <li class="menu-item">
+          <div class="font-wrapper menu-item-wrapper" id="fontWrapper">
+            <button class="font-btn menu-item-btn" id="fontBtn">字体</button>
+            <div class="font-inner menu-item-inner" id="fontInner">
+              <ul class="font-list">
+                <li class="font-item" data-size="16px">16px</li>
+                <li class="font-item" data-size="18px">18px</li>
+                <li class="font-item" data-size="22px">22px</li>
+                <li class="font-item" data-size="24px">24px</li>
+                <li class="font-item" data-size="26px">26px</li>
+                <li class="font-item" data-size="28px">28px</li>
+              </ul>
+            </div>
+          </div>
+        </li>
+
+        <!--选择主题-->
+        <li class="menu-item">
+          <div class="theme-wrapper menu-item-wrapper" id="themeWrapper">
+            <button class="theme-btn menu-item-btn" id="themeBtn">主题</button>
+            <div class="theme-inner menu-item-inner" id="themeInner">
+              <ul class="theme-list">
+                <li class="theme-item" data-theme="textmate">textmate</li>
+                <li class="theme-item" data-theme="monokai">monokai</li>
+                <li class="theme-item" data-theme="eclipse">eclipse</li>
+                <li class="theme-item" data-theme="ambiance">ambiance</li>
+                <li class="theme-item" data-theme="sqlserver">sqlserver</li>
+                <li class="theme-item" data-theme="github">github</li>
+                <li class="theme-item" data-theme="solarized_light">solarized_light</li>
+                <li class="theme-item" data-theme="solarized_dark">solarized_dark</li>
+                <li class="theme-item" data-theme="tomorrow_night_bright">tomorrow_night_bright</li>
+              </ul>
+            </div>
+          </div>
+        </li>
+        
+        <!--帮组-->
+        <li class="menu-item">
+          <div class="font-wrapper menu-item-wrapper" id="helpWrapper">
+            <button class="font-btn menu-item-btn" id="helpBtn">帮助</button>
+            <div class="font-inner menu-item-inner" id="helpInner">
+              <ul class="help-list">
+                <li class="idlib-item" data-type="4001">Lua学院</li>
+                <li class="idlib-item" data-type="4002">Bug反馈</li>
+              </ul>
+            </div>
+          </div>
+        </li>
+
+        <!--调试-->
+        <li class="menu-item">
+          <div class="font-wrapper menu-item-wrapper" id="debugWrapper">
+            <button class="font-btn menu-item-btn" id="debugBtn">调试</button>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <!--编辑器-->
+    <div id="codeEditor" class="code-editor" contenteditable="true" spellcheck="false"></div>
+    <!--wiki拖动时的遮罩-->
+    <div id="devWikiMask" class="dev-wiki-mask"></div>
+    <!--搜索id-->
+    <div id="searchIdWrapper" class="search-id-wrapper">
+      <div id="searchIdTitle" class="search-id-title">
+        <span>ID搜索工具</span>
+        <i class="close-icon" id="searchIdCloseIcon"></i>
+      </div>
+      <div class="search-id-inner">
+        <div id="searchIdInpWrapper" class="search-id-inpwrapper">
+          <input type="text" class="search-id-input" placeholder="请输入方块 ID 或 名称" id="searchIdInput">
+          <div class="history-list" id="searchIdHistoryList"></div>
+        </div>
+        <div id="searchIdListContainer" class="search-id-container">
+          <!-- id 列表 -->
+          <dl id="searchIdList">
+          </dl>
+        </div>
+      </div>
+    </div>
+    <!--wiki模块-->
+    <div id="devWiki" class="dev-wiki" hidden = "true">
+      <div id="devWikiBar" class="dev-wiki-bar" hidden = "true" ></div>
+      <iframe src="https://developers.mini1.cn/wiki/API.html" frameborder="0"></iframe>
+      <button type="button" id="toggleWikiBtn" hidden = "true" class="btn toggle-wiki-btn">Wiki</button>
+    </div>
+  </div>
+  <script src="./js/datapack_v3.js"></script>
+  <script src="./js/insertCodeConfig.js"></script>
+<script type="text/javascript" src="./js/app_v3.js"></script></body>
+</html>

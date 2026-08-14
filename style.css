@@ -1,0 +1,472 @@
+/* ===== 基础样式 ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --wood-dark: #5a3a22;
+    --wood-mid: #7a4f2e;
+    --wood-light: #96633c;
+    --board: #4a2f1c;
+    --page-bg: #2b1d14;
+}
+
+body {
+    min-height: 100vh;
+    font-family: "PingFang SC", "Microsoft YaHei", "Segoe UI", sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 32px 16px 0;
+    /* 整站背景：古风夜景图 + 暗色遮罩，铺满并固定 */
+    background:
+        linear-gradient(rgba(20, 14, 30, .45), rgba(20, 14, 30, .55)),
+        url("book/背景.jpg") center center / cover no-repeat fixed;
+}
+
+/* ===== 顶部标题 ===== */
+.site-header {
+    text-align: center;
+    margin-bottom: 28px;
+}
+
+.site-title {
+    margin: 0;
+    line-height: 0;
+}
+
+/* 顶部 Logo 图片（替代原文字标题） */
+.site-logo {
+    height: 84px;
+    width: auto;
+    max-width: 92%;
+    object-fit: contain;
+}
+
+.site-subtitle {
+    margin-top: 8px;
+    font-size: .95rem;
+    color: #ffffff;
+    letter-spacing: 1px;
+}
+
+/* ===== 书架主体 ===== */
+.bookcase {
+
+}
+
+/* 每一层书架 */
+.shelf {
+    position: relative;
+    padding: 0 6px;
+}
+
+/* 书本容器：底部对齐，模拟站在层板上 */
+.books {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 10px;
+    min-height: 220px;
+    padding: 18px 4px 0;
+    flex-wrap: wrap;
+    perspective: 1400px;   /* 3D 透视，使书本翻转有立体感 */
+}
+
+/* 层板（书架的横木板） */
+.shelf-board {
+    height: 22px;
+    border-radius: 4px;
+    background: linear-gradient(359deg, #ffffff, #dddcff);
+    box-shadow:
+        0 6px 10px rgba(0, 0, 0, .5),
+        inset 0 2px 3px rgba(255, 255, 255, .15);
+    margin-bottom: 14px;
+}
+
+/* ===== 单本书（3D 翻转外壳） ===== */
+.book {
+    position: relative;
+    width: 62px;
+    height: 200px;
+    cursor: pointer;
+    transform-origin: bottom center;
+    transition: transform .45s cubic-bezier(.34, 1.4, .64, 1);
+    user-select: none;
+}
+
+/* 书本内部元素不拦截点击，点击统一由 .book 处理 */
+.book * {
+    pointer-events: none;
+}
+
+/* 3D 翻转内层：默认展示书脊，悬停停留片刻后翻转展示封面 */
+.book-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transform: rotateY(0deg);
+    /* 移开时立即翻回（无延迟） */
+    transition: transform .6s cubic-bezier(.34, 1.4, .64, 1) 0s;
+}
+
+/* 书脊与封面的公共样式 */
+.book-spine,
+.book-cover {
+    position: absolute;
+    inset: 0;
+    backface-visibility: hidden;
+    border-radius: 3px 6px 6px 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+/* 封面：固定为完整书尺寸（比例≈0.7）并在书本内居中，翻转只用 rotateY，
+   不动画 left/right/scale —— 既不抖动也不模糊 */
+.book-cover {
+    inset: auto;
+    top: 0;
+    height: 200px;
+    width: 140px;
+    left: 50%;
+    margin-left: -70px;   /* 宽140、左移一半，水平居中于书本（不占用 transform） */
+}
+
+/* 书脊（默认朝外）—— 侧面图铺满 */
+.book-spine {
+    box-shadow:
+        inset -6px 0 8px rgba(0, 0, 0, .2),
+        inset 3px 0 4px rgba(255, 255, 255, .15),
+        2px 4px 8px rgba(0, 0, 0, .4);
+}
+
+.book-spine-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: fill;   /* 完整铺满书脊，不裁切侧面图 */
+}
+
+/* 竖排书名（叠在侧面图上） */
+.book-label {
+    position: relative;
+    z-index: 1;
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #6a4a7a;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, .7);
+    line-height: 1.1;
+    padding: 6px 0;
+}
+
+/* 封面（初始翻到背面，悬停时转到正面）—— 完整整本书，不裁切 */
+.book-cover {
+    transform: rotateY(180deg);
+    background: #fff;
+    box-shadow:
+        inset 2px 0 5px rgba(0, 0, 0, .2),
+        2px 4px 12px rgba(0, 0, 0, .45);
+}
+
+.book-cover-img {
+    width: 100%;
+    height: 100%;
+    object-fit: fill;   /* 完整显示整本书封面，不裁切 */
+    display: block;
+}
+
+/* 封面书名（居中、无边框背景） */
+.book-cover-title {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 12%;
+    padding: 0 6px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .5px;
+    color: #fff;
+    text-align: center;
+    text-shadow:
+        0 1px 2px rgba(0, 0, 0, .55),
+        0 0 4px rgba(0, 0, 0, .4);
+}
+
+/* 悬停：书本前移抬起（仅位移+景深，不做 scale，避免文字缩放模糊） */
+.book:hover {
+    transform: translateY(-28px) translateZ(80px);
+    z-index: 20;
+}
+
+/* 悬停停留约 0.7s 后自动翻转到正面封面 */
+.book:hover .book-inner {
+    transform: rotateY(180deg);
+    transition-delay: .7s;
+}
+
+/* 点击选中：整本书抽出（配合 JS） */
+.book.pulling {
+    transform: translateY(-40px) translateX(30px) rotate(8deg) scale(1.05);
+    z-index: 10;
+    opacity: 0;
+    transition: transform .5s ease, opacity .5s ease .15s;
+}
+
+/* ===== 取书放大展示遮罩 ===== */
+.pullout-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 6, 3, 0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity .3s ease, background .3s ease;
+    z-index: 100;
+}
+
+.pullout-overlay.active {
+    opacity: 1;
+    background: rgba(10, 6, 3, .82);
+    pointer-events: auto;
+}
+
+/* ===== 面板一：工具书正面封面 ===== */
+.pullout-cover-panel {
+    position: relative;
+    width: 240px;
+    height: 340px;
+    display: none;
+    flex-direction: column;
+    transform: scale(.4) rotate(-10deg);
+    opacity: 0;
+    transition: transform .5s cubic-bezier(.2, .8, .3, 1.2), opacity .4s;
+    filter: drop-shadow(0 24px 45px rgba(0, 0, 0, .7));
+    cursor: pointer;
+}
+
+.pullout-cover-panel.show {
+    display: flex;
+}
+
+.pullout-overlay.active .pullout-cover-panel.show {
+    transform: scale(1) rotate(0);
+    opacity: 1;
+}
+
+.pullout-cover-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 6px 12px 12px 6px;
+}
+
+.pullout-cover-title {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    z-index: 1;
+    padding: 14px 12px;
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: 2px;
+    text-align: center;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, .6);
+    background: linear-gradient(180deg, rgba(0, 0, 0, .5), transparent);
+    border-radius: 6px 12px 0 0;
+}
+
+.pullout-cover-hint {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    padding: 12px;
+    font-size: .95rem;
+    color: #fff;
+    letter-spacing: 2px;
+    text-align: center;
+    background: linear-gradient(180deg, transparent, rgba(0, 0, 0, .6));
+    border-radius: 0 0 12px 6px;
+    animation: blink 1.2s infinite;
+}
+
+/* ===== 面板二：公告书翻开内容 ===== */
+.pullout-open-panel {
+    position: relative;
+    width: min(88vw, 620px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    transform: scale(.4) rotate(-6deg);
+    opacity: 0;
+    transition: transform .5s cubic-bezier(.2, .8, .3, 1.2), opacity .4s;
+    filter: drop-shadow(0 24px 45px rgba(0, 0, 0, .7));
+    cursor: pointer;
+}
+
+.pullout-open-panel.show {
+    display: flex;
+}
+
+.pullout-overlay.active .pullout-open-panel.show {
+    transform: scale(1) rotate(0);
+    opacity: 1;
+}
+
+.pullout-open-img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* 公告文字（写在翻开图片上方） */
+.announce-content {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 8% 12% 6%;
+    text-align: center;
+    color: #6a4a3a;
+}
+
+.announce-title {
+    font-size: clamp(1.3rem, 4vw, 2rem);
+    font-weight: 800;
+    color: #cbb4ff;
+    letter-spacing: 2px;
+    margin-bottom: 4%;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, .6);
+}
+
+.announce-body {
+    font-size: clamp(.8rem, 2.2vw, 1rem);
+    line-height: 1.9;
+    color: #7a5a45;
+}
+
+.announce-body p {
+    margin: 2px 0;
+}
+
+/* 公告内 QQ 群号超链接 */
+.announce-body .qq-link {
+    color: #e8622c;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-decoration: none;
+    border-bottom: 2px solid rgba(232, 98, 44, .4);
+    padding: 0 2px;
+    pointer-events: auto;
+    position: relative;
+    z-index: 2;
+    transition: color .2s, border-color .2s;
+}
+
+.announce-body .qq-link:hover {
+    color: #ff8a3d;
+    border-color: #ff8a3d;
+}
+
+.announce-close {
+    margin-top: 5%;
+    font-size: clamp(.7rem, 1.8vw, .85rem);
+    color: #a98b6f;
+    letter-spacing: 1px;
+    animation: blink 1.4s infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: .4; }
+}
+
+/* ===== 页脚 ===== */
+.site-footer {
+    width: 100%;
+    max-width: 960px;
+    margin-top: 32px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, .12);
+    text-align: center;
+    font-size: .82rem;
+    color: #b7a68f;
+    line-height: 2;
+}
+
+.site-footer a {
+    color: #cbb79f;
+    text-decoration: none;
+    transition: color .2s;
+}
+
+.site-footer a:hover {
+    color: #ffd8a6;
+}
+
+.footer-links a {
+    margin: 0 10px;
+}
+
+.footer-meta {
+    margin: 8px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.sponsor-btn {
+    background: linear-gradient(90deg, #e74c3c, #ff7043);
+    color: #fff !important;
+    padding: 5px 16px;
+    border-radius: 20px;
+    font-weight: 600;
+    box-shadow: 0 3px 10px rgba(231, 76, 60, .4);
+}
+
+.sponsor-btn:hover {
+    filter: brightness(1.1);
+}
+
+.friend-links a {
+    margin: 0 8px;
+}
+
+.friend-label {
+    color: #8f8168;
+}
+
+/* ===== 响应式 ===== */
+@media (max-width: 720px) {
+    .site-title { font-size: 2rem; }
+    .site-logo { height: 60px; }
+    .book { width: 48px; height: 160px; }
+    .book-label { font-size: 13px; letter-spacing: 2px; }
+    .books { min-height: 178px; gap: 8px; }
+}
+
+@media (max-width: 480px) {
+    .book { width: 42px; height: 140px; }
+    .book-label { font-size: 12px; }
+    .books { min-height: 158px; gap: 6px; }
+}

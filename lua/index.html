@@ -1,0 +1,1211 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <title>Lua编辑器</title>
+  <link rel="shortcut icon" href="..\static\picture\a4Vyng.jpg" type="image/x-icon">
+  <link rel="bookmark" href="..\static\picture\a4Vyng.jpg">
+  <style>
+    /* 基础样式设置 */
+    html, body {
+      overflow: hidden; /* 禁止全局滚动 */
+      height: 100%; /* 确保页面高度充满窗口 */
+      margin: 0; /* 清除默认边距 */
+    }
+    
+    /* 编辑器容器 - 核心滚动设置 */
+    #codeEditor {
+      height: calc(100vh - 50px); /* 窗口高度减去菜单高度 */
+      overflow: auto; /* 内容超出时显示滚动条 */
+    }
+
+    /* ID库链接样式 */
+    .idlib-list a {
+      color: black;
+      text-decoration: none;
+    }
+    .idlib-list a:hover {
+      text-decoration: underline;
+    }
+
+    /* 文件菜单样式 */
+    .file-wrapper {
+      position: relative;
+    }
+    .file-inner {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: white;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      padding: 5px 0;
+      min-width: 120px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      display: none;
+      z-index: 100;
+    }
+    .file-item {
+      padding: 8px 15px;
+      cursor: pointer;
+      list-style: none;
+    }
+    .file-item:hover {
+      background-color: #f0f0f0;
+    }
+
+    /* 项目名样式 */
+    .project-name-container {
+      flex-grow: 1;
+      display: flex;
+      justify-content: center;
+    }
+    .project-name-item {
+      display: flex;
+      align-items: center;
+      padding: 0 10px;
+      color: #333;
+    }
+    .project-name-input {
+      font-size: 16px;
+      font-weight: bold;
+      text-align: center;
+      border: none;
+      background: transparent;
+      max-width: 300px;
+      width: 100%;
+      padding: 5px 10px;
+      border-bottom: 2px solid transparent;
+    }
+    .project-name-input:focus {
+      outline: none;
+      border-bottom: 2px solid #4CAF50;
+    }
+
+    /* 菜单列表样式 */
+    .menu-list {
+      display: flex;
+      align-items: center;
+      padding: 0;
+      margin: 0;
+      list-style: none;
+      width: 100%;
+      height: 50px; /* 菜单高度，与编辑器高度计算对应 */
+      border-bottom: 1px solid #eee;
+    }
+    .menu-item {
+      margin: 0 5px;
+      display: flex;
+      align-items: center;
+    }
+    .menu-item-btn {
+      padding: 5px 10px;
+      cursor: pointer;
+      border: none;
+      background: transparent;
+      font-size: 14px;
+    }
+    .menu-item-btn:hover {
+      background-color: #f0f0f0;
+      border-radius: 4px;
+    }
+
+    /* 文件选择栏样式 */
+    .file-selector {
+      display: flex;
+      align-items: center;
+      margin-left: auto;
+      padding: 0 10px;
+      max-width: 400px;
+      overflow-x: auto;
+    }
+    .file-tab {
+      display: flex;
+      align-items: center;
+      background-color: #f0f0f0;
+      border-radius: 4px;
+      padding: 3px 8px;
+      margin: 0 3px;
+      font-size: 14px;
+      white-space: nowrap;
+    }
+    .file-tab.active {
+      background-color: #e0e0e0;
+      font-weight: bold;
+    }
+    .file-tab.modified::after {
+      content: "*";
+      margin-left: 3px;
+      color: #f44336;
+    }
+    .file-tab-close {
+      margin-left: 5px;
+      cursor: pointer;
+      font-weight: bold;
+      color: #666;
+      width: 16px;
+      height: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+    }
+    .file-tab-close:hover {
+      color: #f44336;
+      background-color: rgba(244, 67, 54, 0.1);
+    }
+
+    /* 拖放样式 */
+    .file-drop-active {
+      border: 2px dashed #4CAF50 !important;
+      background-color: rgba(76, 175, 80, 0.1);
+    }
+    
+    #dropOverlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(76, 175, 80, 0.2);
+      border: 3px dashed #4CAF50;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      font-size: 24px;
+      color: #333;
+      z-index: 1000;
+      flex-direction: column;
+    }
+    
+    #dropOverlay.visible {
+      display: flex;
+    }
+
+    /* 通知样式 */
+    .notification {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      padding: 10px 20px;
+      border-radius: 4px;
+      color: white;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+      z-index: 1000;
+      transition: opacity 0.3s ease;
+      opacity: 0;
+    }
+    
+    .notification.success {
+      background-color: #4CAF50;
+    }
+    
+    .notification.info {
+      background-color: #2196F3;
+    }
+    
+    .notification.error {
+      background-color: #f44336;
+    }
+    
+    .notification.visible {
+      opacity: 1;
+    }
+  </style>
+  <link href="./css/app.css" rel="stylesheet">
+</head>
+
+<body>
+  <div id="app">
+    <!-- 拖放覆盖层 -->
+    <div id="dropOverlay">
+      <i class="fa fa-file-text-o" style="font-size: 48px; margin-bottom: 15px;"></i>
+      <span>释放文件以导入</span>
+    </div>
+    
+    <div class="menu-wrapper">
+      <ul class="menu-list clearfix">
+        <!-- 文件菜单 -->
+        <li class="menu-item">
+          <div class="file-wrapper menu-item-wrapper" id="fileWrapper">
+            <button class="file-btn menu-item-btn" id="fileBtn">文件</button>
+            <div class="file-inner menu-item-inner" id="fileInner">
+              <ul class="file-list">
+                <li class="file-item" id="newFile">新建</li>
+                <li class="file-item" id="importFile">导入</li>
+                <li class="file-item" id="exportFile">导出</li>
+                <li class="file-item" id="saveToStorage">保存</li>
+                <li class="file-item" id="clearEditor">清空</li>
+              </ul>
+            </div>
+          </div>
+        </li>
+        
+        <!-- 主题菜单 -->
+        <li class="menu-item">
+          <div class="theme-wrapper menu-item-wrapper" id="themeWrapper">
+            <button class="theme-btn menu-item-btn" id="themeBtn">主题</button>
+            <div class="theme-inner menu-item-inner" id="themeInner">
+              <ul class="theme-list">
+                <li class="theme-item" data-theme="textmate">textmate</li>
+                <li class="theme-item" data-theme="monokai">monokai</li>
+                <li class="theme-item" data-theme="eclipse">eclipse</li>
+                <li class="theme-item" data-theme="ambiance">ambiance</li>
+                <li class="theme-item" data-theme="sqlserver">sqlserver</li>
+                <li class="theme-item" data-theme="github">github</li>
+                <li class="theme-item" data-theme="solarized_light">solarized_light</li>
+                <li class="theme-item" data-theme="solarized_dark">solarized_dark</li>
+                <li class="theme-item" data-theme="tomorrow_night_bright">tomorrow_night_bright</li>
+              </ul>
+            </div>
+          </div>
+        </li>
+        
+        <!-- 插入菜单 -->
+        <li class="menu-item">
+          <div class="insert-wrapper menu-item-wrapper" id="insertWrapper">
+            <button class="insert-btn menu-item-btn" id="insertBtn">插入</button>
+            <div class="insert-inner menu-item-inner not-focus-hide" id="insertInner">
+              <div class="insert-inner-top" id="insertInnerTop"><i class="close-icon"></i></div>
+              <div class="insert-inner-content">
+                <!-- 父菜单 -->
+                <ul class="insert-list parent">
+                  <li class="insert-item" data-insert-type="variable">创建变量</li>
+                  <li class="insert-item" data-insert-type="func">创建函数</li>
+                  <li class="insert-item" data-insert-type="assert">创建流程语句</li>
+                  <li class="insert-item" data-insert-type="loop">创建循环语句</li>
+                  <li class="insert-item" data-insert-type="table">创建table</li>
+                  <li class="insert-item" data-insert-type="shijian">创建事件</li>
+                </ul>
+                <!-- 子菜单 -->
+                <ul class="insert-list child" data-parent-type="variable" style="display: none;">
+                  <li class="insert-item" data-insert-type="variable-global">全局变量</li>
+                  <li class="insert-item" data-insert-type="variable-local">局部变量</li>
+                </ul>
+                <ul class="insert-list child" data-parent-type="func" style="display: none;">
+                  <li class="insert-item" data-insert-type="func-global">全局函数</li>
+                  <li class="insert-item" data-insert-type="func-local">局部函数</li>
+                </ul>
+                <ul class="insert-list child" data-parent-type="assert" style="display: none;">
+                  <li class="insert-item" data-insert-type="assert-if">if语句</li>
+                  <li class="insert-item" data-insert-type="assert-ifelse">if……else语句</li>
+                  <li class="insert-item" data-insert-type="assert-ifelseif">if……elseif语句</li>
+                </ul>
+                <ul class="insert-list child" data-parent-type="loop" style="display: none;">
+                  <li class="insert-item" data-insert-type="loop-for">for循环</li>
+                  <li class="insert-item" data-insert-type="loop-while">while循环</li>
+                  <li class="insert-item" data-insert-type="loop-repeatUntil">repeat……until循环</li>
+                </ul>
+                <ul class="insert-list child" data-parent-type="table" style="display: none;">
+                  <li class="insert-item" data-insert-type="table-global">全局table</li>
+                  <li class="insert-item" data-insert-type="table-local">局部table</li>
+                </ul>
+                <ul class="insert-list child" data-parent-type="shijian" style="display: none;">
+                  <li class="insert-item" data-insert-type="shijian-jtq">事件监听器</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </li>
+        
+        <!-- 字体菜单 -->
+        <li class="menu-item">
+          <div class="font-wrapper menu-item-wrapper" id="fontWrapper">
+            <button class="font-btn menu-item-btn" id="fontBtn">字体</button>
+            <div class="font-inner menu-item-inner" id="fontInner">
+              <ul class="font-list">
+                <li class="font-item" data-size="12px">12px</li>
+                <li class="font-item" data-size="13px">13px</li>
+                <li class="font-item" data-size="14px">14px</li>
+                <li class="font-item" data-size="15px">15px</li>
+                <li class="font-item" data-size="16px">16px</li>
+                <li class="font-item" data-size="18px">18px</li>
+              </ul>
+            </div>
+          </div>
+        </li>
+        
+        <!-- ID库按钮 -->
+        <li class="menu-item">
+          <div class="idlib-wrapper menu-item-wrapper" id="idlibWrapper">
+            <button class="idlib-btn menu-item-btn" id="idlibBtn">ID库</button>
+            <button class="toggle-btn menu-item-btn" id="toggleBtn">切换wiki</button>
+            <button class="toggle-btn menu-item-btn" id="ai">AI</button>
+            <div class="idlib-inner menu-item-inner" id="idlibInner">
+            </div>
+          </div>
+        </li>
+        
+        <!-- 项目名显示 -->
+        <li class="project-name-container">
+          <div class="project-name-item">
+            <input type="text" id="projectName" class="project-name-input" value="未命名" placeholder="请输入项目名">
+          </div>
+        </li>
+        
+        <!-- 文件选择栏 -->
+        <li class="file-selector" id="fileSelector">
+          <!-- 文件标签会动态添加到这里 -->
+        </li>
+      </ul>
+    </div>
+    
+    <!-- 编辑器 -->
+    <div id="codeEditor" class="code-editor"></div>
+    
+    <!-- 隐藏的文件输入框 -->
+    <input type="file" id="fileInput" style="display: none;" accept=".lua,.txt" multiple>
+    
+    <!-- wiki相关元素 -->
+    <div id="devWikiMask" class="dev-wiki-mask"></div>
+    <div id="searchIdWrapper" class="search-id-wrapper">
+      <div id="searchIdTitle" class="search-id-title">
+        <span>ID搜索工具</span>
+        <i class="close-icon" id="searchIdCloseIcon"></i>
+      </div>
+      <div class="search-id-inner">
+        <div id="searchIdInpWrapper" class="search-id-inpwrapper">
+          <input type="text" class="search-id-input" placeholder="请输入方块 ID 或 名称" id="searchIdInput">
+          <div class="history-list" id="searchIdHistoryList"></div>
+        </div>
+        <div id="searchIdListContainer" class="search-id-container">
+          <dl id="searchIdList"></dl>
+        </div>
+      </div>
+    </div>
+    <div id="devWiki" class="dev-wiki">
+      <div id="devWikiBar" class="dev-wiki-bar"></div>
+      <iframe src="https://developers.mini1.cn/wiki/API.html" frameborder="0"></iframe>
+      <button type="button" id="toggleWikiBtn" class="btn toggle-wiki-btn">Wiki</button>
+    </div>
+  </div>
+  
+  <script src="./js/datapack.js"></script>
+  <script src="./js/insertCodeConfig.js"></script>
+  <script type="text/javascript" src="./js/app.js"></script>
+
+  <!-- ID库按钮逻辑 -->
+  <script>
+    let isAPI2 = true;
+    document.getElementById('idlibBtn').addEventListener('click', function() {
+      const iframe = document.querySelector('#devWiki iframe');
+      if (isAPI2) {
+        iframe.src = 'https://qiugf.cn/kfz/cxid/';
+        document.getElementById('toggleWikiBtn').click();
+      } else {
+        iframe.src = 'https://developers.mini1.cn/wiki/API.html';
+      }
+      isAPI2 = !isAPI2;
+    });
+  </script>
+
+  <!-- AI按钮逻辑 -->
+  <script>
+    let isAPI3 = true;
+    document.getElementById('ai').addEventListener('click', function() {
+      const iframe = document.querySelector('#devWiki iframe');
+      if (isAPI3) {
+        iframe.src = 'https://ai.tuanmengqiu.cn/';
+        document.getElementById('toggleWikiBtn').click();
+      } else {
+        iframe.src = 'https://developers.mini1.cn/wiki/API.html';
+      }
+      isAPI3 = !isAPI3;
+    });
+  </script>
+  
+  <!-- 切换wiki按钮逻辑 -->
+  <script>
+    let isAPI1 = true;
+    document.getElementById('toggleBtn').addEventListener('click', function() {
+      const iframe = document.querySelector('#devWiki iframe');
+      if (isAPI1) {
+        iframe.src = 'https://www.qiugf.cn/kfz/#/miniapi/?id=%e4%ba%8b%e4%bb%b6%e5%88%97%e8%a1%a8%ef%bc%9aevent';
+      } else {
+        iframe.src = 'https://developers.mini1.cn/wiki/API.html';
+      }
+      isAPI1 = !isAPI1;
+    });
+  </script>
+
+  <!-- 核心编辑器逻辑 -->
+  <script>
+    // 存储所有打开的文件
+    let openFiles = [];
+    // 当前活动文件的索引
+    let activeFileIndex = 0;
+    // 存储键名
+    const STORAGE_KEY = 'luaEditorData_v2'; // 版本化存储键，避免与旧数据冲突
+    // 存储文件最后保存的内容，用于精确判断是否修改
+    let lastSavedContents = [];
+
+    // 辅助函数：移除文件名中的.lua扩展名
+    function removeLuaExtension(filename) {
+      if (filename && filename.toLowerCase().endsWith('.lua')) {
+        return filename.slice(0, -4);
+      }
+      return filename;
+    }
+
+    // 辅助函数：确保文件名有.lua扩展名（仅用于新建文件）
+    function ensureLuaExtension(filename) {
+      if (filename && !filename.toLowerCase().endsWith('.lua')) {
+        return filename + '.lua';
+      }
+      return filename;
+    }
+
+    // 显示通知的通用函数
+    function showNotification(message, type = 'success') {
+      // 检查是否已有通知元素
+      let notification = document.querySelector('.notification');
+      
+      if (!notification) {
+        // 创建通知元素
+        notification = document.createElement('div');
+        notification.className = 'notification';
+        document.body.appendChild(notification);
+      }
+      
+      // 设置通知内容和类型
+      notification.textContent = message;
+      notification.className = 'notification ' + type;
+      
+      // 显示通知
+      setTimeout(() => {
+        notification.classList.add('visible');
+      }, 10);
+      
+      // 3秒后隐藏通知
+      setTimeout(() => {
+        notification.classList.remove('visible');
+      }, 3000);
+    }
+
+    // 保存当前文件 - 修复红点问题的核心修改
+    function saveCurrentFile() {
+      // 获取当前文件内容
+      const content = getEditorContent();
+      
+      if (!content) {
+        showNotification('保存失败：文件内容为空', 'error');
+        return false;
+      }
+      
+      try {
+        // 更新当前文件内容
+        openFiles[activeFileIndex].content = content;
+        openFiles[activeFileIndex].modified = false;
+        
+        // 记录最后保存的内容，用于精确比较
+        lastSavedContents[activeFileIndex] = content;
+        
+        // 使用localStorage存储
+        const saveData = {
+          openFiles: openFiles,
+          activeFileIndex: activeFileIndex,
+          lastSaved: new Date().toISOString(),
+          lastSavedContents: lastSavedContents // 保存最后内容的快照
+        };
+        
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(saveData));
+        
+        // 强制更新UI，确保红点消失
+        updateFileSelector();
+        
+        showNotification('已保存');
+        return true;
+      } catch (error) {
+        console.error('保存错误:', error);
+        showNotification('保存失败: ' + error.message, 'error');
+        return false;
+      }
+    }
+
+    // 从localStorage恢复数据
+    function restoreFromStorage() {
+      try {
+        const savedData = localStorage.getItem(STORAGE_KEY);
+        if (savedData) {
+          const parsedData = JSON.parse(savedData);
+          
+          if (parsedData.openFiles && Array.isArray(parsedData.openFiles) && 
+              parsedData.openFiles.length > 0) {
+              
+            openFiles = parsedData.openFiles;
+            activeFileIndex = parsedData.activeFileIndex || 0;
+            // 恢复最后保存的内容快照
+            lastSavedContents = parsedData.lastSavedContents || [];
+            
+            // 确保lastSavedContents与openFiles长度一致
+            while (lastSavedContents.length < openFiles.length) {
+              lastSavedContents.push(openFiles[lastSavedContents.length].content);
+            }
+            
+            if (activeFileIndex >= openFiles.length) {
+              activeFileIndex = 0;
+            }
+            
+            // 加载活动文件内容，项目名显示时移除扩展名
+            const activeFile = openFiles[activeFileIndex];
+            setEditorContent(activeFile.content);
+            setProjectName(removeLuaExtension(activeFile.name));
+            
+            updateFileSelector();
+            return true;
+          }
+        }
+      } catch (error) {
+        console.error('恢复数据失败:', error);
+        showNotification('恢复数据失败，将创建新文件', 'error');
+        try {
+          localStorage.removeItem(STORAGE_KEY);
+        } catch (e) {
+          console.error('清除损坏数据失败:', e);
+        }
+      }
+      
+      // 创建新文件
+      addFile('未命名.lua', '');
+      return false;
+    }
+
+    // 快捷键处理
+    function setupShortcuts() {
+      // 确保先移除旧的事件监听器，避免重复绑定
+      document.removeEventListener('keydown', handleKeydown);
+      document.addEventListener('keydown', handleKeydown, { capture: true });
+      
+      // 如果使用Ace编辑器，确保它不会捕获快捷键
+      if (window.ace && window.ace.edit("codeEditor")) {
+        const aceEditor = window.ace.edit("codeEditor");
+        aceEditor.commands.addCommand({
+          name: "saveCommand",
+          bindKey: { win: "Ctrl-S", mac: "Command-S" },
+          exec: function(editor) {
+            saveCurrentFile();
+          },
+          readOnly: false
+        });
+      }
+    }
+
+    function handleKeydown(e) {
+      // 检查是否是Ctrl+S或Cmd+S
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 's') {
+        e.preventDefault();
+        e.stopPropagation();
+        saveCurrentFile();
+        return false;
+      }
+      return true;
+    }
+
+    // 项目名相关函数
+    function getProjectName() {
+      return document.getElementById('projectName').value.trim() || "未命名";
+    }
+
+    function setProjectName(name) {
+      const projectNameInput = document.getElementById('projectName');
+      // 显示时移除扩展名
+      projectNameInput.value = removeLuaExtension(name) || "未命名";
+    }
+
+    // 编辑器内容相关函数
+    function getEditorContent() {
+      if (window.editor && typeof window.editor.getValue === 'function') {
+        return window.editor.getValue();
+      }
+      
+      const aceEditor = window.ace && window.ace.edit("codeEditor");
+      if (aceEditor) {
+        return aceEditor.getValue();
+      }
+      
+      const editorElement = document.querySelector('#codeEditor .ace_text-layer');
+      if (editorElement) {
+        return editorElement.innerText;
+      }
+      
+      return '';
+    }
+
+    function setEditorContent(content) {
+      if (window.editor && typeof window.editor.setValue === 'function') {
+        window.editor.setValue(content);
+        return true;
+      }
+      
+      const aceEditor = window.ace && window.ace.edit("codeEditor");
+      if (aceEditor) {
+        aceEditor.setValue(content);
+        aceEditor.clearSelection();
+        return true;
+      }
+      
+      const editorTextArea = document.querySelector('#codeEditor textarea');
+      if (editorTextArea) {
+        editorTextArea.value = content;
+        const event = new Event('input', { bubbles: true });
+        editorTextArea.dispatchEvent(event);
+        return true;
+      }
+      
+      return false;
+    }
+
+    // 文件选择器更新
+    function updateFileSelector() {
+      const fileSelector = document.getElementById('fileSelector');
+      fileSelector.innerHTML = '';
+      
+      openFiles.forEach((file, index) => {
+        // 精确判断文件是否被修改
+        const isModified = file.modified || 
+                          (lastSavedContents[index] !== undefined && 
+                           lastSavedContents[index] !== file.content);
+        
+        const fileTab = document.createElement('div');
+        fileTab.className = `file-tab ${index === activeFileIndex ? 'active' : ''} ${isModified ? 'modified' : ''}`;
+        // 标签显示完整文件名（含扩展名）
+        fileTab.innerHTML = `
+          <span class="file-tab-name">${file.name}</span>
+          <span class="file-tab-close" data-index="${index}">×</span>
+        `;
+        
+        fileTab.querySelector('.file-tab-name').addEventListener('click', () => {
+          switchToFile(index);
+        });
+        
+        fileTab.querySelector('.file-tab-close').addEventListener('click', (e) => {
+          e.stopPropagation();
+          removeFile(index);
+        });
+        
+        fileSelector.appendChild(fileTab);
+      });
+    }
+
+    // 切换文件
+    function switchToFile(index) {
+      if (index < 0 || index >= openFiles.length) return;
+      
+      if (openFiles.length > 0) {
+        // 保存当前文件的内容
+        const currentContent = getEditorContent();
+        openFiles[activeFileIndex].content = currentContent;
+        
+        // 检查是否有修改
+        openFiles[activeFileIndex].modified = 
+          lastSavedContents[activeFileIndex] !== undefined && 
+          lastSavedContents[activeFileIndex] !== currentContent;
+      }
+      
+      activeFileIndex = index;
+      const file = openFiles[index];
+      setEditorContent(file.content);
+      // 切换时项目名显示不带扩展名
+      setProjectName(removeLuaExtension(file.name));
+      
+      updateFileSelector();
+    }
+
+    // 添加文件 - 导入时保留原始文件名和扩展名
+    function addFile(name, content = '', preserveExtension = false) {
+      let fileName = name;
+      // 新建文件时才确保有.lua扩展名，导入文件时保留原始扩展名
+      if (!preserveExtension) {
+        fileName = ensureLuaExtension(name);
+      }
+      
+      const existingIndex = openFiles.findIndex(file => file.name === fileName);
+      
+      if (existingIndex !== -1) {
+        switchToFile(existingIndex);
+        return;
+      }
+      
+      if (openFiles.length > 0) {
+        openFiles[activeFileIndex].content = getEditorContent();
+      }
+      
+      // 添加新文件并记录其初始内容作为"最后保存"的内容
+      openFiles.push({ name: fileName, content, modified: false });
+      lastSavedContents.push(content);
+      activeFileIndex = openFiles.length - 1;
+      
+      setEditorContent(content);
+      // 显示时移除扩展名
+      setProjectName(removeLuaExtension(fileName));
+      updateFileSelector();
+    }
+
+    // 移除文件
+    function removeFile(index) {
+      if (openFiles.length <= 1) {
+        showNotification('至少保留一个文件', 'info');
+        return;
+      }
+      
+      const removedFileName = openFiles[index].name;
+      const isModified = openFiles[index].modified || 
+                        (lastSavedContents[index] !== undefined && 
+                         lastSavedContents[index] !== openFiles[index].content);
+      
+      // 如果文件已修改，提示用户是否保存
+      if (isModified) {
+        const result = confirm(`文件 "${removedFileName}" 有未保存的更改，是否保存?`);
+        if (result) {
+          // 先保存当前文件内容
+          if (index === activeFileIndex) {
+            const content = getEditorContent();
+            openFiles[index].content = content;
+            lastSavedContents[index] = content;
+          }
+          // 单独保存这个文件的更改
+          const saveData = {
+            openFiles: openFiles,
+            activeFileIndex: activeFileIndex,
+            lastSaved: new Date().toISOString(),
+            lastSavedContents: lastSavedContents
+          };
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(saveData));
+        }
+      }
+      
+      // 移除文件及其最后保存的内容
+      openFiles.splice(index, 1);
+      lastSavedContents.splice(index, 1);
+      
+      // 处理活动文件索引
+      if (index === activeFileIndex) {
+        activeFileIndex = 0;
+        const file = openFiles[activeFileIndex];
+        setEditorContent(file.content);
+        setProjectName(removeLuaExtension(file.name));
+      } else if (index < activeFileIndex) {
+        activeFileIndex--;
+      }
+      
+      // 更新文件选择器
+      updateFileSelector();
+      
+      showNotification(`已关闭 ${removedFileName}`, 'info');
+    }
+
+    // 精确判断文件是否被修改并更新状态
+    function updateFileModifiedStatus() {
+      if (openFiles.length === 0) return;
+      
+      const currentContent = getEditorContent();
+      const wasModified = openFiles[activeFileIndex].modified;
+      
+      // 与最后保存的内容进行比较，确定是否真的有修改
+      const isModified = lastSavedContents[activeFileIndex] !== currentContent;
+      
+      if (isModified !== wasModified) {
+        openFiles[activeFileIndex].modified = isModified;
+        updateFileSelector();
+      }
+    }
+
+    // 初始化拖放功能
+    function initFileDrop() {
+      const dropTarget = document.getElementById('app');
+      const dropOverlay = document.getElementById('dropOverlay');
+      
+      // 阻止默认拖放行为
+      ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+        dropTarget.addEventListener(eventName, preventDefaults, false);
+        document.body.addEventListener(eventName, preventDefaults, false);
+      });
+      
+      // 阻止默认行为的辅助函数
+      function preventDefaults(e) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+      
+      // 拖入时显示覆盖层
+      ['dragenter', 'dragover'].forEach(eventName => {
+        dropTarget.addEventListener(eventName, () => {
+          dropOverlay.classList.add('visible');
+        }, false);
+      });
+      
+      // 拖离时隐藏覆盖层
+      ['dragleave'].forEach(eventName => {
+        dropTarget.addEventListener(eventName, (e) => {
+          // 检查是否完全离开目标区域
+          if (e.clientX < 0 || e.clientX > window.innerWidth ||
+              e.clientY < 0 || e.clientY > window.innerHeight) {
+            dropOverlay.classList.remove('visible');
+          }
+        }, false);
+      });
+      
+      // 处理文件放下
+      dropTarget.addEventListener('drop', handleDrop, false);
+      
+      function handleDrop(e) {
+        // 隐藏覆盖层
+        dropOverlay.classList.remove('visible');
+        
+        const dt = e.dataTransfer;
+        const files = dt.files;
+        
+        if (files.length) {
+          handleFiles(files);
+        }
+      }
+      
+      // 处理拖入的文件
+      function handleFiles(files) {
+        const importedFiles = [];
+        Array.from(files).forEach(file => {
+          // 只处理lua和txt文件
+          if (!file.name.endsWith('.lua') && !file.name.endsWith('.txt')) {
+            showNotification(`不支持的文件类型: ${file.name}`, 'error');
+            return;
+          }
+          
+          importedFiles.push(file.name);
+          const reader = new FileReader();
+          
+          reader.onload = function(e) {
+            try {
+              const content = e.target.result;
+              // 导入文件时保留原始文件名和扩展名
+              addFile(file.name, content, true);
+              
+              // 所有文件处理完成后显示通知
+              if (importedFiles.indexOf(file.name) === importedFiles.length - 1) {
+                showNotification(`成功导入 ${importedFiles.length} 个文件`, 'success');
+              }
+            } catch (error) {
+              console.error('导入错误:', error);
+              showNotification(`导入文件 ${file.name} 失败`, 'error');
+            }
+          };
+          
+          reader.onerror = function() {
+            console.error('读取文件失败');
+            showNotification(`无法读取文件: ${file.name}`, 'error');
+          };
+          
+          reader.readAsText(file);
+        });
+      }
+    }
+
+    // 初始化事件监听
+    function initEventListeners() {
+      // 新建文件
+      document.getElementById('newFile').addEventListener('click', function() {
+        let fileName = prompt('请输入新文件名:', '未命名');
+        if (fileName) {
+          // 新建文件时确保有.lua扩展名
+          addFile(fileName, '');
+          showNotification(`已创建 ${ensureLuaExtension(fileName)}`, 'success');
+        }
+        document.getElementById('fileInner').style.display = 'none';
+      });
+
+      // 保存按钮
+      document.getElementById('saveToStorage').addEventListener('click', function() {
+        saveCurrentFile();
+        document.getElementById('fileInner').style.display = 'none';
+      });
+
+      // 导出功能 - 导出时使用当前文件名
+      document.getElementById('exportFile').addEventListener('click', function() {
+        const content = getEditorContent();
+        // 使用当前文件名作为导出文件名（保留原始扩展名）
+        const exportFileName = openFiles[activeFileIndex].name;
+        
+        if (!content) {
+          showNotification('导出失败：文件内容为空', 'error');
+          return;
+        }
+        
+        try {
+          const blob = new Blob([content], { type: 'text/plain' });
+          const link = document.createElement('a');
+          link.href = URL.createObjectURL(blob);
+          link.download = exportFileName;
+          
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+          
+          showNotification(`已导出 ${exportFileName}`, 'success');
+        } catch (error) {
+          console.error('导出错误:', error);
+          showNotification('导出失败: ' + error.message, 'error');
+        }
+        
+        document.getElementById('fileInner').style.display = 'none';
+      });
+
+      // 导入功能 - 保留原始文件扩展名
+      document.getElementById('importFile').addEventListener('click', function() {
+        document.getElementById('fileInput').click();
+        document.getElementById('fileInner').style.display = 'none';
+      });
+
+      document.getElementById('fileInput').addEventListener('change', function(e) {
+        const files = e.target.files;
+        if (!files || files.length === 0) return;
+        
+        const importedFiles = [];
+        Array.from(files).forEach(file => {
+          // 仅检查文件类型，不强制修改扩展名
+          if (!file.name.endsWith('.lua') && !file.name.endsWith('.txt')) {
+            showNotification(`不支持的文件类型: ${file.name}`, 'error');
+            return;
+          }
+          
+          importedFiles.push(file.name);
+          const reader = new FileReader();
+          reader.onload = function(e) {
+            try {
+              const content = e.target.result;
+              // 导入文件时保留原始文件名和扩展名
+              addFile(file.name, content, true);
+              
+              // 所有文件处理完成后显示通知
+              if (importedFiles.indexOf(file.name) === importedFiles.length - 1) {
+                showNotification(`成功导入 ${importedFiles.length} 个文件`, 'success');
+              }
+            } catch (error) {
+              console.error('导入错误:', error);
+              showNotification(`导入文件 ${file.name} 失败`, 'error');
+            }
+          };
+          
+          reader.onerror = function() {
+            console.error('读取文件失败');
+            showNotification(`无法读取文件: ${file.name}`, 'error');
+          };
+          
+          reader.readAsText(file);
+        });
+        
+        this.value = '';
+      });
+
+      // 清空功能
+      document.getElementById('clearEditor').addEventListener('click', function() {
+        if (confirm('确定要清空当前文件内容吗？此操作不可恢复。')) {
+          setEditorContent('');
+          openFiles[activeFileIndex].content = '';
+          updateFileModifiedStatus(); // 更新修改状态
+          updateFileSelector();
+          showNotification('文件内容已清空', 'info');
+        }
+        document.getElementById('fileInner').style.display = 'none';
+      });
+
+      // 菜单显示/隐藏
+      document.getElementById('fileBtn').addEventListener('click', function(e) {
+        e.stopPropagation();
+        const fileInner = document.getElementById('fileInner');
+        fileInner.style.display = fileInner.style.display === 'block' ? 'none' : 'block';
+      });
+
+      document.getElementById('themeBtn').addEventListener('click', function(e) {
+        e.stopPropagation();
+        const themeInner = document.getElementById('themeInner');
+        themeInner.style.display = themeInner.style.display === 'block' ? 'none' : 'block';
+      });
+
+      document.getElementById('insertBtn').addEventListener('click', function(e) {
+        e.stopPropagation();
+        const insertInner = document.getElementById('insertInner');
+        insertInner.style.display = insertInner.style.display === 'block' ? 'none' : 'block';
+      });
+
+      document.getElementById('fontBtn').addEventListener('click', function(e) {
+        e.stopPropagation();
+        const fontInner = document.getElementById('fontInner');
+        fontInner.style.display = fontInner.style.display === 'block' ? 'none' : 'block';
+      });
+
+      document.getElementById('idlibBtn').addEventListener('click', function(e) {
+        e.stopPropagation();
+        const idlibInner = document.getElementById('idlibInner');
+        idlibInner.style.display = idlibInner.style.display === 'block' ? 'none' : 'block';
+      });
+
+      // 点击其他地方关闭菜单
+      document.addEventListener('click', function() {
+        document.getElementById('fileInner').style.display = 'none';
+        document.getElementById('themeInner').style.display = 'none';
+        document.getElementById('insertInner').style.display = 'none';
+        document.getElementById('fontInner').style.display = 'none';
+        document.getElementById('idlibInner').style.display = 'none';
+      });
+
+      document.querySelectorAll('.menu-item-inner').forEach(inner => {
+        inner.addEventListener('click', function(e) {
+          e.stopPropagation();
+        });
+      });
+
+      // 项目名修改 - 保存时使用原始扩展名
+      document.getElementById('projectName').addEventListener('blur', function() {
+        const newName = getProjectName();
+        if (newName && openFiles.length > 0) {
+          // 保持原始文件的扩展名
+          const originalName = openFiles[activeFileIndex].name;
+          const extMatch = originalName.match(/\.[^\.]+$/);
+          const extension = extMatch ? extMatch[0] : '';
+          
+          const fileName = newName + extension;
+          
+          if (openFiles[activeFileIndex].name !== fileName) {
+            const oldName = openFiles[activeFileIndex].name;
+            openFiles[activeFileIndex].name = fileName;
+            updateFileModifiedStatus(); // 文件名修改也视为修改
+            updateFileSelector();
+            showNotification(`已重命名为 ${fileName}`, 'info');
+          }
+        }
+      });
+
+      // 插入菜单子项点击事件
+      document.querySelectorAll('.insert-item[data-insert-type]').forEach(item => {
+        item.addEventListener('click', function() {
+          const type = this.getAttribute('data-insert-type');
+          // 根据插入类型处理逻辑（实际实现依赖于insertCodeConfig.js）
+          if (window.insertCodeByType) {
+            window.insertCodeByType(type);
+            updateFileModifiedStatus(); // 插入代码后更新修改状态
+            showNotification(`已插入 ${type} 代码片段`, 'info');
+          }
+          document.getElementById('insertInner').style.display = 'none';
+        });
+      });
+
+      // 插入菜单父项点击事件（显示对应子菜单）
+      document.querySelectorAll('.insert-list.parent .insert-item').forEach(item => {
+        item.addEventListener('click', function() {
+          const type = this.getAttribute('data-insert-type');
+          // 隐藏所有子菜单
+          document.querySelectorAll('.insert-list.child').forEach(child => {
+            child.style.display = 'none';
+          });
+          // 显示当前类型对应的子菜单
+          const targetChild = document.querySelector(`.insert-list.child[data-parent-type="${type}"]`);
+          if (targetChild) {
+            targetChild.style.display = 'block';
+          }
+        });
+      });
+
+      // 字体大小切换事件
+      document.querySelectorAll('.font-item').forEach(item => {
+        item.addEventListener('click', function() {
+          const size = this.getAttribute('data-size');
+          if (window.ace && window.ace.edit("codeEditor")) {
+            const aceEditor = window.ace.edit("codeEditor");
+            aceEditor.setFontSize(size);
+            showNotification(`字体大小已设置为 ${size}`, 'info');
+          }
+          document.getElementById('fontInner').style.display = 'none';
+        });
+      });
+
+      // 主题切换事件
+      document.querySelectorAll('.theme-item').forEach(item => {
+        item.addEventListener('click', function() {
+          const theme = this.getAttribute('data-theme');
+          if (window.ace && window.ace.edit("codeEditor")) {
+            const aceEditor = window.ace.edit("codeEditor");
+            aceEditor.setTheme(`ace/theme/${theme}`);
+            showNotification(`已切换到 ${theme} 主题`, 'info');
+          }
+          document.getElementById('themeInner').style.display = 'none';
+        });
+      });
+    }
+
+    // 监听编辑器内容变化 - 更精确的修改检测
+    function setupEditorChangeDetection() {
+      // 保存上一次内容用于比较
+      let lastContent = getEditorContent();
+      
+      if (window.ace && window.ace.edit("codeEditor")) {
+        const aceEditor = window.ace.edit("codeEditor");
+        aceEditor.on('change', function() {
+          const currentContent = aceEditor.getValue();
+          if (currentContent !== lastContent) {
+            lastContent = currentContent;
+            updateFileModifiedStatus();
+          }
+        });
+        return;
+      }
+      
+      const editorElement = document.querySelector('#codeEditor textarea, #codeEditor [contenteditable="true"]');
+      if (editorElement) {
+        editorElement.addEventListener('input', function() {
+          const currentContent = this.value || this.innerText;
+          if (currentContent !== lastContent) {
+            lastContent = currentContent;
+            updateFileModifiedStatus();
+          }
+        });
+        return;
+      }
+      
+      // 备用检测机制
+      setInterval(() => {
+        const currentContent = getEditorContent();
+        if (currentContent !== lastContent) {
+          lastContent = currentContent;
+          updateFileModifiedStatus();
+        }
+      }, 500);
+    }
+
+    // 页面加载完成后初始化
+    window.addEventListener('load', function() {
+      // 初始化拖放功能
+      initFileDrop();
+      
+      // 等待编辑器初始化完成
+      const initEditor = () => {
+        // 检查编辑器是否已加载
+        if ((window.ace && window.ace.edit("codeEditor")) || 
+            document.querySelector('#codeEditor textarea') ||
+            window.editor) {
+          
+          // 初始化事件监听
+          initEventListeners();
+          
+          // 恢复保存的数据
+          restoreFromStorage();
+          
+          // 设置编辑器内容变化监听
+          setupEditorChangeDetection();
+          
+          // 设置快捷键 - 确保在编辑器加载完成后设置
+          setupShortcuts();
+          
+        } else {
+          // 编辑器尚未加载，重试
+          setTimeout(initEditor, 100);
+        }
+      };
+      
+      // 开始初始化
+      initEditor();
+    });
+  </script>
+</body>
+</html>
+    

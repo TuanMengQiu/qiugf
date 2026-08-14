@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>上传文件</title>
+<style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-image: url('https://tuanmengqiu.cn/cx/img/bj.png');
+            background-size: cover;
+            background-position: center;
+            font-family: Arial, sans-serif;
+        }
+
+    .upload-container {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        width: 300px;
+    }
+
+    .upload-form {
+        margin-bottom: 20px;
+    }
+
+    .file-input {
+        margin-bottom: 10px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 16px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .upload-button {
+        padding: 10px 20px;
+        background-color: #4dc497;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        outline: none;
+    }
+
+    .upload-button:hover {
+        background-color: #76dbb5;
+    }
+
+    .drag-drop-area {
+        border: 2px dashed #ccc;
+        border-radius: 5px;
+        padding: 20px;
+        margin-top: 20px;
+        cursor: pointer;
+    }
+
+    .drag-drop-text {
+        font-size: 14px;
+        color: #666;
+    }
+
+    .highlight {
+        border-color: #4CAF50;
+    }
+</style>
+</head>
+<body>
+<div class="upload-container">
+<form action="upload.php" method="post" enctype="multipart/form-data" class="upload-form">
+<input type="file" name="uploaded_file" id="fileInput" class="file-input" />
+<br>
+<div class="drag-drop-area" id="dragDropArea">
+<p class="drag-drop-text">或将文件拖到此处</p>
+</div>
+<br>
+<input type="submit" value="上传文件" class="upload-button" />
+</form>
+</div>
+
+<script>
+    const fileInput = document.getElementById('fileInput');
+    const dragDropArea = document.getElementById('dragDropArea');
+
+    // 阻止浏览器默认的拖拽行为
+    ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+        dragDropArea.addEventListener(eventName, preventDefaults, false);
+        document.body.addEventListener(eventName, preventDefaults, false);
+    });
+
+    function preventDefaults(e) {
+        e.preventDefault();
+        e.stopPropagation();
+    }
+
+    // 高亮显示拖拽区域
+    ['dragenter', 'dragover'].forEach(eventName => {
+        dragDropArea.addEventListener(eventName, highlight, false);
+    });
+
+    ['dragleave', 'drop'].forEach(eventName => {
+        dragDropArea.addEventListener(eventName, unhighlight, false);
+    });
+
+    function highlight(e) {
+        dragDropArea.classList.add('highlight');
+    }
+
+    function unhighlight(e) {
+        dragDropArea.classList.remove('highlight');
+    }
+
+    // 处理拖拽放事件
+    dragDropArea.addEventListener('drop', handleDrop, false);
+
+    function handleDrop(e) {
+        const dt = e.dataTransfer;
+        const files = dt.files;
+
+        fileInput.files = files; // 将拖拽的文件赋值给文件输入框
+
+        // 如果有需要，可以在这里处理拖拽后的逻辑，比如预览文件等
+
+        // 阻止浏览器默认的处理文件拖放事件
+        e.preventDefault();
+        e.stopPropagation();
+    }
+</script>
+</body>
+</html>

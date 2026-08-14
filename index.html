@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+<link rel="shortcut icon" href="https://api.qiugf.cn/img/icon.ico" type="image/x-icon">
+<link rel="icon" href="https://api.qiugf.cn/img/icon.png" type="image/png">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+        <link rel="shortcut icon" type="image/x-icon" href="https://api.qiugf.cn/img/icon.ico">
+        <link rel="icon" type="image/png" href="https://api.qiugf.cn/img/icon32.png" sizes="32x32">
+        <link rel="icon" type="image/png" href="https://api.qiugf.cn/img/icon64.png" sizes="64x64">
+        <link rel="icon" type="image/png" href="https://api.qiugf.cn/img/icon128.png" sizes="128x128">
+        <link rel="icon" type="image/png" href="https://api.qiugf.cn/img/icon256.png" sizes="256x256">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="description" content="迷你世界第三方玩家自建社区代码共享\工具平台">
+    <meta name="keywords" content="秋秋工坊">
+    <title>秋秋工坊</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* 基础样式简化 */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: sans-serif; overflow-x: hidden; }
+        #poster { width: 100%; margin-top: auto; }
+        
+        /* 顶部Banner区域 */
+        .banner {
+            width: 100%;
+            padding-top: 47.4%; /* 1294/2730≈0.474，即47.4% */
+            position: relative;
+            background: url(img/qqgf.png) no-repeat center/cover; /* 替换为实际图片路径 */
+        }
+
+        .banner a {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .banner-logo a {
+            position: static; /* 重置 logo 链接的定位，若不需要可删除 */
+        }
+
+        /* 白色底栏区域：固定在页面最底部，左右铺满整个视口 */
+        .footer {
+            width: 100vw;
+            margin-left: calc(50% - 50vw);   /* 抵消 body 左右内边距，铺满屏幕左右 */
+            padding: 50px 0;
+            background: #fff; /* 底栏改为白色 */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            color: #868787;
+
+        }
+        .footer-row {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .footer a {
+            color: #868787;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            color: #000;
+        }
+        .divider {
+            color: #868787;
+        }
+    </style>
+</head>
+<body>
+    <!-- 顶部标题 -->
+    <header class="site-header">
+        <h1 class="site-title"><img class="site-logo" src="book/logo.png" alt="秋秋工坊"></h1>
+        <p class="site-subtitle">点击书本，从书架上取出</p>
+    </header>
+
+    <!-- 书架主体 -->
+    <main class="bookcase" id="bookcase">
+        <!-- 第一层 -->
+        <section class="shelf">
+            <div class="books" id="shelfRow1"></div>
+            <div class="shelf-board"></div>
+        </section>
+        <!-- 第二层 -->
+        <section class="shelf">
+            <div class="books" id="shelfRow2"></div>
+            <div class="shelf-board"></div>
+        </section>
+    </main>
+
+    <!-- 取书遮罩层 -->
+    <div class="pullout-overlay" id="pulloutOverlay">
+        <!-- 面板一：工具书正面封面（第一次点击展示，再次点击跳转） -->
+        <div class="pullout-cover-panel" id="coverPanel">
+            <img class="pullout-cover-img" src="book/秋秋工坊书本正面.png" alt="">
+            <span class="pullout-cover-title" id="coverTitle"></span>
+            <span class="pullout-cover-hint">点击打开 →</span>
+        </div>
+
+        <!-- 面板二：公告书翻开内容 -->
+        <div class="pullout-open-panel" id="openPanel">
+            <img class="pullout-open-img" src="book/秋秋工坊书本打开.png" alt="">
+            <div class="announce-content">
+                <h2 class="announce-title">秋秋工坊公告</h2>
+                <div class="announce-body" id="announceBody">
+                    <p>感谢大家愿意使用秋秋工坊</p>
+                    <p>任何问题或新功能 / 模组建议</p>
+                    <p>请前往QQ群和我们取得联系</p>
+                    <p>群号：<a class="qq-link" href="https://qun.qq.com/universal-share/share?ac=1&authKey=55dhM8SgoWdTsbHO9oTUxSVGpA/TI90wd7j3axdduO0de6/ybNBzvIuoI4zLt61V&busi_data=eyJncm91cENvZGUiOiI5MTM5NDI1NzEiLCJ0b2tlbiI6ImxXMFlIcEI0bnMwWnpuV1F4SUttNEdvcjY2WXB0NkVLQThsMmZ5ck9RMFgwK3NaMkcxODhTd00wcDNGeHNUMkgiLCJ1aW4iOiIzMDg1OTY3ODkyIn0=&data=6uAQVuVA35tNhmFgdyw3wIUUw9Iw-GufBdhlNvHtix1RiZcvbI-sQ11Ydq7v0PxPZuL0SbFLCCJWzh_VKg7Psw&svctype=4&tempid=h5_group_info" target="_blank" rel="noopener">913942571</a></p>
+                </div>
+                <span class="announce-close" id="announceClose">点击任意处关闭</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <div id="poster">
+        <!-- 白色底栏 -->
+        <div class="footer">
+            <div class="footer-row">
+                <a href="https://tuanmengqiu.cn/" target="_blank">关于我们</a>
+                <span>开发者：团梦秋</span>
+            </div>
+            <div class="footer-row">
+		<span><a target="_blank" href="http://beian.miit.gov.cn/">ICP备XXX号-1</a></span>
+          <img class="gongan" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAAUCAYAAACAl21KAAAEnElEQVQ4jXWUb2wTBRjGf3e9Xq/Xdu26dmVSnGxT2AJjBtCAcwj+ARIGOiMBYxQNEtAgwUhMDF8IxkBMMKIBDGIURGOEhAQIYYypQYigBiLgNsYYY93YRv9svfau7fVaM6KJwfh8er88v/fNk/d9BbN4g3FJlAAuyF2g+0QrDy5bN0G/cXHpDyd+fT1r5OUnnpmx119ff6Tj8LeR2uYWkKuBEWLXjvzt/6/mA2u/XLdxadHoVvqzKrZSH/qhzk+MPUc/anyy6ijwBXDs307xHozSvntf+8tr2panMn3KQ24bq5Vh1ir9zJ0Twj8nJK1ec+q51p3bxmGO/wOFsxe3nvz44BgrV1exKpzE+9lVYl0WsR6LsSV7WGZdZsP+Few9bFLs+vz78cb3gmpvHdvc07TkcpOvJsSbgcv0HkwiTvJhaTnIFhCCPs6tP8ty9SKhxx7mqSXHm+/8vG884Cl3QemOHqTMSffRLo98YXAWi2dppC4lEW+NIfgcOOIWmbPD2CeXoaQMol+dp2VhjvbrdRw4Y1W4hbTTP/mVuxOFC7+c3lEQnCDplGiDJIfAbpkQzyBUq8gzfYi308gUiPYaTPRnQRBIpEQcQWkHMFns6zz1fG5goLHULUPeQbGigkDjBFIU0eaWYa0M497SgLqhHjGoUj4zQFrPQbFIRbkKkUvz4/3nXhNVd2ltUjOpCmZAKaP1vIq0oIRYcyXWgIbwRxr9+DBm7yjypkb8G2dwaH/i7s41TJdI94yQifSExUJ8sDmZkJgW1gg/IrPrgIuftkVomF2BV/WgX01QGMmSuZzAMzDKla3X2LnfQajBx/SJY0QHspjxzkZRlNI+LSlScucayxda5E035rEhyr77HXGinVzQRqFcIrCggor2G0T3XiGds9Gy1I4n1o2WlJA8ot327qplj0rKwJSSqkrCARe7T5cwpo3gycbgZhQxmafYFUcwoE/08nV/iN+8dezakCIUVMnLBdTyqd9IIJYXk0UGezSm1fby/jsz2bypiWPadEiaLNVj+H0ih457SKECpbz9hsLsmm4Gu4GMTiGvzZAkX25W3hPCHDKJjHTwVqODljYX7Sd0OsV6FtVdp8IZJX90IrmEwaSpKu8tusnwuZvopoISkJF88lQho51/MXZ++0FjKEc2akKkj+pnG3CEFLBiWDGJ1IiBd7IfKssgEqX3SBeGJ4C7yo1zgoq3ZuW8cRA2wfFS/MqOT62M4Y2eGUJyFZkwrxYrbmDqaURVQfG7EGQ7sXM95C0J76xqzAwx75SmFbJdbZOy0QJgDGSGnIYSKnhDC2qwxtJYWhJUGZvsQ3ZCbjRFOpJAqSxDCYfIjupkBrSic1KKHCmEVO+H4zfXarMNP23oAqkbI4iWiV2FnKYj+7xgaKT7xhDdTuRgCYgist+NI6SC/YFDwAuCmfxxHKQmBs9sz0X+fFWydJfqc5BP5zA1E5si3a1t/hJsio2ckUJ0BbAF7r8lqtV7FVfwA6Dwz4fUgfWJjtAWY+zO4qzZP+++umBdQRPcik/0S04P2m1uOYM+XSpvuhTvGWkz+hKtlY8zngsAfwHO3PzDpQ+zwgAAAABJRU5ErkJggg==" alt="">
+          <span><a target="_blank" href="https://beian.mps.gov.cn/#/query/webSearch">公网安备XXX号</a></span>
+            </div>
+            
+            <div class="footer-row">
+            <a href="https://qiugf.cn/zz/" target="_blank">赞助秋秋工坊</a>
+                <span>Copyright © 2026 秋秋工坊 <br></span> <a href="yqlj.html" target="_blank">友情链接</a>
+        </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

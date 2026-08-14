@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>像素字生成器</title>
+        <link rel="shortcut icon" href="..\..\static\picture\a4Vyng.jpg" type="image/x-icon">
+    <link rel="bookmark" href="..\..\static\picture\a4Vyng.jpg">
+<style>
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-image: url('https://tuanmengqiu.cn/cx/img/bj.png');
+        background-size: cover;
+        background-position: center;
+        font-family: Arial, sans-serif;
+        flex-direction: column;
+    }
+
+    .upload-container {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        width: 300px;
+        max-height: 80vh; /* 防止容器过大 */
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+
+    input, button {
+        margin: 10px 0;
+        padding: 10px;
+        font-size: 16px;
+        border-radius: 5px;
+    }
+
+    button {
+        background-color: #4dc497;
+        color: white;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+        background-color: #76dbb5;
+    }
+
+canvas {
+    border: 1px solid #ccc;
+    margin-top: 10px;
+    width: 50%;
+    height: auto;
+    max-width: 100%;
+    display: block;  /* 使canvas成为块级元素 */
+    margin-left: auto;  /* 水平居中 */
+    margin-right: auto; /* 水平居中 */
+}
+
+
+    #coordinateOutput {
+        white-space: pre-wrap;
+        font-family: monospace;
+        background-color: #f4f4f4;
+        padding: 10px;
+        width: 100%;
+        max-height: 200px;
+        overflow-y: auto;
+        margin-top: 10px;
+        flex-grow: 1; /* 让输出框自适应 */
+    }
+
+</style>
+</head>
+
+<body>
+    <div class="upload-container">
+        <input type="text" id="inputText" placeholder="请输入文字">
+        <input type="number" id="fontSizeInput" value="100" placeholder="字体大小">
+        <input type="text" id="fkidInput" value="669" placeholder="请输入方块ID">
+        <input type="text" id="fkdataInput" value="1" placeholder="请输入方块data">
+        <button onclick="generatePixelBlocks()">解析像素字</button>
+        <button onclick="copyOutput()">复制Lua代码</button>
+        
+        <!-- 画布和输出框放进上传容器 -->
+        <canvas id="pixelCanvas" width="800" height="400"></canvas>
+        <pre id="coordinateOutput"></pre>
+    </div>
+
+    <script>
+        function generatePixelBlocks() {
+            const inputText = document.getElementById('inputText').value;
+            const fontSize = parseInt(document.getElementById('fontSizeInput').value, 10);
+            const fkidInput = document.getElementById('fkidInput').value;
+            const fkid = isNaN(parseInt(fkidInput)) ? 669 : parseInt(fkidInput);
+            const fkdataInput = document.getElementById('fkdataInput').value;
+            const fkdata = isNaN(parseInt(fkdataInput)) ? 1 : parseInt(fkdataInput);
+            const canvas = document.getElementById('pixelCanvas');
+            const ctx = canvas.getContext('2d');
+            const coordinateOutput = document.getElementById('coordinateOutput');
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // 设置字体和相关样式
+            ctx.font = `${fontSize}px monospace`;
+            ctx.fillStyle = 'black';
+            ctx.fillText(inputText, 10, fontSize + 10);
+
+            const pixelSize = 5;  // 设置一个像素的大小
+            const coordinates = [];
+
+            // 获取每个像素块的坐标
+            for (let y = 0; y < canvas.height; y++) {
+                for (let x = 0; x < canvas.width; x++) {
+                    const imageData = ctx.getImageData(x * pixelSize, y * pixelSize, pixelSize, pixelSize);
+                    const data = imageData.data;
+                    let hasColor = false;
+
+                    // 判断像素块是否有颜色
+                    for (let i = 0; i < data.length; i += 4) {
+                        if (data[i + 3] > 0) {
+                            hasColor = true;
+                            break;
+                        }
+                    }
+
+                    // 如果该像素有颜色，则记录该坐标
+                    if (hasColor) {
+                        coordinates.push(`{${y},0,${x},${fkid},${fkdata}}`);
+                    }
+                }
+            }
+
+            // 在最外面的{前面加一个--ed然后回车，在最后面的}回车然后加上--and
+            coordinateOutput.textContent = `--团梦秋自制脚本 迷你号：636968783 QQ：3085967892 请勿删除此注释 删除此注释必究
+--生成方位：东北
+--生成方式：放置土块生成样板，使用扳手即可换生成方位，使用棒棒糖即可旋转，之后手持喷漆罐，点击之前放置的方块即可生成
+-------------------------------------------\nlocal s = {${coordinates.join(',')}}\nlocal blockid = 101 local fx = 0 local xzx, xzz = 1, 3 ScriptSupportEvent:registerEvent("Player.ClickBlock", function(e) local result, id = Player:getCurToolID(e.eventobjid) if id == 12239 then if zhans == true then zhans = false if e.blockid == blockid then Player:removeBackpackItem(e.eventobjid,11070,1) Player:removeBackpackItem(e.eventobjid,11060,1) local m = #s local t = 0 local k = 0 local x0, y0, z0 = e.x, e.y, e.z Block:destroyBlock(x0, y0, z0, false) Player:changPlayerMoveType(e.eventobjid, 1) if fx == 0 then for k = m, 1, -1 do Block:setBlockAll(x0 + s[k][xzx], y0 + s[k][2], z0 + s[k][xzz], s[k][4], s[k][5]) World:stopEffectOnPosition(x0 + s[k][xzx], y0 + s[k][2], z0 + s[k][xzz], 3115) if t % 50 == 0 then threadpool:wait(0.01) end t = t + 1 end Game:msgBox("生成完成 -团梦秋提供技术支持") Player:changPlayerMoveType(e.eventobjid, 2) elseif fx == 1 then for k = m, 1, -1 do Block:setBlockAll(x0 - s[k][xzx], y0 + s[k][2], z0 + s[k][xzz], s[k][4], s[k][5]) World:stopEffectOnPosition(x0 - s[k][xzx], y0 + s[k][2], z0 + s[k][xzz], 3115) if t % 50 == 0 then threadpool:wait(0.01) end t = t + 1 end Game:msgBox("生成完成 -团梦秋提供技术支持") Player:changPlayerMoveType(e.eventobjid, 2) elseif fx == 2 then for k = m, 1, -1 do Block:setBlockAll(x0 - s[k][xzx], y0 + s[k][2], z0 - s[k][xzz], s[k][4], s[k][5]) World:stopEffectOnPosition(x0 - s[k][xzx], y0 + s[k][2], z0 - s[k][xzz], 3115) if t % 50 == 0 then threadpool:wait(0.01) end t = t + 1 end Game:msgBox("生成完成 -团梦秋提供技术支持") Player:changPlayerMoveType(e.eventobjid, 2) elseif fx == 3 then for k = m, 1, -1 do Block:setBlockAll(x0 + s[k][xzx], y0 + s[k][2], z0 - s[k][xzz], s[k][4], s[k][5]) World:stopEffectOnPosition(x0 + s[k][xzx], y0 + s[k][2], z0 - s[k][xzz], 3115) if t % 50 == 0 then threadpool:wait(0.01) end t = t + 1 end Game:msgBox("生成完成 -团梦秋提供技术支持") Player:changPlayerMoveType(e.eventobjid, 2) end end end end end) ScriptSupportEvent:registerEvent("Block.PlaceBy", function(e) if e.blockid == blockid then Player:removeBackpackItem(e.eventobjid,11070,1) Player:removeBackpackItem(e.eventobjid,11060,1) local m = #s local t = 0 local k = 0 local x0, y0, z0 = e.x, e.y, e.z Game:msgBox("样板正在加载中...已发放扳手和棒棒糖，使用扳手改变方位，使用棒棒糖旋转") Player:gainItems(e.eventobjid,11070,1,1) Player:gainItems(e.eventobjid,11060,1,1) Player:changPlayerMoveType(e.eventobjid, 1) zhans = true Block:setBlockAll(e.x, e.y, e.z, blockid, 6) if fx == 0 then for k = m, 1, -1 do World:playParticalEffect(x0 + s[k][xzx], y0 + s[k][2], z0 + s[k][xzz], 3115, 0, 0, true) if t % 50 == 0 then threadpool:wait(0.01) end t = t + 1 end Game:msgBox("样板加载完成使用扳手改变方位，使用棒棒糖进行旋转,喷漆罐点击蓝图即可生成") elseif fx == 1 then for k = m, 1, -1 do World:playParticalEffect(x0 - s[k][xzx], y0 + s[k][2], z0 + s[k][xzz], 3115, 0, 0, true) if t % 50 == 0 then threadpool:wait(0.01) end t = t + 1 end Game:msgBox("样板加载完成使用扳手改变方位，使用棒棒糖进行旋转,喷漆罐点击蓝图即可生成") elseif fx == 2 then for k = m, 1, -1 do World:playParticalEffect(x0 - s[k][xzx], y0 + s[k][2], z0 - s[k][xzz], 3115, 0, 0, true) if t % 50 == 0 then threadpool:wait(0.01) end t = t + 1 end Game:msgBox("样板加载完成使用扳手改变方位，使用棒棒糖进行旋转,喷漆罐点击蓝图即可生成") elseif fx == 3 then for k = m, 1, -1 do World:playParticalEffect(x0 + s[k][xzx], y0 + s[k][2], z0 - s[k][xzz], 3115, 0, 0, true) if t % 50 == 0 then threadpool:wait(0.01) end t = t + 1 end Game:msgBox("样板加载完成使用扳手改变方位，使用棒棒糖进行旋转,喷漆罐点击蓝图即可生成") end end end) ScriptSupportEvent:registerEvent("Block.DestroyBy", function(e) if zhans == true then if e.blockid == blockid then Player:removeBackpackItem(e.eventobjid,11070,1) Player:removeBackpackItem(e.eventobjid,11060,1) local m = #s local t = 0 local k = 0 local x0, y0, z0 = e.x, e.y, e.z Game:msgBox("样板正在清除请勿关闭地图...") Player:changPlayerMoveType(e.eventobjid, 2) zhans = false if fx == 0 then for k = m, 1, -1 do World:stopEffectOnPosition(x0 + s[k][xzx], y0 + s[k][2], z0 + s[k][xzz], 3115) if t % 50 == 0 then threadpool:wait(0.01) end t = t + 1 end Game:msgBox("样板清理完成") elseif fx == 1 then for k = m, 1, -1 do World:stopEffectOnPosition(x0 - s[k][xzx], y0 + s[k][2], z0 + s[k][xzz], 3115) if t % 50 == 0 then threadpool:wait(0.01) end t = t + 1 end elseif fx == 2 then Game:msgBox("样板清理完成") for k = m, 1, -1 do World:stopEffectOnPosition(x0 - s[k][xzx], y0 + s[k][2], z0 - s[k][xzz], 3115) if t % 50 == 0 then threadpool:wait(0.01) end t = t + 1 end Game:msgBox("样板清理完成") elseif fx == 3 then for k = m, 1, -1 do World:stopEffectOnPosition(x0 + s[k][xzx], y0 + s[k][2], z0 - s[k][xzz], 3115) if t % 50 == 0 then threadpool:wait(0.01) end t = t + 1 end Game:msgBox("样板清理完成") end end end end) ScriptSupportEvent:registerEvent("Player.ClickBlock", function(e) local result, id = Player:getCurToolID(e.eventobjid) if id == 11060 then local m = #s local t = 0 local k = 0 local x0, y0, z0 = e.x, e.y, e.z if fx == 0 then Game:msgBox("样板正在清除请勿关闭地图...") for k = m, 1, -1 do World:stopEffectOnPosition(x0 + s[k][xzx], y0 + s[k][2], z0 + s[k][xzz], 3115) if t % 50 == 0 then threadpool:wait(0.01) end t = t + 1 end Game:msgBox("样板清理完成") elseif fx == 1 then Game:msgBox("样板正在清除请勿关闭地图...") for k = m, 1, -1 do World:stopEffectOnPosition(x0 - s[k][xzx], y0 + s[k][2], z0 + s[k][xzz], 3115) if t % 50 == 0 then threadpool:wait(0.01) end t = t + 1 end Game:msgBox("样板清理完成") elseif fx == 2 then Game:msgBox("样板正在清除请勿关闭地图...") for k = m, 1, -1 do World:stopEffectOnPosition(x0 - s[k][xzx], y0 + s[k][2], z0 - s[k][xzz], 3115) if t % 50 == 0 then threadpool:wait(0.01) end t = t + 1 end Game:msgBox("样板清理完成") elseif fx == 3 then Game:msgBox("样板正在清除请勿关闭地图...") for k = m, 1, -1 do World:stopEffectOnPosition(x0 + s[k][xzx], y0 + s[k][2], z0 - s[k][xzz], 3115) if t % 50 == 0 then threadpool:wait(0.01) end t = t + 1 end Game:msgBox("样板清理完成") end if xzx == 3 then xzx = 1 xzz = 3 else xzx = 3 xzz = 1 end if fx == 0 then Game:msgBox("样板正在加载中...") for k = m, 1, -1 do World:playParticalEffect(x0 + s[k][xzx], y0 + s[k][2], z0 + s[k][xzz], 3115, 0, 0, true) if t % 50 == 0 then threadpool:wait(0.01) end t = t + 1 end Game:msgBox("样板加载完成使用扳手改变方位，使用棒棒糖进行旋转,喷漆罐点击蓝图即可生成") elseif fx == 1 then Game:msgBox("样板正在加载中...") for k = m, 1, -1 do World:playParticalEffect(x0 - s[k][xzx], y0 + s[k][2], z0 + s[k][xzz], 3115, 0, 0, true) if t % 50 == 0 then threadpool:wait(0.01) end t = t + 1 end Game:msgBox("样板加载完成使用扳手改变方位，使用棒棒糖进行旋转,喷漆罐点击蓝图即可生成") elseif fx == 2 then Game:msgBox("样板正在加载中...") for k = m, 1, -1 do World:playParticalEffect(x0 - s[k][xzx], y0 + s[k][2], z0 - s[k][xzz], 3115, 0, 0, true) if t % 50 == 0 then threadpool:wait(0.01) end t = t + 1 end Game:msgBox("样板加载完成使用扳手改变方位，使用棒棒糖进行旋转,喷漆罐点击蓝图即可生成") elseif fx == 3 then Game:msgBox("样板正在加载中...") for k = m, 1, -1 do World:playParticalEffect(x0 + s[k][xzx], y0 + s[k][2], z0 - s[k][xzz], 3115, 0, 0, true) if t % 50 == 0 then threadpool:wait(0.01) end t = t + 1 end Game:msgBox("样板加载完成使用扳手改变方位，使用棒棒糖进行旋转,喷漆罐点击蓝图即可生成") xzx = 3 xzz = 1 end end if id == 11070 then local m = #s local t = 0 local k = 0 local x0, y0, z0 = e.x, e.y, e.z if fx == 0 then Game:msgBox("样板正在清除请勿关闭地图...") for k = m, 1, -1 do World:stopEffectOnPosition(x0 + s[k][xzx], y0 + s[k][2], z0 + s[k][xzz], 3115) if t % 50 == 0 then threadpool:wait(0.01) end t = t + 1 end Game:msgBox("样板清理完成") elseif fx == 1 then Game:msgBox("样板正在清除请勿关闭地图...") for k = m, 1, -1 do World:stopEffectOnPosition(x0 - s[k][xzx], y0 + s[k][2], z0 + s[k][xzz], 3115) if t % 50 == 0 then threadpool:wait(0.01) end t = t + 1 end Game:msgBox("样板清理完成") elseif fx == 2 then Game:msgBox("样板正在清除请勿关闭地图...") for k = m, 1, -1 do World:stopEffectOnPosition(x0 - s[k][xzx], y0 + s[k][2], z0 - s[k][xzz], 3115) if t % 50 == 0 then threadpool:wait(0.01) end t = t + 1 end Game:msgBox("样板清理完成") elseif fx == 3 then Game:msgBox("样板正在清除请勿关闭地图...") for k = m, 1, -1 do World:stopEffectOnPosition(x0 + s[k][xzx], y0 + s[k][2], z0 - s[k][xzz], 3115) if t % 50 == 0 then threadpool:wait(0.01) end t = t + 1 end Game:msgBox("样板清理完成") end if fx <= 2 then fx = fx + 1 else fx = 0 end if fx == 0 then Game:msgBox("样板正在加载中...") for k = m, 1, -1 do World:playParticalEffect(x0 + s[k][xzx], y0 + s[k][2], z0 + s[k][xzz], 3115, 0, 0, true) if t % 50 == 0 then threadpool:wait(0.01) end t = t + 1 end Game:msgBox("样板加载完成使用扳手改变方位，使用棒棒糖进行旋转,喷漆罐点击蓝图即可生成") elseif fx == 1 then Game:msgBox("样板正在加载中...") for k = m, 1, -1 do World:playParticalEffect(x0 - s[k][xzx], y0 + s[k][2], z0 + s[k][xzz], 3115, 0, 0, true) if t % 50 == 0 then threadpool:wait(0.01) end t = t + 1 end Game:msgBox("样板加载完成使用扳手改变方位，使用棒棒糖进行旋转,喷漆罐点击蓝图即可生成") elseif fx == 2 then Game:msgBox("样板正在加载中...") for k = m, 1, -1 do World:playParticalEffect(x0 - s[k][xzx], y0 + s[k][2], z0 - s[k][xzz], 3115, 0, 0, true) if t % 50 == 0 then threadpool:wait(0.01) end t = t + 1 end Game:msgBox("样板加载完成使用扳手改变方位，使用棒棒糖进行旋转,喷漆罐点击蓝图即可生成") elseif fx == 3 then Game:msgBox("样板正在加载中...") for k = m, 1, -1 do World:playParticalEffect(x0 + s[k][xzx], y0 + s[k][2], z0 - s[k][xzz], 3115, 0, 0, true) if t % 50 == 0 then threadpool:wait(0.01) end t = t + 1 end Game:msgBox("样板加载完成使用扳手改变方位，使用棒棒糖进行旋转,喷漆罐点击蓝图即可生成") end end end)
+`;
+        }
+
+        // 复制内容功能
+        function copyOutput() {
+            const textArea = document.createElement('textarea');
+            textArea.value = document.getElementById('coordinateOutput').textContent;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textArea);
+            alert("秋秋已经为您复制Lua代码到剪贴板！");
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>安全跳转提示</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background-color: #e4c1ce;
+        }
+        .card-bg {
+            background: #1e1e22;
+            border: 1px solid #333;
+        }
+        .link-text{
+            user-select:text;
+        }
+        p,h2{
+            text-align: center;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4">
+    <div class="card-bg rounded-xl w-full max-w-md p-6 text-gray-200 shadow-xl">
+        <h2 class="text-xl font-bold mb-4 text-white">安全跳转提示</h2>
+        <p class="mb-5 text-gray-300 leading-relaxed">
+            您即将离开 <span class="text-amber-400 font-medium">秋秋工坊</span>，前往以下外部网站。<br>外部链接的内容不受本站控制，请谨慎访问。
+        </p>
+
+        <div class="mb-5">
+            <div class="text-sm text-gray-400 mb-1">目标地址</div>
+            <div id="targetUrl" class="link-text bg-[#2a2a30] p-3 rounded-lg text-blue-400 cursor-pointer break-all hover:bg-[#33333b] transition" onclick="copyUrl()">
+                https://sjy1218.com
+            </div>
+            <div id="copyTip" class="text-green-400 text-sm mt-1 hidden">链接已复制</div>
+        </div>
+
+        <div class="flex gap-3 mt-6">
+            <button onclick="goJump()" class="flex-1 bg-blue-600 hover:bg-blue-700 py-3 rounded-lg transition font-medium">
+                确认前往
+            </button>
+            <button onclick="goBack()" class="flex-1 bg-gray-700 hover:bg-gray-600 py-3 rounded-lg transition font-medium">
+                取消返回
+            </button>
+
+        </div>
+                    <p>安全提醒：请确认网址安全后访问 </br>当前站点：秋秋工坊</p>
+    </div>
+
+    <script>
+        const targetLink = "https://sjy1218.com";
+
+        // 复制链接
+        async function copyUrl(){
+            await navigator.clipboard.writeText(targetLink);
+            const tip = document.getElementById("copyTip");
+            tip.classList.remove("hidden");
+            setTimeout(()=>tip.classList.add("hidden"),1500);
+        }
+
+        // 确认跳转
+        function goJump(){
+            window.location.href = targetLink;
+        }
+
+        // 取消返回
+        function goBack(){
+            // 如果有上一页历史则返回，没有则关闭页面
+            if(window.history.length > 1){
+                history.back();
+            }else{
+                window.close();
+            }
+        }
+    </script>
+</body>
+</html>

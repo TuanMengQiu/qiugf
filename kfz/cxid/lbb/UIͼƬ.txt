@@ -1,0 +1,1482 @@
+ID      UI图片名称 文件名称
+
+10001 图标2 icon_08
+
+10002 图标1 npchat_icon_attack
+
+10003 图标3 icon_bean
+
+10004 图标4 icon_blood
+
+10005 图标183 icon_box
+
+10006 图标184 icon_camera
+
+10007 图标185 icon_card
+
+10008 图标26 icon_Certified_Studio
+
+10009 图标186 icon_chat
+
+10010 图标27 icon_coin
+
+10011 标签2 btn_returnhome
+
+10012 标签1 label_information_bg
+
+10013 标签3 label_information_download
+
+10014 标签4 label_information_green
+
+10015 标签5 label_information_purple
+
+10016 标签6 label_information_red
+
+10017 标签7 label_information_share
+
+10018 标签8 label_notice_aqua
+
+10019 标签9 label_notice_aqua_b
+
+10020 标签10 label_notice_blue
+
+10021 按钮3 btn_bigsquare_yellow
+
+10022 底板59 btn_circle_blue
+
+10023 底板88 btn_circle_gray
+
+10024 按钮46 btn_close_banner
+
+10025 按钮47 close_button
+
+10026 按钮48 btn_help
+
+10027 标签62 btn_mini_gray_r
+
+10028 按钮4 btn_middle_blue
+
+10029 按钮5 btn_square_blue1
+
+10030 按钮6 btn_superbig_yellow
+
+10031 底板30 img_icon_lignt
+
+10032 底板40 img_icon_shortcut
+
+10033 底板41 tab_book_left_h
+
+10034 底板42 tab_clip_left_h
+
+10035 底板43 tab_book_left_n
+
+10036 底板44 tab_right_h
+
+10037 底板45 btn_entry_develop
+
+10038 底板46 board_activity_box_blue
+
+10039 底板47 btn_price
+
+10040 底板48 img_icon_green
+
+10041 标签11 need
+
+10042 背景图1 board_activity_box_white
+
+10043 底板69 img_board_scoring_sel
+
+10044 背景图2 img_play_revise
+
+10045 背景图3 img_play_standard
+
+10046 背景图4 img_play_setup
+
+10047 底板108 img_land_2
+
+10048 背景图5 img_box_Dark
+
+10049 背景图6 frame_title_board_dark
+
+10050 底板70 img_bd_white50_circle
+
+10051 文字1 ico_lv1
+
+10052 文字2 ico_lv2
+
+10053 文字3 ico_lv3
+
+10054 文字4 ico_lv4
+
+10055 文字5 ico_lv5
+
+10056 边框21 icon_minus_white
+
+10057 边框1 lzy_37
+
+10058 边框10 frame_commend
+
+10059 边框11 frame_sink
+
+10060 边框12 sel_icon_custom
+
+10061 边框13 sel_icon_map
+
+10062 边框2 sight
+
+10063 边框3 operating_special_effects
+
+10064 边框14 img_item__box_selected
+
+10065 边框15 img_frame_activity
+
+10066 图标187 ico_model_top
+
+10067 图标188 icon_collect
+
+10068 图标28 icon_exp
+
+10069 图标189 icon_cottage
+
+10070 图标190 icon_custom
+
+10071 图标29 icon_dress_open
+
+10072 图标191 icon_friendshome
+
+10073 图标192 icon_flag
+
+10074 图标30 icon_fans_white
+
+10075 图标193 icon_garden
+
+10076 图标31 icon_gift_minipoint
+
+10077 图标32 icon_giftback
+
+10078 图标33 icon_give_
+
+10079 图标34 icon_homelv
+
+10080 图标35 icon_homecoin
+
+10081 图标36 icon_home_shop_o
+
+10082 图标37 icon_like_h
+
+10083 图标38 icon_like_n
+
+10084 图标39 icon_notice
+
+10085 图标194 icon_pet
+
+10086 图标195 icon_petcomposition
+
+10087 图标196 icon_petexploration
+
+10088 图标197 icon_quality
+
+10089 图标40 icon_reward_consume
+
+10090 图标170 icon_season1
+
+10091 图标171 icon_score_white
+
+10092 图标41 icon_warn
+
+10093 图标42 icon_xingxing
+
+10094 图标198 icon_workshop_b
+
+10095 图标43 icon_video_white
+
+10096 图标44 icon_speed
+
+10097 图标45 icon_shop_entry
+
+10098 图标46 icon_backpack
+
+10099 图标47 icon_official_pre
+
+10100 图标48 icon_praise_h
+
+10101 图标49 icon_score
+
+10102 图标50 icon_star_yellow
+
+10103 图标51 icon_tipoff_o
+
+10104 图标52 icon_fire
+
+10105 图标53 icon_fire01
+
+10106 图标54 icon_form_bow
+
+10107 图标55 icon_form_equipment
+
+10108 图标56 icon_form_food
+
+10109 图标57 icon_form_gun
+
+10110 图标58 icon_form_mess
+
+10111 图标59 icon_form_missile
+
+10112 图标60 icon_form_package
+
+10113 图标61 icon_form_tool
+
+10114 图标104 npchat_icon_juqing
+
+10115 图标105 npchat_icon_juqing_d
+
+10116 图标15 npcshop_icon
+
+10117 标签12 label_notice_darkorange
+
+10118 标签13 label_notice_gray
+
+10119 标签14 label_notice_green
+
+10120 标签15 label_notice_olive
+
+10121 标签16 label_notice_orange1
+
+10122 标签17 label_notice_orangered
+
+10123 标签18 label_notice_orchid
+
+10124 标签19 label_notice_pink
+
+10125 标签20 label_notice_purple
+
+10126 标签21 label_notice_radient_purple
+
+10127 标签22 label_notice_radient_red
+
+10128 标签23 label_notice_red
+
+10129 标签24 label_notice_royalblue
+
+10130 标签25 label_ser_sel
+
+10131 标签26 label_trends_official
+
+10132 标签27 laber_map_connoisseur
+
+10133 标签28 label_map_blue
+
+10134 标签29 label_map_blue2
+
+10135 标签30 label_map_gray
+
+10136 标签31 label_map_green
+
+10137 标签32 label_map_green2
+
+10138 标签33 label_map_orange
+
+10139 标签34 label_map_purple
+
+10140 按钮7 board_check_d
+
+10141 按钮8 board_map_info
+
+10142 按钮9 board_map_page
+
+10143 按钮10 board_more
+
+10144 按钮11 btn_safe_middle
+
+10145 按钮12 btn_safe_up
+
+10146 按钮13 btn_trending_yellow
+
+10147 按钮49 img_arrow_arrowhead_n
+
+10148 标签63 img_develop_level
+
+10149 标签64 img_num_tips
+
+10150 按钮50 img_page_arrow
+
+10151 按钮51 icon_use
+
+10152 按钮52 icon_sneak
+
+10153 按钮53 icon_up_down
+
+10154 底板71 img_board_res
+
+10155 按钮67 icon_rocker
+
+10156 按钮68 icon_obstruct
+
+10157 按钮69 icon_position
+
+10158 按钮70 icon_creature
+
+10159 按钮71 btn_circle_yellow_tick
+
+10160 按钮72 icon_add_sink
+
+10161 按钮14 btn_big_blue
+
+10162 底板60 btn_huge_circle_yellow
+
+10163 按钮15 btn_big_orange
+
+10164 按钮16 btn_big_empty
+
+10165 按钮17 btn_big_yellow
+
+10166 按钮73 btn_close
+
+10167 按钮74 btn_return
+
+10168 按钮75 btn_return_white
+
+10169 按钮18 btn_middle_empty
+
+10170 按钮76 icon_pull
+
+10171 按钮77 icon_maximum_orange
+
+10172 按钮78 icon_lock_green
+
+10173 按钮39 btn_superbig_empty
+
+10174 底板90 img_blood_blue
+
+10175 底板91 img_blood_green
+
+10176 底板92 img_blood_red
+
+10177 底板93 img_blood_strip_board_b
+
+10178 底板94 img_blood_white
+
+10179 标签36 img_board_chat_b
+
+10180 标签37 img_board_chat_p
+
+10181 底板72 img_board_scoring
+
+10182 底板73 img_board_scoring_s
+
+10183 底板74 img_icon_board
+
+10184 底板8 img_item__box
+
+10185 底板75 img_item_box_circle
+
+10186 底板9 img_operating_board_s
+
+10187 底板76 img_steering_wheel
+
+10188 底板77 operating_board_l
+
+10189 底板10 operating_board_square
+
+10190 底板11 operating_special_open_b
+
+10191 底板78 operating_special_open_r
+
+10192 底板95 board_clip_title_y
+
+10193 底板96 board_clip_title
+
+10194 底板12 hdfl_diban06
+
+10195 底板13 img_icon_head
+
+10196 底板14 img_icon_lignt_b
+
+10197 底板15 img_icon_lignt_dark
+
+10198 底板16 img_icon_lignt_o
+
+10199 底板17 img_icon_lignt_v
+
+10200 底板18 img_icon_lignt_y
+
+10201 背景图7 img_board_load_orange
+
+10202 背景图8 img_board_load_purple
+
+10203 背景图9 img_board_load_disable
+
+10204 背景图10 board_tips_countdown_yellow
+
+10205 背景图11 board_tips_countdown_red
+
+10206 背景图12 board_sink_y
+
+10207 背景图13 board_switch_open
+
+10208 背景图14 board_tips_countdown_blue
+
+10209 背景图15 board_tips_countdown_green
+
+10210 背景图16 board_tips_countdown_orange
+
+10211 背景图17 img_board_white50_r
+
+10212 背景图18 img_board_white100_
+
+10213 背景图19 img_board_using
+
+10214 背景图20 img_board_tips_white
+
+10215 背景图21 img_board_tips_flag
+
+10216 背景图22 img_board_set_g
+
+10217 背景图23 img_board_set
+
+10218 背景图24 img_board_resource
+
+10219 背景图25 img_board_receive
+
+10220 背景图26 img_board_qqfriend
+
+10221 背景图27 img_board_more_glass
+
+10222 背景图28 img_board_login
+
+10223 背景图29 img_board_load_top_y
+
+10224 背景图30 img_board_load_top_g
+
+10225 背景图31 img_board_load_top
+
+10226 背景图32 img_board_load_gray
+
+10227 背景图33 img_board_load_blue
+
+10228 背景图34 img_board_fadeout
+
+10229 背景图35 img_board_delete
+
+10230 背景图36 img_board_custom_title
+
+10231 背景图37 img_board_bar
+
+10232 背景图38 img_board_Second_floor
+
+10233 背景图39 board_title_countdown_yellow
+
+10234 背景图40 board_title_countdown_red
+
+10235 背景图41 board_title_countdown_purple
+
+10236 背景图42 board_title_countdown_orange
+
+10237 背景图43 board_title_countdown_green
+
+10238 背景图44 board_title_countdown_blue
+
+10239 背景图45 board_tips_price
+
+10240 背景图46 board_tips_icon_v
+
+10241 背景图47 board_tips_icon_o
+
+10242 背景图48 board_tips_icon_b
+
+10243 背景图49 board_tips_countdown_purple
+
+10244 背景图50 board_schedule_countdown_yellow
+
+10245 背景图51 board_schedule_countdown_red
+
+10246 背景图52 board_schedule_countdown_purple
+
+10247 背景图53 board_schedule_countdown_orange
+
+10248 背景图54 board_schedule_countdown_green
+
+10249 背景图55 board_schedule_countdown_blue
+
+10250 背景图56 board_npcchat
+
+10251 背景图57 board_map_pic_g
+
+10252 背景图58 board_map_pic_b
+
+10253 背景图59 board_map_page_r
+
+10254 背景图60 board_map_info_self
+
+10255 背景图61 board_map_create
+
+10256 背景图62 board_ingame_word
+
+10257 背景图63 board_darkgray
+
+10258 背景图64 board_bar_mounts
+
+10259 背景图65 board_activity_info
+
+10260 按钮81 icon_sprint
+
+10261 按钮82 icon_up
+
+10262 按钮88 icon_wtb
+
+10263 按钮89 icon_kaijing
+
+10264 按钮90 icon_shooting
+
+10265 按钮100 icon_rocket
+
+10266 文字6 ar_font_0
+
+10267 文字7 ar_font_1
+
+10268 文字8 ar_font_2
+
+10269 文字9 ar_font_3
+
+10270 文字10 ar_font_4
+
+10271 文字11 ar_font_5
+
+10272 文字12 ar_font_6
+
+10273 文字13 ar_font_7
+
+10274 文字14 ar_font_8
+
+10275 文字15 ar_font_9
+
+10276 底板105 img_stamp_green
+
+10277 底板79 btn_blue_suourbig_r_
+
+10278 底板80 btn_blue_big_circle
+
+10279 底板19 btn_blue_big
+
+10280 底板20 btn_purple_big
+
+10281 底板21 board_role_ar
+
+10282 底板22 board_trans_blue
+
+10283 底板81 btn_trans_blue_r
+
+10284 底板97 btn_white_big
+
+10285 底板82 btn_white_suourbig_r
+
+10286 底板89 btn_yellow_avt
+
+10287 图标62 icon_tobeupdate
+
+10288 底板98 img_enter_ar
+
+10289 底板99 img_enter_ar_g
+
+10290 底板100 img_enter_ar_under
+
+10291 底板101 img_enter_ar_under_g
+
+10292 底板23 img_icon_act_award
+
+10293 底板24 img_icon_custom_b
+
+10294 底板25 img_icon_custom_v
+
+10295 底板26 img_icon_act
+
+10296 底板27 img_icon_act_award
+
+10297 底板28 img_icon_custom_g
+
+10298 底板29 img_icon_custom_gold
+
+10299 标签38 img_label_give
+
+10300 标签42 img_noroom_ar
+
+10301 底板106 img_shadow_role1
+
+10302 标签43 label_shop_collection
+
+10303 标签44 label_shop_green
+
+10304 标签45 label_shop_hot
+
+10305 标签46 label_shop_new
+
+10306 标签47 label_shop_num
+
+10307 标签48 label_shop_red
+
+10308 标签49 label_shop_sale
+
+10309 标签50 label_shop_set_commend
+
+10310 标签51 label_shop_set_hot
+
+10311 标签52 label_shop_set_new
+
+10312 标签53 label_shop_set_rage
+
+10313 标签54 label_shop_set_sale
+
+10314 标签55 label_shop_set_time
+
+10315 标签56 label_shop_time
+
+10316 标签57 lable_soldout
+
+10317 按钮101 btn_arrow_left
+
+10318 按钮102 btn_yes_ar
+
+10319 按钮103 icon_add_upload_y
+
+10320 按钮104 icon_lock_add_y
+
+10321 按钮105 icon_custom_record
+
+10322 按钮106 icon_stop
+
+10323 按钮107 icon_set_ar
+
+10324 按钮108 icon_draw
+
+10325 边框4 img_loading_ar_record
+
+10326 边框16 sdjm_icon_color_h
+
+10327 边框17 sel_role_ar
+
+10328 图标169 icon_custom_mask
+
+10329 图标172 icon_workshop
+
+10330 图标173 icon_worldfactory
+
+10331 图标63 cj_avtnum
+
+10332 图标64 cj_baozangnum
+
+10333 图标65 cj_bosskiller
+
+10334 图标66 cj_chixudenglu
+
+10335 图标67 cj_chuchong
+
+10336 图标68 cj_dianzan
+
+10337 图标69 cj_fangzhapian
+
+10338 图标70 cj_fensinum
+
+10339 图标71 cj_guoshilv
+
+10340 图标72 cj_haoyounum
+
+10341 图标73 cj_hotmapnum
+
+10342 图标74 cj_jianshangjia
+
+10343 图标75 cj_jiaohua
+
+10344 图标76 cj_jixianbosskiller
+
+10345 图标77 cj_jueselv
+
+10346 图标78 cj_juesenum
+
+10347 图标79 cj_pifunum
+
+10348 图标80 cj_shengcuntianshu
+
+10349 图标81 cj_shenmiliwu
+
+10350 图标82 cj_shimingzhi
+
+10351 图标83 cj_shouhuonum
+
+10352 图标84 cj_tujiannum
+
+10353 图标85 cj_zuojinum
+
+10354 边框5 cj_diamond
+
+10355 边框6 cj_gold
+
+10356 边框7 cj_iron
+
+10357 边框8 cj_stone
+
+10358 边框9 cj_wood
+
+10359 图标86 baimu
+
+10360 图标87 bye
+
+10361 图标88 daku
+
+10362 图标89 dianzan
+
+10363 图标90 haixiu
+
+10364 图标91 jingya
+
+10365 图标92 keai
+
+10366 图标93 kun
+
+10367 图标94 liulei
+
+10368 图标95 qinqin
+
+10369 图标96 shaojiao
+
+10370 图标97 shengqi
+
+10371 图标98 shouqibao
+
+10372 图标99 wabikong
+
+10373 图标100 xianqi
+
+10374 图标101 xieyanxiao
+
+10375 图标102 xieyanxiao
+
+10376 图标103 yun
+
+10377 按钮109 btn_slide_ther
+
+10378 按钮110 icon_area
+
+10379 按钮111 icon_area_edit
+
+10380 按钮112 icon_brush
+
+10381 按钮113 icon_cancel
+
+10382 按钮114 icon_coloring
+
+10383 按钮115 icon_copy_edit
+
+10384 按钮116 icon_creature
+
+10385 按钮117 icon_delete_edit
+
+10386 按钮118 icon_move_edit
+
+10387 按钮119 icon_narrow_block
+
+10388 按钮120 icon_narrow_compose
+
+10389 按钮121 icon_object_library
+
+10390 按钮122 icon_paste
+
+10391 按钮123 icon_pile
+
+10392 按钮124 icon_return
+
+10393 按钮125 icon_smooth
+
+10394 按钮126 icon_swap_edit
+
+10395 按钮127 icon_track_edit
+
+10396 按钮128 jsxz_mingzi01
+
+10397 按钮129 jsxz_mingzi02
+
+10398 按钮130 img_bar_board_ther
+
+10399 按钮131 img_bar_ther
+
+10400 底板83 img_board_scoring_sel
+
+10401 底板61 img_icon_board_orange
+
+10402 按钮132 icon_adventure_notes
+
+10403 底板84 icon_ball
+
+10404 按钮91 icon_blocking
+
+10405 按钮133 icon_bullet
+
+10406 按钮134 icon_bullet_install
+
+10407 按钮135 icon_chat
+
+10408 按钮80 icon_down
+
+10409 按钮136 icon_expression
+
+10410 按钮92 icon_football1
+
+10411 按钮94 icon_football2
+
+10412 按钮83 icon_jump
+
+10413 按钮84 icon_last
+
+10414 按钮85 icon_mount
+
+10415 按钮86 icon_mount_down
+
+10416 按钮87 icon_next
+
+10417 按钮151 icon_night
+
+10418 按钮93 icon_pass
+
+10419 按钮95 icon_rocker_circle
+
+10420 按钮96 icon_shoot
+
+10421 按钮97 icon_steals
+
+10422 按钮98 icon_swap_operat
+
+10423 按钮99 icon_tackle
+
+10424 按钮79 operating_steering_wheel
+
+10425 图标106 npchat_icon_jrw_d
+
+10426 图标107 npchat_icon_jrw
+
+10427 图标108 npchat_icon_jiaoyi
+
+10428 图标109 juese_xingxing02
+
+10429 图标110 juese_xingxing03
+
+10430 图标111 juese_xingxing04
+
+10431 图标112 juese_xingxing05
+
+10432 图标113 juese_xingxing06
+
+10433 图标174 icon_trophy
+
+10434 图标175 icon_voice
+
+10435 图标114 lzy_23
+
+10436 图标115 lzy_23_green
+
+10437 图标116 lzy_24
+
+10438 图标117 lzy_31
+
+10439 图标176 icon_map_white
+
+10440 图标177 icon_read_white
+
+10441 图标118 icon_revise
+
+10442 图标119 icon_setup
+
+10443 图标120 icon_standard
+
+10444 图标121 icon_form_pluginpack
+
+10445 图标122 npchat_icon_chat
+
+10446 图标123 npchat_icon_collect
+
+10447 图标124 aaa_icon_4g_6
+
+10448 图标125 aaa_icon_4g_7
+
+10449 图标126 aaa_icon_4g_8
+
+10450 图标127 aaa_icon_wifi_1
+
+10451 图标199 icon_adv_mini_d
+
+10452 图标200 icon_battle_mini_d
+
+10453 图标128 icon_server_red_
+
+10454 图标201 icon_create_mini_d
+
+10455 图标202 icon_elec_mini_d
+
+10456 图标203 icon_intomap
+
+10457 图标204 icon_moble
+
+10458 图标205 icon_pc
+
+10459 图标206 icon_puzzle_mini_d
+
+10460 图标207 icon_refresh
+
+10461 图标208 icon_run_mini_d
+
+10462 图标209 icon_search
+
+10463 图标129 icon_server_yellow
+
+10464 图标210 icon_video_mini_d
+
+10465 图标211 icon_act_atk
+
+10466 图标212 icon_act_dead
+
+10467 图标213 icon_act_default
+
+10468 图标214 icon_act_lie
+
+10469 图标215 icon_act_run
+
+10470 图标216 icon_act_set
+
+10471 图标217 icon_act_strike
+
+10472 图标218 icon_act_swim
+
+10473 图标219 icon_act_walk
+
+10474 图标220 icon_animation_act
+
+10475 图标130 icon_bone
+
+10476 图标178 icon_camera
+
+10477 图标179 icon_close_ar
+
+10478 图标221 icon_custom_all
+
+10479 图标222 icon_custom_back
+
+10480 图标223 icon_custom_cloth
+
+10481 图标224 icon_custom_Expression
+
+10482 图标225 icon_custom_foot
+
+10483 图标226 icon_custom_hands
+
+10484 图标227 icon_custom_head
+
+10485 图标243 icon_custom_n
+
+10486 图标228 icon_custom_pants
+
+10487 图标229 icon_custom_record
+
+10488 图标230 icon_custom_shoes
+
+10489 图标244 icon_gambling_n
+
+10490 图标131 icon_goto
+
+10491 图标180 icon_help_ar
+
+10492 图标181 icon_hide_ar
+
+10493 图标231 icon_like
+
+10494 图标132 icon_model_pack
+
+10495 图标133 icon_model
+
+10496 图标134 icon_move_ar_b
+
+10497 图标135 icon_myfactory
+
+10498 图标245 icon_new_n
+
+10499 图标246 icon_pack_n
+
+10500 图标247 icon_pet_n
+
+10501 图标248 icon_prop_n
+
+10502 图标249 icon_recharge_n
+
+10503 图标250 icon_recommend_n
+
+10504 图标251 icon_role_n
+
+10505 图标232 icon_sfx
+
+10506 图标233 icon_skin
+
+10507 图标234 icon_star_act
+
+10508 图标235 icon_standard_act
+
+10509 图标252 icon_style
+
+10510 图标253 icon_subscribe_n
+
+10511 图标182 icon_success_ar
+
+10512 图标254 icon_tvgift_n
+
+10513 图标136 img_decorate_08
+
+10514 图标137 label_subscribe_red
+
+10515 图标138 lqjl_bg1
+
+10516 底板102 btn_special_blue
+
+10517 底板103 btn_special_gray
+
+10518 按钮19 board_activity_box_blue
+
+10519 按钮20 btn_big_blue
+
+10520 底板62 btn_big_circle_blue
+
+10521 按钮21 btn_big_orange
+
+10522 按钮22 btn_big_red
+
+10523 按钮23 btn_big_yellow
+
+10524 按钮24 btn_bigsquare_yellow
+
+10525 底板63 btn_huge_circle_yellow
+
+10526 按钮137 btn_close
+
+10527 按钮138 btn_help
+
+10528 底板49 tutorial_board_popups
+
+10529 按钮139 tutorial_board_skip
+
+10530 按钮140 tutorial_btn_direction_a
+
+10531 按钮141 tutorial_btn_direction_d
+
+10532 按钮142 tutorial_btn_direction_s
+
+10533 按钮143 tutorial_btn_direction_w
+
+10534 按钮144 tutorial_btn_middle_blue
+
+10535 按钮145 tutorial_btn_middle_yellow
+
+10536 按钮146 tutorial_btn_task_go
+
+10537 底板50 tutorial_dialogbg
+
+10538 底板51 tutorial_frame_exchange
+
+10539 底板52 tutorial_frame_task_bk
+
+10540 图标139 tutorial_guide_tip_0026
+
+10541 图标140 tutorial_icon_skip
+
+10542 底板53 tutorial_img_board_tips
+
+10543 图标141 tutorial_img_line_guide
+
+10544 图标142 tutorial_n5
+
+10545 图标143 dice_1
+
+10546 图标144 dice_2
+
+10547 图标145 dice_3
+
+10548 图标146 dice_4
+
+10549 图标147 dice_5
+
+10550 图标148 dice_6
+
+10551 底板104 triangle_white
+
+10552 按钮147 partyzone_btn
+
+10553 按钮148 partyzone_colse
+
+10554 背景图77 partyzone_draw
+
+10555 底板54 partyzone_prize
+
+10556 边框18 partyzone_board
+
+10557 底板55 partyzone_choose
+
+10558 按钮149 partyzone_close_red
+
+10559 底板56 partyzone_dialogue
+
+10560 底板57 partyzone_board_rank
+
+10561 按钮150 partyzone_btn_close
+
+10562 图标149 partyzone_icon_first
+
+10563 图标150 partyzone_icon_second
+
+10564 图标151 partyzone_icon_third
+
+10565 图标152 partyzone_icon_star_rank
+
+10566 边框28 partyzone_img_line
+
+10567 标签58 partyzone_lable
+
+10568 底板58 partyzone_rank_board
+
+10569 背景图78 partyzone_surfing
+
+10570 背景图79 partyzone_puzzle
+
+20001 背景图66 board_bottom_blue
+
+20002 背景图67 board_sink
+
+20003 按钮54 board_tips_arrow
+
+20004 背景图68 board_tips_icon_brown
+
+20005 按钮26 board_uistyle_b
+
+20006 按钮27 board_uistyle_g
+
+20007 按钮28 board_uistyle_y
+
+20008 底板64 btn_circle_red
+
+20009 底板65 btn_circle_yellow
+
+20010 背景图69 btn_Facebook
+
+20011 背景图70 btn_long_red
+
+20012 背景图71 btn_long_yellow
+
+20013 按钮29 btn_middle_blue_right
+
+20014 按钮30 btn_middle_red
+
+20015 按钮31 btn_middle_yellow
+
+20016 按钮32 btn_mini_gray
+
+20017 按钮33 btn_mini_gray_d
+
+20018 按钮34 btn_mini_gray_n
+
+20019 按钮35 btn_mini_gray_p
+
+20020 按钮36 btn_mini_green_n
+
+20021 按钮37 btn_mini_lightblue
+
+20022 按钮38 btn_mini_red_n
+
+20023 按钮40 btn_subscribe_blue
+
+20024 按钮55 friendchat_jiantou
+
+20025 标签35 ico_new_bg
+
+20026 图标236 ico_save
+
+20027 图标237 ico_time
+
+20028 按钮56 icon_add_btn_money_s
+
+20029 按钮57 icon_add_light
+
+20030 按钮58 icon_arrow_green
+
+20031 按钮59 icon_arrow_red
+
+20032 按钮60 icon_attack
+
+20033 图标153 icon_bagbook
+
+20034 图标238 icon_blood_grey
+
+20035 图标154 icon_c_copper
+
+20036 按钮61 icon_dropdown
+
+20037 按钮62 icon_dropdown_black
+
+20038 按钮63 icon_dropdown_blue
+
+20039 图标155 icon_fly
+
+20040 图标156 icon_handbag
+
+20041 图标157 icon_height
+
+20042 图标239 icon_home
+
+20043 图标158 icon_home_fruit
+
+20044 图标159 icon_hy
+
+20045 图标240 icon_idcard
+
+20046 图标241 icon_qa
+
+20047 图标160 icon_studio
+
+20048 图标161 icon_tick
+
+20049 图标5 icon_time_h
+
+20050 按钮64 img_arrow_arrowhead_h
+
+20051 按钮65 img_arrow_black
+
+20052 底板107 img_bar_mounts
+
+20053 底板31 img_board_garden_b
+
+20054 底板32 img_board_garden_g
+
+20055 底板33 img_board_garden_green
+
+20056 底板34 img_board_garden_n
+
+20057 底板35 img_board_garden_o
+
+20058 底板36 img_board_garden_y
+
+20059 底板37 img_board_green_r
+
+20060 底板38 img_board_load_
+
+20061 底板66 img_dot_change
+
+20062 底板67 img_dot_tips
+
+20063 图标162 img_dot_tips_orange
+
+20064 图标163 img_frame_arrow_n
+
+20065 标签59 img_tips_board
+
+20066 标签60 img_title
+
+20067 背景图72 img_water
+
+20068 标签61 label_information_grey
+
+20069 图标6 tips_new
+
+20070 按钮66 xtc_icon03
+
+21001 底板39 board_question
+
+21002 标签65 btn_answer_riddle
+
+21003 图标7 dtch_icon02
+
+21004 图标8 dtch_icon03
+
+21005 图标164 frame_map_qy
+
+21006 标签66 frame_map_zb
+
+21007 图标9 icon_food
+
+21008 图标10 icon_freeplay
+
+21009 图标165 icon_heart
+
+21010 图标11 icon_home
+
+21011 图标166 icon_light
+
+21012 图标12 icon_ore
+
+21013 图标167 icon_point
+
+21014 图标13 icon_tes
+
+21015 图标242 icon_track
+
+21016 标签67 img_board_list_r
+
+21017 图标168 img_map_light
+
+21018 底板85 img_operating_board_r
+
+21019 标签68 img_transform
+
+21020 边框19 juese_xuanzhong
+
+21021 图标14 lzy_09
+
+21022 图标16 lzy_13
+
+21023 图标17 lzy_14
+
+21024 图标18 lzy_16
+
+21025 图标19 lzy_18
+
+21026 图标20 lzy_porter
+
+21027 图标21 lzy_startrans
+
+21028 图标22 xtc_icon01
+
+21029 图标23 xtc_icon06
+
+22001 底板86 board_ar_record
+
+22002 背景图73 board_grass
+
+22003 标签69 btn_shop_ad
+
+22004 按钮25 btn_square_blue
+
+22005 标签70 frame_commend
+
+22006 标签71 frame_hot
+
+22007 标签72 frame_new
+
+22008 标签73 frame_rage
+
+22009 标签74 frame_sale
+
+22010 标签75 frame_time
+
+22011 边框20 frame_white
+
+22012 图标24 icon_55
+
+22013 图标25 icon_56
+
+22014 底板1 img_mount01
+
+22015 底板2 img_mount02
+
+22016 底板3 img_mount03
+
+22017 底板4 img_mount04
+
+22018 底板5 img_mount05
+
+22019 底板6 img_mount06
+
+22020 底板7 img_mount07
+
+22021 标签76 img_stage_1
+
+22022 标签77 img_stage_2
+
+22023 标签78 img_stage_3
+
+22024 标签79 img_stage_4
+
+22025 标签80 img_stage_5
+
+22026 标签81 img_stage_6
+
+22027 标签82 img_stage_7
+
+22028 文字16 img_title_Character
+
+22029 标签39 tab_workshop_n
+
+23001 按钮1 board_bubble_white
+
+23002 按钮2 board_mask_white
+
+23003 标签40 board_popup_cyan
+
+23004 标签41 board_popup_cyan_big
+
+23005 背景图74 board_popups
+
+23006 背景图75 board_rightpop
+
+23007 背景图76 btn_blue
+
+23008 底板68 btn_circle_blue
+
+23009 底板87 btn_circle_yellow
+
+23010 按钮41 btn_middle_blue
+
+23011 按钮42 btn_middle_red
+
+23012 按钮43 btn_middle_yellow
+
+23013 按钮44 but_blue_popup
+
+23014 按钮45 but_yellow_popup
+
+24001 边框22 ui/mobile/texture0/bigtex/cold1.png
+
+24002 边框23 ui/mobile/texture0/bigtex/cold2.png
+
+24003 边框24 ui/mobile/texture0/bigtex/freeze.png
+
+24004 边框25 ui/mobile/texture0/bigtex/hot1.png
+
+24005 边框26 ui/mobile/texture0/bigtex/hot2.png
+
+24006 边框27 ui/mobile/texture0/bigtex/burn.png
+
+30001 天空1 ugcenv/sky1.png
+
+30002 天空2 ugcenv/sky2.png
+
+30003 天空3 ugcenv/sky3.png
+
+30004 天空4 ugcenv/sky4.png
+
+30005 天空5 ugcenv/sky5.png
+
+30006 天空6 ugcenv/sky6.png
+
+30007 天空7 ugcenv/sky7.png
+
+30008 天空8 ugcenv/sky8.png
+
+30009 天空9 ugcenv/sky9.png
+
+30010 天空10 ugcenv/sky10.png
+
+30011 天空11 ugcenv/sky11.png
+
+30012 天空12 ugcenv/sky12.png
+
+30101 太阳1 ugcenv/sun1.png
+
+30102 太阳2 ugcenv/sun2.png
+
+30103 太阳3 ugcenv/sun3.png
+
+30104 太阳4 ugcenv/sun4.png
+
+30105 太阳5 ugcenv/sun5.png
+
+30201 月亮1 ugcenv/moon1.png
+
+30202 月亮2 ugcenv/moon2.png
+
+30203 月亮3 ugcenv/moon3.png
+
+30204 月亮4 ugcenv/moon4.png
+
+30205 月亮5 ugcenv/moon5.png
+

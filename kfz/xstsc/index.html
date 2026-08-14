@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>算数出题器</title>
+    <link rel="shortcut icon" href="..\..\static\picture\a4Vyng.jpg" type="image/x-icon">
+    <link rel="bookmark" href="..\..\static\picture\a4Vyng.jpg">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-image: url('https://tuanmengqiu.cn/cx/img/bj.png');
+            background-size: cover;
+            background-position: center;
+            font-family: Arial, sans-serif;
+        }
+
+        .upload-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 300px;
+            overflow: auto; /* 确保内容不被遮挡 */
+        }
+
+        .file-input {
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #4dc497;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            outline: none;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #76dbb5;
+        }
+
+        #result {
+            margin-top: 20px;
+            white-space: pre-wrap;
+            text-align: left;
+            font-size: 18px; /* 增大字体 */
+            max-height: 200px; /* 设置最大高度 */
+            overflow-y: auto; /* 允许垂直滚动 */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="upload-container">
+        <h1>算数出题器</h1>
+        <form id="questionForm">
+            <label for="operation">选择运算：</label>
+            <select id="operation">
+                <option value="add">加</option>
+                <option value="subtract">减</option>
+                <option value="multiply">乘</option>
+                <option value="divide">除</option>
+            </select><br><br>
+            <label for="minNumber">数字下限：</label>
+            <input type="number" id="minNumber" min="1" class="file-input"><br><br>
+            <label for="maxNumber">数字上限：</label>
+            <input type="number" id="maxNumber" min="2" class="file-input">
+            <span style="font-size: 12px; color: gray;">(下限需小于上限)</span><br><br>
+                        <label for="numQuestions">出题数量：</label>
+            <input type="number" id="numQuestions" min="1" class="file-input"><br><br>
+            <button type="button" onclick="generateQuestions()">一键出题</button>
+        </form>
+        <div id="result"></div>
+        <button type="button" onclick="showAnswers()">查看答案</button>
+    </div>
+    <script>
+        let questions = [];
+
+        function generateQuestions() {
+            var operation = document.getElementById('operation').value;
+            var numQuestions = document.getElementById('numQuestions').value;
+            var minNumber = parseInt(document.getElementById('minNumber').value);
+            var maxNumber = parseInt(document.getElementById('maxNumber').value);
+            var resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = "";
+            questions = [];
+
+            if (minNumber >= maxNumber) {
+                alert("秋秋不理解，数字下限不能大于等于数字上限，请重新输入！");
+                return;
+            }
+
+            for (var i = 0; i < numQuestions; i++) {
+                var num1 = Math.floor(Math.random() * (maxNumber - minNumber + 1)) + minNumber;
+                var num2 = Math.floor(Math.random() * (maxNumber - minNumber + 1)) + minNumber;
+
+                // 对于除法，额外处理确保生成能整除的数且在范围内
+                if (operation === "divide") {
+                    var divisor = Math.floor(Math.random() * (maxNumber - minNumber + 1)) + minNumber;
+                    num1 = num2 * divisor;
+                    while (num1 < minNumber || num1 > maxNumber) {
+                        num1 = num2 * divisor;
+                        divisor = Math.floor(Math.random() * (maxNumber - minNumber + 1)) + minNumber;
+                    }
+                }
+
+                var question;
+                var answer;
+
+                if (operation === "add") {
+                    question = num1 + " + " + num2 + " = ";
+                    answer = num1 + num2;
+                } else if (operation === "subtract") {
+                    question = num1 + " - " + num2 + " = ";
+                    answer = num1 - num2;
+                } else if (operation === "multiply") {
+                    question = num1 + " × " + num2 + " = ";
+                    answer = num1 * num2;
+                } else if (operation === "divide") {
+                    question = num1 + " ÷ " + num2 + " = ";
+                    answer = num1 / num2;
+                }
+
+                var p = document.createElement('p');
+                p.textContent = question;
+                resultDiv.appendChild(p);
+                questions.push({ question, answer });
+            }
+
+            // 创建复制题目按钮
+            const copyQuestionsBtn = document.createElement('button');
+            copyQuestionsBtn.textContent = '复制题目';
+            copyQuestionsBtn.onclick = function () {
+                copyContent(questions.map(q => q.question).join('\n'));
+            };
+            resultDiv.appendChild(copyQuestionsBtn);
+        }
+
+        function showAnswers() {
+            var resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = "";
+            for (let i = 0; i < questions.length; i++) {
+                var p = document.createElement('p');
+                p.textContent = questions[i].question + questions[i].answer;
+                resultDiv.appendChild(p);
+            }
+
+            // 创建复制答案按钮
+            const copyAnswersBtn = document.createElement('button');
+            copyAnswersBtn.textContent = '复制答案';
+            copyAnswersBtn.onclick = function () {
+                copyContent(questions.map(q => q.question + q.answer).join('\n'));
+            };
+            resultDiv.appendChild(copyAnswersBtn);
+        }
+
+        function copyContent(content) {
+            const textarea = document.createElement('textarea');
+            textarea.value = content;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+            alert('秋秋已复制到剪贴板！');
+        }
+    </script>
+</body>
+</html>

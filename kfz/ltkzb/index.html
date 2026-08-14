@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <title>秋秋心很累</title>
+    <link rel="icon" href="static/picture/a4Vyng.jpg">
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            font-family: 'Ubuntu', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-image: url('https://tuanmengqiu.cn/cx/img/bj.png');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .box {
+            width: 350px;
+            max-height: 600px;
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            padding: 30px 50px;
+            position: relative;
+            text-align: center;
+        }
+
+        .box__ghost {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .box__ghost-container {
+            background: #fff;
+            width: 200px;
+            height: 200px;
+            position: relative;
+            margin: 0 auto;
+            animation: upndown 3s ease-in-out infinite;
+            background-image: url('https://tuanmengqiu.cn/img/qiuqiu.png');
+            background-size: cover;
+            background-position: center;
+            
+        }
+
+        .box__ghost-eyes {
+            position: absolute;
+            left: 50%;
+            top: 45%;
+            transform: translateX(-50%);
+        }
+
+
+        .box__description {
+            color: #333;
+        }
+
+        .box__description-title {
+            font-size: 48px;
+            color: #FF5E65;
+            margin: 0;
+        }
+
+        .box__description-text {
+            font-size: 18px;
+            margin-top: 10px;
+            color: #666;
+        }
+
+        .box__button {
+            display: inline-block;
+            background: #FF5E65;
+            border: none;
+            border-radius: 50px;
+            height: 50px;
+            text-align: center;
+            text-decoration: none;
+            color: #fff;
+            line-height: 50px;
+            font-size: 18px;
+            padding: 0 40px;
+            margin-top: 20px;
+            transition: background 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .box__button:hover {
+            background: #ff2e3d;
+        }
+
+        @keyframes upndown {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="box__ghost">
+            <div class="box__ghost-container">
+                <div class="box__ghost-eyes">
+                    <div class="box__eye-left"></div>
+                    <div class="box__eye-right"></div>
+                </div>
+            </div>
+        </div>
+        <div class="box__description">
+            <div class="box__description-title">系统维护中...</div>
+            <div class="box__description-text">维护时间1万年</div>
+            <a href="https://live.douyin.com/88535952052" class="box__button">去找作者</a>
+        </div>
+    </div>
+</body>
+</html>

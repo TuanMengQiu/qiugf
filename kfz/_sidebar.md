@@ -1,0 +1,11 @@
+<!-- docs/_sidebar.md -->
+* [赞助秋秋工坊](https://qiugf.cn/zz/)
+* [团梦秋官网](https://tuanmengqiu.cn)
+* [梦秋工作室](studio/)
+* [迷你世界API](miniapi/)
+* [执行指令](luazx/)
+* [lua](lua/)
+* [Java](Java/)
+* [Python](Python/)
+* [插件](chajian/)
+* [分享](upload/)

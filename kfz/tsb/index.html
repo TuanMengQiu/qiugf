@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>调色板</title>
+    <link rel="shortcut icon" href="..\..\static\picture\a4Vyng.jpg" type="image/x-icon">
+    <link rel="bookmark" href="..\..\static\picture\a4Vyng.jpg">
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: url('https://tuanmengqiu.cn/cx/img/bj.png') no-repeat center center fixed;
+    background-size: cover;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+h1 {
+    margin-top: 30px;
+    font-size: 2rem;
+}
+
+.container {
+    width: 90%;
+    max-width: 1000px;
+    margin: 30px auto;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.search-wrapper {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.search-wrapper p {
+    font-size: 1.2rem;
+    margin-right: 10px;
+}
+
+input[type="range"] {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+input[type="text"],
+input[type="number"] {
+    padding: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 6px;
+    font-size: 1rem;
+    margin-bottom: 15px;
+}
+
+button {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 6px;
+    background-color: #4dc497;
+    color: white;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-bottom: 15px;
+}
+
+button:hover {
+    background-color: #7deac0;
+}
+
+#colorPreview {
+    width: 100px;
+    height: 50px;
+    background-color: #ffffff;
+    border-radius: 6px;
+    margin-top: 15px;
+}
+
+.colorCode {
+    font-size: 1.2rem;
+    color: #333;
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
+#output {
+    white-space: pre-wrap;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    padding: 20px;
+    margin-top: 20px;
+    overflow-y: auto;
+    background-color: rgba(250, 250, 250, 0.8);
+    border-radius: 6px;
+}
+
+p.colorCode {
+    font-size: 1rem;
+    color: #888;
+}
+
+.styled-button {
+    padding: 12px 20px;
+    background-color: #4dc497;
+    color: white;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.styled-button:hover {
+    background-color: #7deac0;
+}
+
+/* 样式重置，确保元素之间的一致性 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 输入框的样式 */
+.styled-input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 6px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    font-size: 1rem;
+    font-family: Arial, sans-serif;
+}
+</style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>调色板</h1>
+        <div id="colorPicker">
+            <div class="search-wrapper">
+                <p>选择颜色</p>
+                <input type="color" id="colorPickerInput" value="#ffffff" oninput="updateColorFromPicker()" />
+            </div>
+            <div class="search-wrapper">
+                <p>色调</p>
+                <input type="range" id="hue" min="0" max="360" value="0" step="1" oninput="updateColor()" />
+            </div>
+            <div class="search-wrapper">
+                <p>饱和</p>
+                <input type="range" id="saturation" min="0" max="100" value="100" step="1" oninput="updateColor()" />
+            </div>
+            <div class="search-wrapper">
+                <p>亮度</p>
+                <input type="range" id="brightness" min="0" max="100" value="100" step="1" oninput="updateColor()" />
+            </div>
+
+            <p>颜色预览</p>
+            <div id="colorPreview"></div>
+
+            <div id="colorCode" class="colorCode">#ffffff</div>
+            <div id="colorCode2" class="colorCode">#ffffff</div>
+
+            <input type="text" id="myInput" class="styled-input" placeholder="请输入颜色代码">
+            <button onclick="duqu()" class="styled-button">转换颜色</button>
+            <div id="color" class="colorCode"></div>
+
+            <input id="inputcolorcode1" class="styled-input" placeholder="颜色代码起始位置">
+            <input id="inputcolorcode2" class="styled-input" placeholder="颜色代码结束位置">
+            <input id="inputTEXT" class="styled-input" placeholder="输入要渐变的文字">
+            <button onclick="dianji()" class="styled-button">生成渐变色</button>
+            <div id="output"></div>
+            <p class="colorCode">*生成的渐变代码不一定能显示出来（数字太多会屏蔽）</p>
+        </div>
+    </div>
+        <script src="script.js"></script>
+</body>
+</html>

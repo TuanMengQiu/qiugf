@@ -1,0 +1,1927 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>迷你世界物品ID图鉴查询器</title>
+	<meta charset="UTF-8">
+    <link rel="shortcut icon" href="..\..\static\picture\a4Vyng.jpg" type="image/x-icon">
+    <link rel="bookmark" href="..\..\..\static\picture\a4Vyng.jpg">
+<style>
+    /* 设置滚动条整体宽度和颜色 */
+    .detail-panel,
+    .items-container {
+      scrollbar-width: thin; 
+      scrollbar-color: #4dc497 rgba(255, 255, 255, 0.2);
+    }
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+    
+    body {
+        font-family: Arial, sans-serif;
+        background: url('https://tuanmengqiu.cn/cx/img/bj.png') no-repeat center center fixed;
+        background-size: cover;
+        padding: 20px;
+        transition: all 0.3s ease;
+    }
+
+    h1 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .app-container {
+        display: flex;
+        gap: 20px;
+        height: calc(100vh - 120px);
+        transition: all 0.3s ease;
+    }
+
+    .detail-panel {
+        flex: 1;
+        background-color: rgba(255, 255, 255, 0.9);
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
+        position: relative;
+        transition: opacity 0.3s ease;
+    }
+
+    .back-button {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        width: auto;
+        padding: 5px 10px;
+        border-radius: 4px;
+        font-size: 18px;
+        display: none;
+    }
+
+    .back-button:hover {
+        background-color: #7deac0;
+    }
+
+    .detail-placeholder {
+        text-align: center;
+        color: #666;
+        padding: 40px 20px;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .detail-placeholder img {
+        width: 100px;
+        height: 100px;
+        margin-bottom: 20px;
+        opacity: 0.5;
+    }
+
+    .detail-content {
+        width: 100%;
+        max-width: 500px;
+        margin: 0 auto;
+        flex-grow: 1;
+        display: none;
+        flex-direction: column;
+        padding-top: 10px;
+    }
+
+    .detail-icon {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        margin: 0 auto 20px;
+        display: block;
+        cursor: pointer;
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .detail-icon:hover {
+        transform: scale(1.05);
+    }
+
+    .detail-info {
+        margin: 15px 0;
+        padding: 10px 15px;
+        background-color: #f9f9f9;
+        border-radius: 6px;
+        border-left: 4px solid #4dc497;
+        cursor: pointer;
+        transition: background-color 0.2s;
+        position: relative;
+    }
+
+    .detail-info:hover {
+        background-color: #f0f9f5;
+    }
+
+    .detail-info:hover::after {
+        content: attr(data-tooltip);
+        position: absolute;
+        top: -30px;
+        left: 20px;
+        background-color: #333;
+        color: white;
+        padding: 3px 8px;
+        border-radius: 3px;
+        font-size: 12px;
+        white-space: nowrap;
+        z-index: 10;
+    }
+
+    .detail-info:hover::before {
+        content: '';
+        position: absolute;
+        top: -10px;
+        left: 25px;
+        border-width: 0 5px 5px 5px;
+        border-style: solid;
+        border-color: transparent transparent #333 transparent;
+        z-index: 10;
+    }
+
+    .detail-info strong {
+        color: #4dc497;
+        display: inline-block;
+        width: 80px;
+    }
+
+    .detail-desc {
+        margin-top: 20px;
+        padding: 15px;
+        background-color: #f0f9f5;
+        border-radius: 6px;
+        line-height: 1.6;
+        cursor: pointer;
+        position: relative;
+        transition: background-color 0.2s;
+    }
+
+    .detail-desc:hover {
+        background-color: #e6f7f0;
+    }
+
+    .detail-desc:hover::after {
+        content: "点击绿框复制描述点击图标跳转物品";
+        position: absolute;
+        top: -30px;
+        left: 20px;
+        background-color: #333;
+        color: white;
+        padding: 3px 8px;
+        border-radius: 3px;
+        font-size: 12px;
+        white-space: nowrap;
+        z-index: 10;
+    }
+
+    .detail-desc:hover::before {
+        content: '';
+        position: absolute;
+        top: -10px;
+        left: 25px;
+        border-width: 0 5px 5px 5px;
+        border-style: solid;
+        border-color: transparent transparent #333 transparent;
+        z-index: 10;
+    }
+
+    /* 关联区域样式 */
+    .detail-related {
+        margin-top: 20px;
+        padding: 15px;
+        background-color: #ffebf0; /* 粉色背景 */
+        border-radius: 6px;
+        line-height: 1.6;
+        position: relative;
+        transition: background-color 0.2s;
+    }
+
+    .detail-related:hover {
+        background-color: #ffe0e8;
+    }
+
+    .detail-related strong {
+        color: #e63960; /* 深粉色文字 */
+        display: inline-block;
+        margin-bottom: 10px;
+    }
+
+    .related-items-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .related-item {
+        display: inline-flex;
+        align-items: center;
+        padding: 5px 10px;
+        background-color: white;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: all 0.2s;
+        font-size: 14px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+
+    .related-item:hover {
+        background-color: #f9f9f9;
+        transform: translateY(-2px);
+    }
+
+    .related-item img {
+        width: 24px;
+        height: 24px;
+        margin-right: 5px;
+        border-radius: 3px;
+        transition: all 0.2s;
+    }
+
+    /* 关联物品图标悬hover效果 */
+    .related-item:hover img {
+        transform: scale(1.2);
+    }
+
+    .no-related-items {
+        color: #888;
+        font-style: italic;
+    }
+
+    .list-panel {
+        width: 450px;
+        background-color: rgba(255, 255, 255, 0.9);
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-direction: column;
+        transition: all 0.3s ease;
+    }
+
+    .search-wrapper {
+        display: flex;
+        margin-bottom: 15px;
+    }
+
+    input[type="text"] {
+        flex: 1;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px 0 0 4px;
+        font-size: 16px;
+    }
+
+    button {
+        padding: 10px 15px;
+        border: none;
+        background-color: #4dc497;
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    button:hover {
+        background-color: #7deac0;
+    }
+
+    button:disabled {
+        background-color: #cccccc;
+        cursor: not-allowed;
+    }
+
+    .search-button {
+        border-radius: 0 4px 4px 0;
+    }
+
+    .search-options {
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        font-size: 14px;
+        color: #666;
+        gap: 15px;
+    }
+
+    .toggle-switch {
+        position: relative;
+        display: inline-block;
+        width: 40px;
+        height: 20px;
+        margin: 0 10px;
+    }
+
+    .toggle-switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+
+    .toggle-slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        transition: .3s;
+        border-radius: 20px;
+    }
+
+    .toggle-slider:before {
+        position: absolute;
+        content: "";
+        height: 16px;
+        width: 16px;
+        left: 2px;
+        bottom: 2px;
+        background-color: white;
+        transition: .3s;
+        border-radius: 50%;
+    }
+
+    input:checked + .toggle-slider {
+        background-color: #4dc497;
+    }
+
+    input:checked + .toggle-slider:before {
+        transform: translateX(20px);
+    }
+
+    .search-info {
+        font-size: 14px;
+        color: #666;
+        margin-bottom: 15px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #eee;
+    }
+
+    .items-container {
+        overflow-y: auto;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        position: relative;
+    }
+
+    .item-small {
+        width: calc(25% - 8px);
+        height: 110px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        cursor: pointer;
+        padding: 8px;
+        border-radius: 6px;
+        transition: all 0.2s;
+        position: relative;
+    }
+
+    .item-small:hover {
+        background-color: #f0f9f5;
+        transform: translateY(-2px);
+    }
+
+    .item-small.selected {
+        background-color: #e6f7f0;
+        transform: scale(1.05);
+    }
+
+    .item-small .id {
+        font-size: 11px;
+        color: #666;
+        margin-bottom: 5px;
+        text-align: center;
+        width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .item-small img {
+        width: 55px;
+        height: 55px;
+        border-radius: 4px;
+        margin-bottom: 8px;
+        flex-shrink: 0;
+        background-color: #f0f0f0;
+        border-radius:50%;
+    }
+
+    .item-small .name {
+        font-size: 12px;
+        text-align: center;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: 100%;
+        flex-grow: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .pagination {
+        display: none;
+    }
+
+    .copy-hint {
+        position: fixed;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #4dc497;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 4px;
+        opacity: 0;
+        transition: opacity 0.3s;
+        pointer-events: none;
+        z-index: 1000;
+    }
+
+    .copy-hint.active {
+        opacity: 1;
+    }
+
+    .inline-item-icon {
+        width: 30px !important;
+        height: 30px !important;
+        border-radius: 2px;
+        margin: 0 3px;
+        vertical-align: middle;
+        cursor: pointer;
+    }
+
+    .inline-item-name {
+        color: #4dc497;
+        cursor: pointer;
+    }
+
+    .color-text {
+        display: inline;
+    }
+
+    .modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+    }
+
+    .modal-overlay.active {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .modal {
+        background-color: white;
+        border-radius: 10px;
+        width: 90%;
+        max-width: 400px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        overflow: hidden;
+    }
+
+    .modal-header {
+        background-color: #4dc497;
+        color: white;
+        padding: 15px 20px;
+        font-size: 18px;
+        font-weight: bold;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .modal-close {
+        background: none;
+        border: none;
+        color: white;
+        font-size: 20px;
+        cursor: pointer;
+        width: auto;
+        padding: 0;
+    }
+
+    .modal-body {
+        padding: 20px;
+        text-align: center;
+    }
+
+    .modal-body img {
+        width: 200px;
+        height: 200px;
+        margin-bottom: 15px;
+    }
+
+    .modal-message {
+        font-size: 16px;
+        line-height: 1.6;
+    }
+
+    .modal-footer {
+        padding: 15px 20px;
+        background-color: #f9f9f9;
+        text-align: right;
+        border-top: 1px solid #eee;
+    }
+
+    .loading-indicator {
+        text-align: center;
+        padding: 15px;
+        display: none;
+    }
+
+    .loading-indicator.active {
+        display: block;
+    }
+
+    .spinner {
+        border: 3px solid rgba(77, 196, 151, 0.3);
+        border-radius: 50%;
+        border-top: 3px solid #4dc497;
+        width: 20px;
+        height: 20px;
+        animation: spin 1s linear infinite;
+        margin: 0 auto 10px;
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+
+    .item-small img.error,
+    .inline-item-icon.error,
+    .detail-icon.error,
+    .related-item img.error {
+        content: url('../cxid/ico/nil.png');
+    }
+
+    /* 全屏模式样式 */
+    body.fullscreen-mode .app-container {
+        justify-content: center;
+    }
+    
+    body.fullscreen-mode .detail-panel {
+        display: none;
+    }
+    
+    body.fullscreen-mode .list-panel {
+        width: 95%;
+        max-width: 1600px;
+    }
+    
+    body.fullscreen-mode .item-small {
+        width: calc(10% - 9px); /* 一行显示10个 */
+    }
+    
+    /* 详情弹窗样式 */
+    .detail-modal {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 90%;
+        max-width: 600px;
+        max-height: 90vh;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+        z-index: 1010;
+        overflow-y: auto;
+        display: none;
+    }
+    
+    .detail-modal.active {
+        display: block;
+        animation: fadeIn 0.3s ease;
+    }
+    
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translate(-50%, -55%); }
+        to { opacity: 1; transform: translate(-50%, -50%); }
+    }
+    
+    .detail-modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 1005;
+        display: none;
+    }
+    
+    .detail-modal-overlay.active {
+        display: block;
+    }
+    
+    /* 弹窗顶部控制区样式 */
+    .detail-modal-controls {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        display: flex;
+        gap: 10px;
+        z-index: 10;
+    }
+    
+    .detail-modal-back {
+        background: none;
+        border: none;
+        font-size: 24px;
+        cursor: pointer;
+        color: #666;
+        width: auto;
+        padding: 0;
+    }
+    
+    .detail-modal-close {
+        background: none;
+        border: none;
+        font-size: 24px;
+        cursor: pointer;
+        color: #666;
+        width: auto;
+        padding: 0;
+    }
+    
+    .detail-modal-content {
+        padding: 30px 20px 20px;
+    }
+</style>
+</head>
+<body>
+	<h1>迷你世界物品ID图鉴</h1>
+	
+	<div class="app-container">
+        <!-- 左侧详情面板 -->
+        <div class="detail-panel">
+            <button class="back-button" id="backButton">←</button>
+            
+            <div class="detail-placeholder" id="detailPlaceholder">
+                <img src="../qqgfapp/icon.png" alt="选择物品">
+                <h3>图鉴适配游戏版本号:1.48.0</h3>
+                <p>点击右侧物品查看详细信息</p>
+            </div>
+            
+            <div class="detail-content" id="detailContent">
+                <img src="" alt="物品图标" class="detail-icon" id="detailIcon" title="点击复制ID">
+                
+                <div class="detail-info" id="detailIdContainer" data-tooltip="点击复制ID">
+                    <strong>ID：</strong>
+                    <span id="detailId"></span>
+                </div>
+                
+                <div class="detail-info" id="detailNameContainer" data-tooltip="点击复制名称">
+                    <strong>名称：</strong>
+                    <span id="detailName"></span>
+                </div>
+                
+                <div class="detail-info" id="detailTypeContainer" data-tooltip="点击复制类型">
+                    <strong>类型：</strong>
+                    <span id="detailType"></span>
+                </div>
+                
+                <div class="detail-desc">
+                    <strong>描述：</strong>
+                    <div id="detailDesc"></div>
+                </div>
+                
+                <!-- 关联区域 -->
+                <div class="detail-related">
+                    <strong>关联：</strong>
+                    <div class="related-items-container" id="detailRelated"></div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 右侧列表面板 -->
+        <div class="list-panel">
+            <div class="search-wrapper">
+                <input type="text" id="searchInput" placeholder="输入关键词或ID">
+                <button class="search-button" id="searchButton">搜索</button>
+            </div>
+            
+            <div class="search-options">
+                <span>高级搜索</span>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="searchDescriptionToggle">
+                    <span class="toggle-slider"></span>
+                </label>
+                <span>全屏模式</span>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="fullScreenToggle">
+                    <span class="toggle-slider"></span>
+                </label>
+            </div>
+            
+            <div class="search-info" id="searchInfo"></div>
+            
+            <div class="items-container" id="itemsContainer"></div>
+            
+            <div class="loading-indicator" id="loadingIndicator">
+                <div class="spinner"></div>
+                <div>加载中...</div>
+            </div>
+            
+            <div class="pagination" id="pagination" style="display:none;">
+                <button id="prevPage">上一页</button>
+                <span>第 <input type="number" id="pageInput" min="1" value="1"> 页 / 共 <span id="totalPages">0</span> 页</span>
+                <button id="nextPage">下一页</button>
+                <button id="goPage">跳转</button>
+            </div>
+        </div>
+    </div>
+	
+	<!-- 全屏模式下的详情弹窗 -->
+	<div class="detail-modal-overlay" id="detailModalOverlay"></div>
+	<div class="detail-modal" id="detailModal">
+		<div class="detail-modal-controls">
+			<button class="detail-modal-back" id="modalBackButton">←</button>
+			<button class="detail-modal-close" id="detailModalClose">&times;</button>
+		</div>
+		<div class="detail-modal-content">
+			<!-- 这里会复制detail-content的内容 -->
+		</div>
+	</div>
+	
+	<div class="copy-hint" id="copyHint">秋秋已帮您复制到剪贴板</div>
+	
+	<div class="modal-overlay" id="hintModal">
+		<div class="modal">
+			<div class="modal-header">
+				<span>提示信息</span>
+				<button class="modal-close" id="hintModalClose">&times;</button>
+			</div>
+			<div class="modal-body" id="hintModalBody">
+				<img src="../cxid/ico/无搜索内容.gif" alt="提示">
+				<div class="modal-message">提示信息内容</div>
+			</div>
+			<div class="modal-footer">
+				<button id="hintModalConfirm">确定</button>
+			</div>
+		</div>
+	</div>
+	
+	<script>
+		let allItems = [];
+		// 缓存图片是否存在的验证结果
+		const imageExistsCache = new Map();
+		// 缓存物品引用关系，提高性能
+		const itemReferencesCache = new Map();
+		let currentPage = 1; //加载的页码
+		const pageSize = 100; //每页加载的物品数量
+		let filteredItems = [];
+		let selectedItem = null;
+		let isLoading = false;
+		let hasMoreItems = true;
+		let navigationHistory = [];
+		let loadRetries = 0;
+		const maxLoadRetries = 3; //最大加载重试次数
+		let searchDescription = false; // 是否开启高级搜索
+		let isFullScreen = false; // 是否全屏模式
+		
+		const itemDomCache = new Map();
+		let imageObserver;
+		
+		const colorShortcuts = {
+			'#G': '#4dc497', '#R': '#ff0000', '#Y': '#d8d80c', 
+			'#B': '#25a4ff', '#K': '#000000', '#W': '#ffffff'
+		};
+		
+		// DOM元素
+		const itemsContainer = document.getElementById('itemsContainer');
+		const searchInput = document.getElementById('searchInput');
+		const searchButton = document.getElementById('searchButton');
+		const searchInfo = document.getElementById('searchInfo');
+		const copyHint = document.getElementById('copyHint');
+		const loadingIndicator = document.getElementById('loadingIndicator');
+		const backButton = document.getElementById('backButton');
+		const searchDescriptionToggle = document.getElementById('searchDescriptionToggle');
+		const fullScreenToggle = document.getElementById('fullScreenToggle');
+		
+		const detailPlaceholder = document.getElementById('detailPlaceholder');
+		const detailContent = document.getElementById('detailContent');
+		const detailIcon = document.getElementById('detailIcon');
+		const detailId = document.getElementById('detailId');
+		const detailName = document.getElementById('detailName');
+		const detailType = document.getElementById('detailType');
+		const detailDesc = document.getElementById('detailDesc');
+		const detailIdContainer = document.getElementById('detailIdContainer');
+		const detailNameContainer = document.getElementById('detailNameContainer');
+		const detailTypeContainer = document.getElementById('detailTypeContainer');
+		const detailRelated = document.getElementById('detailRelated'); // 关联区域容器
+		
+		// 全屏模式弹窗元素
+		const detailModal = document.getElementById('detailModal');
+		const detailModalContent = detailModal.querySelector('.detail-modal-content');
+		const detailModalOverlay = document.getElementById('detailModalOverlay');
+		const detailModalClose = document.getElementById('detailModalClose');
+		const modalBackButton = document.getElementById('modalBackButton'); // 新增的弹窗返回按钮
+		
+		const hintModal = document.getElementById('hintModal');
+		const hintModalBody = document.getElementById('hintModalBody');
+		const hintModalClose = document.getElementById('hintModalClose');
+		const hintModalConfirm = document.getElementById('hintModalConfirm');
+		
+		// 验证图片是否存在
+		function checkImageExists(itemId) {
+			// 先检查缓存
+			if (imageExistsCache.has(itemId)) {
+				return Promise.resolve(imageExistsCache.get(itemId));
+			}
+			
+			return new Promise((resolve) => {
+				const img = new Image();
+				img.src = getIconUrl(itemId);
+				
+				// 图片加载成功
+				img.onload = () => {
+					imageExistsCache.set(itemId, true);
+					resolve(true);
+				};
+				
+				// 图片加载失败
+				img.onerror = () => {
+					imageExistsCache.set(itemId, false);
+					resolve(false);
+				};
+			});
+		}
+		
+		// 批量验证图片是否存在
+		async function checkImagesExist(itemIds) {
+			const results = {};
+			// 并行验证所有图片
+			await Promise.all(itemIds.map(async (itemId) => {
+				results[itemId] = await checkImageExists(itemId);
+			}));
+			return results;
+		}
+		
+		// 提取物品描述中的所有引用ID
+		function extractReferences(itemMsg) {
+			const references = new Set();
+			if (!itemMsg) return references;
+			
+			// 使用精确的正则表达式匹配@item_xxx格式
+			const itemRegex = /@item_(\d+)#?/g;
+			let match;
+			
+			// 遍历所有匹配项
+			while ((match = itemRegex.exec(itemMsg)) !== null) {
+				if (match[1]) {
+					references.add(match[1]);
+				}
+			}
+			
+			return references;
+		}
+		
+		// 预计算所有物品的引用关系并缓存
+		function precomputeReferences() {
+			allItems.forEach(item => {
+				if (!itemReferencesCache.has(item.id)) {
+					const references = extractReferences(item.msg);
+					itemReferencesCache.set(item.id, references);
+				}
+			});
+		}
+		
+		// 显示复制提示
+		function showCopyHint() {
+			copyHint.classList.add('active');
+			setTimeout(() => copyHint.classList.remove('active'), 2000);
+		}
+		
+		// 复制到剪贴板
+		function copyToClipboard(text, label) {
+			if (!text) return;
+			
+			if (navigator.clipboard) {
+				navigator.clipboard.writeText(text)
+					.then(() => {
+						console.log(`${label}已复制`);
+						showCopyHint();
+					})
+					.catch(err => {
+						console.error('Clipboard API失败:', err);
+						fallbackCopy(text, label);
+					});
+			} else {
+				fallbackCopy(text, label);
+			}
+		}
+		
+		// 复制降级方案
+		function fallbackCopy(text, label) {
+			const tempElement = document.createElement('textarea');
+			tempElement.value = text;
+			tempElement.style.position = 'absolute';
+			tempElement.style.left = '-9999px';
+			document.body.appendChild(tempElement);
+			
+			tempElement.select();
+			tempElement.setSelectionRange(0, 99999);
+			
+			try {
+				const successful = document.execCommand('copy');
+				if (successful) {
+					console.log(`${label}已复制 (备用方法)`);
+					showCopyHint();
+				}
+			} catch (err) {
+				console.error('复制失败:', err);
+			} finally {
+				document.body.removeChild(tempElement);
+			}
+		}
+
+		// 获取物品图标URL
+		function getIconUrl(itemId) {
+			return `../cxid/ico/${itemId}.png`;
+		}
+		
+		// 关闭提示模态框
+		function closeHintModal() {
+			hintModal.classList.remove('active');
+		}
+		
+		// 显示提示模态框
+		function showHintModal(message, imageUrl = '../cxid/ico/nil.png') {
+			const hintImg = hintModalBody.querySelector('img');
+			const messageDiv = hintModalBody.querySelector('.modal-message');
+			
+			hintImg.src = imageUrl;
+			hintImg.alt = '提示信息';
+			hintImg.onerror = () => hintImg.src = '../cxid/ico/nil.png';
+			
+			messageDiv.textContent = message;
+			hintModal.classList.add('active');
+		}
+		
+		// 解析文本格式
+		function parseColorText(text) {
+			if (!text) return '';
+			
+			let processedText = text;
+			Object.keys(colorShortcuts).forEach(shortcut => {
+				const regex = new RegExp(`${shortcut}(.*?)(#n|@|#c|$)`, 'g');
+				processedText = processedText.replace(regex, (match, content, endMarker) => {
+					const marker = endMarker === '#n' ? '' : endMarker;
+					return `<span style="color: ${colorShortcuts[shortcut]};" class="color-text">${content}</span>${marker}`;
+				});
+			});
+			
+			const colorRegex = /#c([0-9a-fA-F]{6})(.*?)(#n|@|#c|$)/g;
+			if (colorRegex.test(processedText)) {
+				processedText = processedText.replace(colorRegex, (match, colorCode, content, endMarker) => {
+					const marker = endMarker === '#n' ? '' : endMarker;
+					return `<span style="color: #${colorCode};" class="color-text">${content}</span>${marker}`;
+				});
+			}
+			
+			return processedText;
+		}
+
+		function parseLineBreaks(text) {
+			return text ? text.replace(/#r/g, '<br>') : '';
+		}
+
+		// 解析物品标签并绑定点击事件
+        function parseItemTags(text) {
+            if (!text) return '';
+            const itemRegex = /@item_(\d+)#?/g;
+            return text.replace(itemRegex, (match, itemId) => {
+                const item = allItems.find(i => i.id === itemId);
+                const tooltip = item ? `名称: ${item.name} | ID: ${item.id}` : `ID: ${itemId}`;
+                const name = item ? item.name : `ID: ${itemId}`;
+                
+                return `<img src="../cxid/ico/nil.png" 
+                            data-src="${getIconUrl(itemId)}"
+                            alt="${name}" 
+                            class="inline-item-icon lazyload" 
+                            data-item-id="${itemId}"
+                            title="${tooltip}">
+                        <span class="inline-item-name" 
+                            data-item-id="${itemId}"
+                            title="${tooltip}">${name}</span>`;
+            });
+        }
+		
+		// 查找与当前物品相关联的所有物品（精确匹配）
+		async function findRelatedItems(currentItemId) {
+			// 检查缓存中是否已有计算结果
+			if (itemReferencesCache.size === 0) {
+				precomputeReferences();
+			}
+			
+			const relatedItemIds = new Set();
+			
+			// 1. 查找当前物品描述中引用的物品（当前道具@别的道具）
+			const currentReferences = itemReferencesCache.get(currentItemId) || new Set();
+			currentReferences.forEach(referencedId => {
+				// 排除自身引用
+				if (referencedId !== currentItemId) {
+					// 检查被引用的物品是否存在
+					const referencedItemExists = allItems.some(item => item.id === referencedId);
+					if (referencedItemExists) {
+						relatedItemIds.add(referencedId);
+					}
+				}
+			});
+			
+			// 2. 查找引用了当前物品的其他物品（别的道具@当前道具）
+			allItems.forEach(item => {
+				// 排除当前物品自身
+				if (item.id !== currentItemId) {
+					const itemRefs = itemReferencesCache.get(item.id) || new Set();
+					// 精确检查当前物品ID是否被引用
+					if (itemRefs.has(currentItemId)) {
+						relatedItemIds.add(item.id);
+					}
+				}
+			});
+			
+			// 验证所有关联物品的图片是否存在
+			const imageCheckResults = await checkImagesExist(Array.from(relatedItemIds));
+			
+			// 转换为数组并获取完整物品信息，只保留图片存在的物品
+			return Array.from(relatedItemIds)
+				.filter(itemId => imageCheckResults[itemId]) // 只保留图片存在的物品
+				.map(itemId => allItems.find(item => item.id === itemId))
+				.filter(Boolean); // 过滤掉未找到的物品
+		}
+		
+		// 检查物品是否已加载
+		function isItemLoaded(itemId) {
+			return itemDomCache.has(itemId);
+		}
+		
+		// 重置加载重试计数器
+		function resetLoadRetries() {
+			loadRetries = 0;
+		}
+		
+		// 加载直到找到指定物品
+		function loadUntilItemFound(itemId, callback) {
+			if (isItemLoaded(itemId)) {
+				resetLoadRetries();
+				callback(true);
+				return;
+			}
+			
+			if (!hasMoreItems || loadRetries >= maxLoadRetries) {
+				resetLoadRetries();
+				callback(false);
+				return;
+			}
+			
+			if (isLoading) {
+				setTimeout(() => {
+					loadRetries++;
+					loadUntilItemFound(itemId, callback);
+				}, 300);
+				return;
+			}
+			
+			renderMoreItems(() => {
+				loadRetries++;
+				loadUntilItemFound(itemId, callback);
+			});
+		}
+		
+		// 自动搜索并选择物品 - 保留高级搜索状态
+		function autoSearchAndSelect(item) {
+			saveCurrentState();
+			searchInput.value = item.name;
+			
+			// 使用当前的搜索模式（高级或普通）执行搜索
+			performSearch();
+			
+			// 搜索完成后选择对应的物品
+			setTimeout(() => {
+				selectItem(item.id, false, false);
+			}, 100);
+		}
+		
+		// 保存当前状态到历史记录
+		function saveCurrentState() {
+			if (navigationHistory.length === 0 || 
+				navigationHistory[navigationHistory.length - 1].itemId !== selectedItem?.id) {
+				
+				navigationHistory.push({
+					itemId: selectedItem ? selectedItem.id : null,
+					searchTerm: searchInput.value,
+					searchDescription: searchDescription,
+					filteredItems: [...filteredItems],
+					scrollPosition: itemsContainer.scrollTop
+				});
+				updateBackButtonVisibility();
+			}
+		}
+		
+		// 创建间隔匹配的正则表达式
+		function createSpacedRegex(keyword) {
+			// 移除所有非字母数字字符
+			const cleanKeyword = keyword.replace(/[^a-zA-Z0-9\u4e00-\u9fa5]/g, '');
+			if (cleanKeyword.length === 0) return null;
+			
+			// 为每个字符之间添加匹配任意字符的表达式
+			const regexParts = cleanKeyword.split('').map(char => 
+				escapeRegExp(char)
+			);
+			
+			return new RegExp(regexParts.join('.*'), 'i');
+		}
+		
+		// 转义正则特殊字符
+		function escapeRegExp(str) {
+			return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+		}
+		
+		// 提取描述中的物品名称
+		function extractItemNamesFromDescription(description) {
+			const itemNames = [];
+			const itemRegex = /@item_(\d+)#?/g;
+			let match;
+			
+			while ((match = itemRegex.exec(description)) !== null) {
+				const itemId = match[1];
+				const item = allItems.find(i => i.id === itemId);
+				if (item && item.name) {
+					itemNames.push(item.name);
+				}
+			}
+			
+			return itemNames;
+		}
+		
+		// 选择物品并显示详情
+		function selectItem(itemId, addToHistory = true, fromDescription = false) {
+			const item = allItems.find(i => i.id === itemId);
+			if (!item) {
+				showHintModal(`未找到ID为 ${itemId} 的物品`);
+				return;
+			}
+			
+			if (fromDescription) {
+				autoSearchAndSelect(item);
+				return;
+			}
+			
+			if (addToHistory) {
+				saveCurrentState();
+			}
+			
+			resetLoadRetries();
+			
+			if (!isItemLoaded(itemId)) {
+				loadingIndicator.classList.add('active');
+				
+				loadUntilItemFound(itemId, (found) => {
+					loadingIndicator.classList.remove('active');
+					
+					if (found) {
+						completeItemSelection(item);
+					} else {
+						showHintModal(`物品 ${item.name} 存在，但加载时发生错误`);
+						completeItemSelection(item, true);
+					}
+				});
+			} else {
+				completeItemSelection(item);
+			}
+		}
+		
+		// 完成物品选择的后续操作
+		async function completeItemSelection(item, forceDisplay = false) {
+			document.querySelectorAll('.item-small').forEach(el => {
+				el.classList.remove('selected');
+			});
+			
+			if (!forceDisplay) {
+				const selectedElement = document.querySelector(`.item-small[data-id="${item.id}"]`);
+				if (selectedElement) {
+					selectedElement.classList.add('selected');
+					selectedElement.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+				}
+			}
+			
+			// 根据是否全屏模式选择显示方式
+			if (isFullScreen) {
+				showDetailInModal(item);
+			} else {
+				showDetailInPanel(item);
+			}
+			
+			selectedItem = item;
+		}
+		
+		// 在面板中显示详情
+		function showDetailInPanel(item) {
+			detailPlaceholder.style.display = 'none';
+			detailContent.style.display = 'flex';
+			
+			detailIcon.src = '../cxid/ico/nil.png';
+			detailIcon.dataset.src = getIconUrl(item.id);
+			detailIcon.classList.add('lazyload');
+			loadLazyImage(detailIcon);
+			
+			detailId.textContent = item.id;
+			detailName.textContent = item.name;
+			detailType.textContent = item.type;
+			
+			let parsedMsg = item.msg;
+			parsedMsg = parseLineBreaks(parsedMsg);
+			parsedMsg = parseColorText(parsedMsg);
+			parsedMsg = parseItemTags(parsedMsg);
+			
+			let displayMsg = parsedMsg;
+			if (!item.msg || item.msg.trim() === '') {
+				displayMsg = '快去下载最新的游戏版本吧!';
+			}
+			
+			detailDesc.innerHTML = displayMsg;
+			initLazyLoadInDescription();
+			
+			// 显示加载中状态
+			detailRelated.innerHTML = '<div class="loading-indicator active"><div class="spinner"></div><div>秋秋正在检查关联物品中...</div></div>';
+			
+			// 加载并显示关联物品（精确匹配）
+			loadRelatedItems(item.id, detailRelated);
+		}
+		
+		// 在弹窗中显示详情（全屏模式）
+		function showDetailInModal(item) {
+			// 复制内容到弹窗
+			detailModalContent.innerHTML = `
+				<img src="" alt="物品图标" class="detail-icon" id="modalDetailIcon" title="点击复制ID">
+				
+				<div class="detail-info" id="modalDetailIdContainer" data-tooltip="点击复制ID">
+					<strong>ID：</strong>
+					<span id="modalDetailId"></span>
+				</div>
+				
+				<div class="detail-info" id="modalDetailNameContainer" data-tooltip="点击复制名称">
+					<strong>名称：</strong>
+					<span id="modalDetailName"></span>
+				</div>
+				
+				<div class="detail-info" id="modalDetailTypeContainer" data-tooltip="点击复制类型">
+					<strong>类型：</strong>
+					<span id="modalDetailType"></span>
+				</div>
+				
+				<div class="detail-desc" id="modalDetailDescContainer">
+					<strong>描述：</strong>
+					<div id="modalDetailDesc"></div>
+				</div>
+				
+				<!-- 关联区域 -->
+				<div class="detail-related">
+					<strong>关联：</strong>
+					<div class="related-items-container" id="modalDetailRelated"></div>
+				</div>
+			`;
+			
+			// 获取弹窗中的元素
+			const modalDetailIcon = document.getElementById('modalDetailIcon');
+			const modalDetailId = document.getElementById('modalDetailId');
+			const modalDetailName = document.getElementById('modalDetailName');
+			const modalDetailType = document.getElementById('modalDetailType');
+			const modalDetailDesc = document.getElementById('modalDetailDesc');
+			const modalDetailDescContainer = document.getElementById('modalDetailDescContainer');
+			const modalDetailIdContainer = document.getElementById('modalDetailIdContainer');
+			const modalDetailNameContainer = document.getElementById('modalDetailNameContainer');
+			const modalDetailTypeContainer = document.getElementById('modalDetailTypeContainer');
+			const modalDetailRelated = document.getElementById('modalDetailRelated');
+			
+			// 设置弹窗内容
+			modalDetailIcon.src = '../cxid/ico/nil.png';
+			modalDetailIcon.dataset.src = getIconUrl(item.id);
+			modalDetailIcon.classList.add('lazyload');
+			loadLazyImage(modalDetailIcon);
+			
+			modalDetailId.textContent = item.id;
+			modalDetailName.textContent = item.name;
+			modalDetailType.textContent = item.type;
+			
+			let parsedMsg = item.msg;
+			parsedMsg = parseLineBreaks(parsedMsg);
+			parsedMsg = parseColorText(parsedMsg);
+			parsedMsg = parseItemTags(parsedMsg);
+			
+			let displayMsg = parsedMsg;
+			if (!item.msg || item.msg.trim() === '') {
+				displayMsg = '快去下载最新的游戏版本吧!';
+			}
+			
+			modalDetailDesc.innerHTML = displayMsg;
+			
+			// 为弹窗中的元素绑定事件
+			modalDetailIcon.addEventListener('click', () => {
+				copyToClipboard(item.id, '物品ID');
+			});
+			
+			modalDetailIdContainer.addEventListener('click', () => {
+				copyToClipboard(item.id, '物品ID');
+			});
+			
+			modalDetailNameContainer.addEventListener('click', () => {
+				copyToClipboard(item.name, '物品名称');
+			});
+			
+			modalDetailTypeContainer.addEventListener('click', () => {
+				copyToClipboard(item.type, '物品类型');
+			});
+			
+			modalDetailDescContainer.addEventListener('click', (e) => {
+				const isInteractiveElement = e.target.closest('.inline-item-icon, .inline-item-name, .color-text');
+				
+				if (!isInteractiveElement) {
+					const textToCopy = item.msg && item.msg.trim() !== '' 
+						? item.msg 
+						: '快去下载最新的游戏版本吧!';
+					copyToClipboard(textToCopy, '物品描述');
+				}
+			});
+			
+			modalDetailDescContainer.addEventListener('click', handleInlineItemClick);
+			
+			// 初始化弹窗中的图片懒加载
+			initLazyLoadInElement(modalDetailDesc);
+			
+			// 显示加载中状态
+			modalDetailRelated.innerHTML = '<div class="loading-indicator active"><div class="spinner"></div><div>秋秋正在检查关联物品中...</div></div>';
+			
+			// 加载并显示关联物品
+			loadRelatedItems(item.id, modalDetailRelated, true);
+			
+			// 更新弹窗返回按钮的可见性
+			updateModalBackButtonVisibility();
+			
+			// 显示弹窗
+			detailModalOverlay.classList.add('active');
+			detailModal.classList.add('active');
+		}
+		
+		// 加载关联物品
+		async function loadRelatedItems(itemId, container, isModal = false) {
+			try {
+				const relatedItems = await findRelatedItems(itemId);
+				container.innerHTML = '';
+				
+				if (relatedItems.length > 0) {
+					relatedItems.forEach(relatedItem => {
+						const relatedEl = document.createElement('div');
+						relatedEl.className = 'related-item';
+						// 为关联物品容器添加title属性，显示名称和ID
+						relatedEl.title = `名称: ${relatedItem.name} | ID: ${relatedItem.id}`;
+						relatedEl.innerHTML = `
+							<img src="../cxid/ico/nil.png" 
+							     data-src="${getIconUrl(relatedItem.id)}" 
+							     alt="${relatedItem.name}" 
+							     class="lazyload"
+							     title="名称: ${relatedItem.name} | ID: ${relatedItem.id}">
+							<span title="名称: ${relatedItem.name} | ID: ${relatedItem.id}">${relatedItem.name}</span>
+						`;
+						
+						relatedEl.addEventListener('click', () => {
+							if (isModal) {
+								// 如果是弹窗模式，先关闭当前弹窗再打开新的
+								detailModalOverlay.classList.remove('active');
+								detailModal.classList.remove('active');
+							}
+							selectItem(relatedItem.id, true, true);
+						});
+						
+						container.appendChild(relatedEl);
+						
+						const img = relatedEl.querySelector('img');
+						img.onerror = function() {
+							this.classList.add('error');
+						};
+						
+						if (imageObserver) {
+							imageObserver.observe(img);
+						} else {
+							loadLazyImage(img);
+						}
+					});
+				} else {
+					container.innerHTML = '<div class="no-related-items">无关联物品</div>';
+				}
+			} catch (error) {
+				console.error('获取关联物品失败:', error);
+				container.innerHTML = '<div class="no-related-items">获取关联物品失败</div>';
+			}
+		}
+		
+		// 返回上一级
+		function goBack() {
+			if (navigationHistory.length > 0) {
+				const prevState = navigationHistory.pop();
+				updateBackButtonVisibility();
+				updateModalBackButtonVisibility(); // 更新弹窗返回按钮可见性
+				
+				// 恢复搜索描述状态
+				searchDescription = prevState.searchDescription;
+				searchDescriptionToggle.checked = searchDescription;
+				
+				if (prevState.itemId) {
+					const prevItem = allItems.find(i => i.id === prevState.itemId);
+					if (prevItem) {
+						if (isFullScreen) {
+							// 全屏模式下更新弹窗内容
+							showDetailInModal(prevItem);
+						} else {
+							// 普通模式下更新面板内容
+							detailContent.style.display = 'flex';
+							detailPlaceholder.style.display = 'none';
+							
+							detailIcon.src = '../cxid/ico/nil.png';
+							detailIcon.dataset.src = getIconUrl(prevItem.id);
+							detailIcon.classList.add('lazyload');
+							loadLazyImage(detailIcon);
+							
+							detailId.textContent = prevItem.id;
+							detailName.textContent = prevItem.name;
+							detailType.textContent = prevItem.type;
+							
+							let parsedMsg = prevItem.msg;
+							parsedMsg = parseLineBreaks(parsedMsg);
+							parsedMsg = parseColorText(parsedMsg);
+							parsedMsg = parseItemTags(parsedMsg);
+							
+							detailDesc.innerHTML = parsedMsg || '快去下载最新的游戏版本吧!';
+							initLazyLoadInDescription();
+							
+							// 恢复关联物品显示
+							detailRelated.innerHTML = '<div class="loading-indicator active"><div class="spinner"></div><div>正在检查关联物品...</div></div>';
+							
+							// 异步加载关联物品
+							loadRelatedItems(prevItem.id, detailRelated);
+						}
+						
+						selectedItem = prevItem;
+					}
+				} else {
+					if (isFullScreen) {
+						// 全屏模式下关闭弹窗
+						detailModalOverlay.classList.remove('active');
+						detailModal.classList.remove('active');
+					} else {
+						// 普通模式下显示占位符
+						detailContent.style.display = 'none';
+						detailPlaceholder.style.display = 'flex';
+					}
+					selectedItem = null;
+				}
+				
+				queueMicrotask(() => {
+					const currentScrollPos = itemsContainer.scrollTop;
+					
+					searchInput.value = prevState.searchTerm;
+					filteredItems = [...prevState.filteredItems];
+					
+					itemsContainer.innerHTML = '';
+					itemDomCache.clear();
+					currentPage = 1;
+					hasMoreItems = true;
+					
+					if (filteredItems.length > 0) {
+						renderMoreItems(() => {
+							if (prevState.itemId) {
+								const prevItemEl = document.querySelector(`.item-small[data-id="${prevState.itemId}"]`);
+								if (prevItemEl) {
+									prevItemEl.classList.add('selected');
+								}
+							}
+							
+							setTimeout(() => {
+								itemsContainer.scrollTop = prevState.scrollPosition;
+							}, 50);
+						});
+						
+						searchInfo.textContent = prevState.searchTerm 
+							? `找到 ${filteredItems.length} 个结果: "${prevState.searchTerm}"${prevState.searchDescription ? ' (高级搜索)' : ''}`
+							: `共 ${allItems.length} 个物品`;
+					} else {
+						searchInfo.textContent = prevState.searchTerm 
+							? `没有找到包含 "${prevState.searchTerm}" 的物品${prevState.searchDescription ? ' (高级搜索)' : ''}`
+							: `共 ${allItems.length} 个物品`;
+					}
+				});
+			}
+		}
+		
+		// 更新返回按钮可见性
+		function updateBackButtonVisibility() {
+			backButton.style.display = navigationHistory.length > 0 ? 'block' : 'none';
+		}
+		
+		// 更新弹窗返回按钮可见性
+		function updateModalBackButtonVisibility() {
+			modalBackButton.style.display = navigationHistory.length > 0 ? 'block' : 'none';
+		}
+		
+		// 初始化指定元素中的图片懒加载
+		function initLazyLoadInElement(element) {
+			const lazyImages = element.querySelectorAll('.lazyload');
+			lazyImages.forEach(img => {
+				img.onerror = function() {
+					this.classList.add('error');
+				};
+				if (imageObserver) {
+					imageObserver.observe(img);
+				} else {
+					loadLazyImage(img);
+				}
+			});
+		}
+		
+		// 初始化描述中的图片懒加载
+		function initLazyLoadInDescription() {
+			initLazyLoadInElement(detailDesc);
+		}
+		
+		// 处理描述中物品的点击事件
+		function handleInlineItemClick(e) {
+			const target = e.target.closest('.inline-item-icon, .inline-item-name, .color-text');
+			if (target) {
+				e.stopPropagation();
+				const itemId = target.getAttribute('data-item-id') || 
+							  target.parentElement?.getAttribute('data-item-id');
+				if (itemId) {
+					if (isFullScreen) {
+						// 全屏模式下先关闭当前弹窗
+						detailModalOverlay.classList.remove('active');
+						detailModal.classList.remove('active');
+					}
+					selectItem(itemId, true, true);
+				}
+			}
+		}
+		
+		// 加载懒加载图片
+		function loadLazyImage(img) {
+			if (img.dataset.src && img.src !== img.dataset.src) {
+				img.src = img.dataset.src;
+				img.removeAttribute('data-src');
+				img.classList.remove('lazyload');
+			}
+		}
+		
+		// 初始化图片懒加载
+		function initLazyLoad() {
+			if ('IntersectionObserver' in window) {
+				imageObserver = new IntersectionObserver((entries, observer) => {
+					entries.forEach(entry => {
+						if (entry.isIntersecting) {
+							const img = entry.target;
+							loadLazyImage(img);
+							observer.unobserve(img);
+						}
+					});
+				}, {
+					rootMargin: '50px 0px',
+					threshold: 0.01
+				});
+			}
+		}
+		
+		// 渲染更多物品
+		function renderMoreItems(callback) {
+			if (isLoading || !hasMoreItems) {
+				if (callback) callback();
+				return;
+			}
+			
+			isLoading = true;
+			loadingIndicator.classList.add('active');
+			
+			requestAnimationFrame(() => {
+				const startIndex = (currentPage - 1) * pageSize;
+				const endIndex = Math.min(startIndex + pageSize, filteredItems.length);
+				const itemsToRender = filteredItems.slice(startIndex, endIndex);
+				
+				const fragment = document.createDocumentFragment();
+				
+				itemsToRender.forEach(item => {
+					if (!itemDomCache.has(item.id)) {
+						const itemElement = document.createElement('div');
+						itemElement.className = `item-small ${selectedItem && selectedItem.id === item.id ? 'selected' : ''}`;
+						itemElement.setAttribute('data-id', item.id);
+						
+						itemElement.innerHTML = `
+							<div class="id">${item.id}</div>
+							<img src="../cxid/ico/nil.png" 
+								 data-src="${getIconUrl(item.id)}" 
+								 alt="${item.name}" 
+								 class="lazyload"
+								 title="名称: ${item.name} | ID: ${item.id}">
+							<div class="name">${item.name}</div>
+						`;
+						
+						const img = itemElement.querySelector('img');
+						img.onerror = function() {
+							this.classList.add('error');
+						};
+						
+						itemDomCache.set(item.id, itemElement);
+						fragment.appendChild(itemElement);
+						
+						if (imageObserver) {
+							imageObserver.observe(img);
+						} else {
+							loadLazyImage(img);
+						}
+					}
+				});
+				
+				itemsContainer.appendChild(fragment);
+				
+				if (endIndex >= filteredItems.length) {
+					hasMoreItems = false;
+					loadingIndicator.innerHTML = '<div>已加载全部内容</div>';
+				} else {
+					currentPage++;
+					loadingIndicator.innerHTML = '<div class="spinner"></div><div>加载中...</div>';
+				}
+				
+				isLoading = false;
+				loadingIndicator.classList.remove('active');
+				
+				if (callback) callback();
+			});
+		}
+		
+		// 重置列表并加载第一页
+		function resetAndLoadItems() {
+			itemsContainer.innerHTML = '';
+			itemDomCache.clear();
+			currentPage = 1;
+			hasMoreItems = true;
+			renderMoreItems();
+		}
+		
+		// 搜索功能 - 支持高级搜索
+		function performSearch() {
+			const keyword = searchInput.value.trim().toLowerCase();
+			if (keyword) {
+				// 高级搜索使用间隔匹配，普通搜索使用精确匹配
+				const regex = searchDescription 
+					? createSpacedRegex(keyword) 
+					: new RegExp(escapeRegExp(keyword), 'i');
+				
+				if (!regex) {
+					// 关键字无效时显示所有物品
+					filteredItems = [...allItems];
+					searchInfo.textContent = `共 ${allItems.length} 个物品`;
+					resetAndLoadItems();
+					return;
+				}
+				
+				filteredItems = allItems.filter(item => {
+					// 基础匹配：名称、ID、类型
+					const basicMatch = regex.test(item.name) || 
+									   regex.test(item.id) || 
+									   regex.test(item.type);
+					
+					if (basicMatch) return true;
+					
+					// 高级搜索额外匹配：描述内容和描述中的物品名称
+					if (searchDescription) {
+						// 匹配描述内容
+						if (regex.test(item.msg)) return true;
+						
+						// 匹配描述中提到的物品名称
+						const itemNamesInDesc = extractItemNamesFromDescription(item.msg);
+						return itemNamesInDesc.some(name => regex.test(name));
+					}
+					
+					return false;
+				});
+				
+				if (filteredItems.length > 0) {
+					resetAndLoadItems();
+					searchInfo.textContent = `找到 ${filteredItems.length} 个结果: "${keyword}"${searchDescription ? ' (高级搜索)' : ''}`;
+				} else {
+					itemsContainer.innerHTML = '';
+					itemDomCache.clear();
+					searchInfo.textContent = `没有找到包含 "${keyword}" 的物品${searchDescription ? ' (高级搜索)' : ''}`;
+					showHintModal('秋秋找不到呢，请换一个试试！', '../cxid/ico/无搜索内容.gif');
+					isLoading = false;
+					hasMoreItems = true;
+					loadingIndicator.classList.remove('active');
+				}
+			} else {
+				filteredItems = [...allItems];
+				resetAndLoadItems();
+				searchInfo.textContent = `共 ${allItems.length} 个物品`;
+			}
+		}
+		
+		// 切换全屏模式
+		function toggleFullScreen() {
+			isFullScreen = fullScreenToggle.checked;
+			document.body.classList.toggle('fullscreen-mode', isFullScreen);
+			
+			// 如果退出全屏模式，确保弹窗关闭
+			if (!isFullScreen) {
+				detailModalOverlay.classList.remove('active');
+				detailModal.classList.remove('active');
+				
+				// 如果有选中的物品，在面板中显示
+				if (selectedItem) {
+					showDetailInPanel(selectedItem);
+				} else {
+					detailContent.style.display = 'none';
+					detailPlaceholder.style.display = 'flex';
+				}
+			} else {
+				// 如果进入全屏模式，隐藏左侧面板
+				detailContent.style.display = 'none';
+				detailPlaceholder.style.display = 'none';
+			}
+			
+			// 重新渲染物品列表以适应新布局
+			itemsContainer.innerHTML = '';
+			itemDomCache.clear();
+			currentPage = 1;
+			hasMoreItems = true;
+			renderMoreItems();
+		}
+		
+		// 绑定无限滚动事件
+		function bindScrollEvent() {
+			let scrollTimeout;
+			itemsContainer.addEventListener('scroll', () => {
+				clearTimeout(scrollTimeout);
+				scrollTimeout = setTimeout(() => {
+					if (!isLoading && hasMoreItems && 
+						itemsContainer.scrollHeight - itemsContainer.scrollTop - itemsContainer.clientHeight < 200) {
+						renderMoreItems();
+					}
+				}, 100);
+			});
+		}
+		
+		// 绑定复制事件
+		function bindCopyEvents() {
+			detailIcon.addEventListener('click', () => {
+				if (selectedItem) {
+					copyToClipboard(selectedItem.id, '物品ID');
+				}
+			});
+			
+			detailIdContainer.addEventListener('click', () => {
+				if (selectedItem) {
+					copyToClipboard(selectedItem.id, '物品ID');
+				}
+			});
+			
+			detailNameContainer.addEventListener('click', () => {
+				if (selectedItem) {
+					copyToClipboard(selectedItem.name, '物品名称');
+				}
+			});
+			
+			detailTypeContainer.addEventListener('click', () => {
+				if (selectedItem) {
+					copyToClipboard(selectedItem.type, '物品类型');
+				}
+			});
+			
+			const descContainer = document.querySelector('.detail-desc');
+			descContainer.addEventListener('click', (e) => {
+				const isInteractiveElement = e.target.closest('.inline-item-icon, .inline-item-name, .color-text');
+				
+				if (!isInteractiveElement) {
+					if (selectedItem) {
+						const textToCopy = selectedItem.msg && selectedItem.msg.trim() !== '' 
+							? selectedItem.msg 
+							: '快去下载最新的游戏版本吧!';
+						copyToClipboard(textToCopy, '物品描述');
+					}
+				}
+			});
+			
+			descContainer.addEventListener('click', handleInlineItemClick);
+		}
+		
+		// 初始化
+		function init() {
+			initLazyLoad();
+			bindScrollEvent();
+			bindCopyEvents();
+			
+			itemsContainer.addEventListener('click', (e) => {
+				const itemEl = e.target.closest('.item-small');
+				if (itemEl) {
+					const itemId = itemEl.getAttribute('data-id');
+					selectItem(itemId, true, false);
+				}
+			});
+			
+			// 绑定高级搜索开关事件
+			searchDescriptionToggle.addEventListener('change', function() {
+				searchDescription = this.checked;
+				performSearch();
+			});
+			
+			// 绑定全屏模式开关事件
+			fullScreenToggle.addEventListener('change', toggleFullScreen);
+			
+			// 绑定弹窗关闭事件
+			detailModalClose.addEventListener('click', () => {
+				detailModalOverlay.classList.remove('active');
+				detailModal.classList.remove('active');
+			});
+			
+			// 绑定弹窗返回按钮事件
+			modalBackButton.addEventListener('click', goBack);
+			
+			detailModalOverlay.addEventListener('click', (e) => {
+				if (e.target === detailModalOverlay) {
+					detailModalOverlay.classList.remove('active');
+					detailModal.classList.remove('active');
+				}
+			});
+		}
+		
+		// 绑定事件
+		searchButton.addEventListener('click', performSearch);
+		searchInput.addEventListener('keypress', (e) => {
+			if (e.key === 'Enter') performSearch();
+		});
+		backButton.addEventListener('click', goBack);
+		
+		hintModalClose.addEventListener('click', closeHintModal);
+		hintModalConfirm.addEventListener('click', closeHintModal);
+		hintModal.addEventListener('click', (e) => {
+			if (e.target === hintModal) {
+				closeHintModal();
+			}
+		});
+		
+		// 加载物品数据
+		fetch('../cxid/id.txt')
+			.then(response => {
+				if (!response.ok) throw new Error('网络响应不正常');
+				return response.text();
+			})
+			.then(data => {
+				allItems = data.trim().split('\n').map(line => {
+					const [id, name, type, msg] = line.replace(/[{}]/g, '').split(',');
+					return { id, name, type, msg: msg || '' };
+				});
+				
+				// 预计算所有引用关系
+				precomputeReferences();
+				
+				filteredItems = [...allItems];
+				resetAndLoadItems();
+				searchInfo.textContent = `共 ${allItems.length} 个物品`;
+				init();
+			})
+			.catch(error => {
+				console.error('读取数据失败:', error);
+				showHintModal('读取服务器数据时发生错误。', '../cxid/ico/无搜索内容.gif');
+				isLoading = false;
+				loadingIndicator.classList.remove('active');
+			});
+		// 初始化应用
+		window.addEventListener('DOMContentLoaded', () => {
+			filteredItems = [...allItems];
+			searchInfo.textContent = `共 ${allItems.length} 个物品`;
+			init();
+			renderMoreItems();
+		});
+	</script>
+</body>
+</html>

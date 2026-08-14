@@ -1,0 +1,78 @@
+<html>
+	<head>
+		<title>文本编辑器范例</title>
+		<!--点击登录成功后 (1)初始化脚本 (2)修改脚本后点击保存 (3)再次打开时显示上次数据-->
+		<script type="text/javascript">
+			// 因Cef3设置参数有缺陷这里需主动初始化
+			function InitEditorContent()
+			{
+				var result = undefined;
+				if (window.NativeGetScript != undefined) {
+					result = window.NativeGetScript();
+					var editor = document.getElementById("editor");
+					if (typeof(result)=='string') {
+						editor.value = result;
+					} else {
+						window.NativeInitScript();
+					}
+				}
+			}
+
+			var curRow = 5, curCols = 10;
+			function JsGetCursorPosition()
+			{
+				var array = [curRow, ', ', curCols];
+				return array.join('')
+			}
+
+			function JsSetCursorPosition(row, cols)
+			{
+				curRow = row;
+				curCols = cols;
+
+				alert('SetCursor:'+curRow+'<>'+curCols);
+			}
+
+			function JsGetScriptContent()
+			{
+				var editor = document.getElementById("editor");
+				return editor.value;
+				//window.NativeSaveScript(editor.value);
+			}
+
+			function JsSetScriptContent(content)
+			{
+				var editor = document.getElementById("editor");
+				if (typeof(content)=='string') editor.value = content;
+			}
+
+			function SaveEditorContent()
+			{
+				var editor = document.getElementById("editor");
+				var result = window.NativeSaveScript(editor.value);
+				alert('<'+editor.value+">")
+				if (result == 0) alert('Save success!')
+				else alert('Save failed!')
+			}
+
+			function doLogin()  // 测试用例
+			{
+				var userName = document.getElementById("userName").value;
+				var password = document.getElementById("password").value;
+				var result = window.NativedoLogin(userName, password);
+				
+				if (result==0) alert("Login Succ")
+				else if (result==1) alert("Login Fail")
+				else alert("Error!!")
+	 		}
+		</script>
+	</head>
+	<body onload="InitEditorContent()">
+		<button onclick="SaveEditorContent()">点我保存</button>
+		<textarea rows="35" cols="70" id='editor'></textarea>
+		<br><br><br>
+		UserName: <input type="text" id="userName" />
+		Password: <input type="text" id="password" />
+		<button id="textBtn" onclick="doLogin()">Login</button>
+	</body>
+</html>

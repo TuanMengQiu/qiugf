@@ -1,0 +1,51 @@
+<!DOCTYPE html> 
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=5.0, initial-scale=1.0" />
+        <meta name="theme-color" content="#474747">
+        <title>Photopea - 在线 图像 编辑</title>
+        <meta name="description" content="Photopea Online Photo Editor lets you edit photos, apply effects, filters, add text, crop or resize pictures. Do Online Photo Editing in your browser for free!" />
+        <link rel="apple-touch-icon" href="promo/icon512.png">
+        <link rel="icon" sizes="512x512" href="promo/icon512.png">
+        <link rel="image_src" type="image/png" href="promo/icon512.png" />
+        <style>     
+            body, button, input, textarea, select { font-family: "Open Sans", "Segoe UI", sans-serif; }
+            body, input, select, button { font-size: 13px; }
+            body { background-image: radial-gradient(rgb(40,40,50), rgb(10, 0, 10)); margin: 0; padding: 0; }
+        </style>        
+    </head>
+    <body class="theme0">       
+        <div id="cap" style="display: none;"></div>
+        <script>
+            (function autoStartPP() {
+                console.log("Auto-loading Photopea editor...");
+                var fls = [
+                    "style/all09.css",
+                    "code/ext/ext1753387088.js",
+                    "code/dbs/DBS1751979998.js",
+                    "code/pp/pp1753360222.js"
+                ];
+                var fromCDN = window.location.host == "www.photopea.com" && !window.location.href.endsWith("nocdn");
+                var ao = window.location.ancestorOrigins;
+                if (ao) {
+                    for (var i = 0; i < ao.length; i++) {
+                        if (ao[i].indexOf("figma.com") != -1) fromCDN = false;
+                    }
+                }
+                for (var i = 0; i < fls.length; i++) {
+                    var url = (fromCDN ? "//vecpea.com/" : "") + fls[i];
+                    var isJS = url.endsWith(".js");
+                    var el = document.createElement(isJS ? "script" : "link");
+                    el.setAttribute(isJS ? "src" : "href", url);
+                    if (!isJS) {
+                        el.setAttribute("rel", "stylesheet");
+                    } else {
+                        el.async = false;
+                    }
+                    (isJS ? document.body : document.head).appendChild(el);
+                }
+            })();
+        </script>
+    </body>
+</html>
